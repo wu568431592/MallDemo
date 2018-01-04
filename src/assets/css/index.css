@@ -1,0 +1,95 @@
+/*CSS  reset*/
+* {
+  box-sizing: border-box;
+}
+html{
+  min-height:100%;
+}
+body{
+  font: 12px 'microsoft yahei', SimHei, arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  min-width: 1000px;
+  min-height:100%;
+}
+.white {
+  background-color: #fff;
+}
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li {
+  margin: 0;
+  padding: 0;
+  color:inherit;
+}
+a,
+a:hover,
+a.active {
+  text-decoration: none;
+  color:inherit;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+  background-color: transparent;
+  outline: none;
+}
+.lf {
+  float: left;
+}
+.rt {
+  float: right;
+}
+.clear {
+  clear: both;
+}
+.beFa:before,
+.beFa:after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+ul,
+li,
+ol {
+  list-style: none;
+}
+img{
+  width:100%;
+  border:none;
+  padding:0;
+  margin:0;
+}
+.pr{
+  position: relative;
+}
+.pa{
+  position: absolute;
+}
+.pf{
+  position: fixed;
+}
+
+/*CSS  reset  end*/
+
+
+/* common  CSS*/
+.icon.iconfont{
+  font-size:30px;
+  color:#333;
+}
