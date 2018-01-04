@@ -1,25 +1,25 @@
 <template>
   <div class="tabbar">
     <ul>
-      <li>
+      <li v-bind:class="{active:active0}">
         <router-link to="/index">
           <i class="icon iconfont icon-shouye"></i>
           <span>首页</span>
         </router-link>
       </li>
-      <li>
+      <li v-bind:class="{active:active1}">
         <router-link to="/allProduct">
           <i class="icon iconfont icon-category"></i>
           <span>分类</span>
         </router-link>
       </li>
-      <li>
+      <li v-bind:class="{active:active2}">
         <router-link to="/cart">
           <i class="icon iconfont icon-gouwuche "></i>
           <span>购物车</span>
         </router-link>
       </li>
-      <li>
+      <li v-bind:class="{active:active3}">
         <router-link to="/userCenter">
           <i class="icon iconfont icon-wodejuhuasuan"></i>
           <span>我的</span>
@@ -35,14 +35,28 @@ export default {
   name: 'tabbar',
   data () {
     return {
-
+      active0 :false,
+      active1 :false,
+      active2 :false,
+      active3 :false,
     }
   },
+  props: ['activeBar'],
   methods:{
-    changeTab:function(e){
-       console.log(e.target)
+    activeBarFun:function(){
+      var active = this.activeBar;
+      switch (active){
+        case '0' : this.active0 = true;break;
+        case '1' : this.active1 = true;break;
+        case '2' : this.active2 = true;break;
+        case '3' : this.active3 = true;break;
+      }
     }
+  },
+  mounted:function(){
+    this.activeBarFun();
   }
+
 }
 </script>
 

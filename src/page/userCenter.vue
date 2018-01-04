@@ -1,7 +1,7 @@
 <template>
     <div class="userCenter">
         userCenter
-        <tabBar></tabBar>
+      <tabBar activeBar="3"></tabBar>
     </div>
 </template>
 
@@ -11,7 +11,7 @@
       name:'userCenter',
       components:{tabBar},
       mounted:function(){
-        document.getElementsByClassName('tabbar')[0].children[0].children[3].setAttribute("class","active")
+        //document.getElementsByClassName('tabbar')[0].children[0].children[3].setAttribute("class","active")
       }
     }
 </script>

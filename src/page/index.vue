@@ -1,18 +1,17 @@
 <template>
     <div class="index">
         index
-        <tabBar></tabBar>
+        <tabBar activeBar="0"></tabBar>
     </div>
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import tabBar from  '../components/tabBar/tabBar.vue'
     export default {
       name:'index',
       components:{tabBar},
       mounted:function(){
-        document.getElementsByClassName('tabbar')[0].children[0].children[0].setAttribute("class","active")
+        //document.getElementsByClassName('tabbar')[0].children[0].children[0].setAttribute("class","active")
       }
     }
 </script>

@@ -31,6 +31,9 @@ export default new Router({
       path: '/userCenter',
       component: userCenter
     },
-
+    {
+      path:'*',
+      component: index
+    }
   ]
 })

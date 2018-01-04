@@ -15,19 +15,19 @@ const mutations ={
   }
 }
 const getters = {
-  getSearchDetails:function(){
-    var details;
-    var xmlhttp =new XMLHttpRequest();
-    xmlhttp.onreadystatechange =function(){
-      if( xmlhttp.readyState==4 && xmlhttp.status==200 ){
-        details = eval('('+xmlhttp.responseText+')');
-      }else{
-        details = {}
-      }
-    }
-    xmlhttp.open('GET','http://'+state.serverIP+'/json/searchDetails.php',false);
-    xmlhttp.send();
-    return details
+  //getSearchDetails:function(){
+    //var details;
+    //var xmlhttp =new XMLHttpRequest();
+    //xmlhttp.onreadystatechange =function(){
+      //if( xmlhttp.readyState==4 && xmlhttp.status==200 ){
+        //details = eval('('+xmlhttp.responseText+')');
+      //}else{
+        //details = {}
+      //}
+    //}
+    //xmlhttp.open('GET','http://'+state.serverIP+'/json/searchDetails.php',false);
+    //xmlhttp.send();
+    //return details
     //var details
     // axios.get('http://192.168.78.65/json/searchDetails.php')
     //   .then(function (response) {
@@ -39,7 +39,7 @@ const getters = {
     //   });
     // console.log(details)
     // return details
-  },
+  //},
 }
 const store = new Vuex.Store({
   state,

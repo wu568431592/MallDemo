@@ -1,6 +1,7 @@
 s<template>
     <div class="cart">
       cart
+      <tabBar activeBar="2"></tabBar>
     </div>
 </template>
 
@@ -8,7 +9,7 @@ s<template>
   import tabBar from  '../components/tabBar/tabBar.vue'
     export default {
       name:'cart',
-      components:{},
+      components:{tabBar},
       mounted:function(){
 
       }
@@ -17,5 +18,9 @@ s<template>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-
+  .tabbar{
+    position:fixed;
+    bottom:0px;
+    left:0px;
+  }
 </style>

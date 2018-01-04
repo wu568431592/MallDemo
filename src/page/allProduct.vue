@@ -1,7 +1,7 @@
 <template>
     <div class="allProduct">
         allProduct
-        <tabBar></tabBar>
+      <tabBar activeBar="1"></tabBar>
     </div>
 </template>
 
@@ -11,7 +11,7 @@
       name:'allProduct',
       components:{tabBar},
       mounted:function(){
-        document.getElementsByClassName('tabbar')[0].children[0].children[1].setAttribute("class","active")
+        //document.getElementsByClassName('tabbar')[0].children[0].children[1].setAttribute("class","active")
       }
     }
 </script>
