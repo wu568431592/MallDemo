@@ -44,7 +44,7 @@
           }
         },
         goBack:function(){
-            this.$router.go(-1);
+          this.$router.goBack();
         },
         seacrhNow:function(){
           var item = this.searchValue;
