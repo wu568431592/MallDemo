@@ -5,8 +5,11 @@ import allProduct from '../page/allProduct.vue'
 import cart from '../page/cart.vue'
 import userCenter from '../page/userCenter.vue'
 import searchMain from '../page/searchMain.vue'
+import searchInfo from '../page/searchInfo.vue'
+
 Vue.use(Router);
-Router.prototype.goBack = function () {
+
+Router.prototype.goBack = function () { //为router 新增一个返回前一页的方法
   this.isBack = true
   window.history.go(-1)
 }
@@ -37,6 +40,11 @@ export default new Router({
     {
       path: '/searchMain',
       component: searchMain
+    },
+    {
+      path: '/searchInfo',
+      component: searchInfo,
+      props: (route) => ({ query: route.query.info })
     },
     {
       path: '*',

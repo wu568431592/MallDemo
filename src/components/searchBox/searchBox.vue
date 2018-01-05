@@ -8,10 +8,10 @@
         <i class="icon iconfont icon-sousuo"></i>
         <input v-model="searchValue" type="text" placeholder="搜索您想要的商品" @click="goSearchMain">
       </div>
-      <div class="button_box" v-if="isSearchButtonShow" @click="seacrhNow">
+      <div class="button_box" v-if="isMessageShow" @click="seacrhNow">
         搜索
       </div>
-      <div class="message_box" v-else="isSearchButtonShow">
+      <div class="message_box" v-else="isMessageShow">
         <i class="icon iconfont icon-xiaoxizhongxin"></i>
       </div>
     </div>
@@ -33,6 +33,13 @@
               }else{
                   return true
               }
+          },
+          isMessageShow:function(){
+            if(this.isSearchButtonShow == 'false'){
+              return false
+            }else{
+              return true
+            }
           }
       },
       methods:{

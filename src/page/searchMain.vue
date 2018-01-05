@@ -69,6 +69,7 @@
         },
         searchNow:function(item){
           console.log(item);
+          this.$router.push({path:'/searchInfo?info='+item})
         },
       },
       beforeMount:function(){

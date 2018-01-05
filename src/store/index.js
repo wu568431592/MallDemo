@@ -6,7 +6,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 var state;
 state ={
-  showBar:true,
+
 }
 
 const mutations ={
