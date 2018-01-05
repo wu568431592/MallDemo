@@ -6,13 +6,14 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 var state;
 state ={
-
+  showBar:true,
 }
 
 const mutations ={
   go:function(state,options){
     options[0].push({path:'/'+options[1]});
-  }
+  },
+
 }
 const getters = {
   //getSearchDetails:function(){

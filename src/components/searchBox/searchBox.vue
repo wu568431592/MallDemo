@@ -6,9 +6,12 @@
       <div class="myGoods" v-else="isBackShow">我的商品</div>
       <div class="searchBox_item" v-bind:class="{long:isBackShow}">
         <i class="icon iconfont icon-sousuo"></i>
-        <input type="text" placeholder="搜索您想要的商品" @click="goSearchMain">
+        <input v-model="searchValue" type="text" placeholder="搜索您想要的商品" @click="goSearchMain">
       </div>
-      <div class="message_box">
+      <div class="button_box" v-if="isSearchButtonShow" @click="seacrhNow">
+        搜索
+      </div>
+      <div class="message_box" v-else="isSearchButtonShow">
         <i class="icon iconfont icon-xiaoxizhongxin"></i>
       </div>
     </div>
@@ -19,10 +22,10 @@
       name:'searchBox',
       data(){
         return{
-
+          searchValue:''
         }
       },
-      props:['isBackBtn'],
+      props:['isBackBtn','isSearchButtonShow'],
       computed:{
           isBackShow:function(){
               if(this.isBackBtn == 'false'){
@@ -41,7 +44,11 @@
           }
         },
         goBack:function(){
-            console.log(this.$router.go(-1))
+            this.$router.go(-1);
+        },
+        seacrhNow:function(){
+          var item = this.searchValue;
+          this.$emit('searchNow',item);
         }
       }
     }
@@ -105,6 +112,12 @@
       i.iconfont{
         color:#fff;
       }
+    }
+    div.button_box{
+      width:15%;
+      text-align: center;
+      line-height: 45px;
+      color:#fff;
     }
   }
 </style>

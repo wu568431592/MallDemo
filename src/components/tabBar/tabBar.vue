@@ -40,8 +40,8 @@ export default {
       active3 :false,
     }
   },
-  props: ['activeBar'],
   methods:{
+
   },
   mounted:function(){
 
@@ -49,7 +49,6 @@ export default {
   watch: {
     '$route' (to, from) {
       // 对路由变化作出响应...
-      console.log(to)
       switch (to.fullPath){
         case '/index' : this.active0 = true;this.active1 = false;this.active2 = false;this.active3 = false;break;
         case '/allProduct' : this.active1 = true;this.active0 = false;this.active2 = false;this.active3 = false;break;
@@ -64,9 +63,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
     div.tabbar{
+      background-color: #fff;
       width:100%;
       height:55px;
-      box-shadow:0px 1px 20px 0px #666;
+      box-shadow:0px 1px 10px 0px #666;
       ul{
         overflow: hidden;
         li{

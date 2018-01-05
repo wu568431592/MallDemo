@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <!--<transition :duration="1000" mode="out-in" enter-active-class="slideInRight" leave-active-class="slideOutLeft">-->
-      <router-view class="animated"/>
+      <router-view class="animated" v-on:hideTabBar="hideTabBar" v-on:showTabBar="showTabBar"/>
     <!--</transition>-->
-    <tabBar @click="clickme"></tabBar>
+    <tabBar v-show="showBar"></tabBar>
   </div>
 </template>
 
@@ -16,10 +16,19 @@
 
     },
     methods:{
-      clickme:function(){
-        console.log(e.target)
+      hideTabBar:function(){
+        console.log('hideTabBar')
+        this.showBar = false;
+      },
+      showTabBar:function(){
+        this.showBar = true;
       }
-    }
+    },
+    data(){
+        return{
+          showBar:true,
+        }
+    },
   }
 </script>
 
