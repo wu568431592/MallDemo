@@ -4,7 +4,7 @@ import index from '../page/index.vue'
 import allProduct from '../page/allProduct.vue'
 import cart from '../page/cart.vue'
 import userCenter from '../page/userCenter.vue'
-
+import searchMain from '../page/searchMain.vue'
 Vue.use(Router);
 
 export default new Router({
@@ -32,7 +32,11 @@ export default new Router({
       component: userCenter
     },
     {
-      path:'*',
+      path: '/searchMain',
+      component: searchMain
+    },
+    {
+      path: '*',
       component: index
     }
   ]

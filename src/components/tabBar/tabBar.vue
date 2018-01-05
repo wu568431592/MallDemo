@@ -26,7 +26,6 @@
         </router-link>
       </li>
     </ul>
-
   </div>
 </template>
 
@@ -35,7 +34,7 @@ export default {
   name: 'tabbar',
   data () {
     return {
-      active0 :false,
+      active0 :true,
       active1 :false,
       active2 :false,
       active3 :false,
@@ -43,20 +42,22 @@ export default {
   },
   props: ['activeBar'],
   methods:{
-    activeBarFun:function(){
-      var active = this.activeBar;
-      switch (active){
-        case '0' : this.active0 = true;break;
-        case '1' : this.active1 = true;break;
-        case '2' : this.active2 = true;break;
-        case '3' : this.active3 = true;break;
-      }
-    }
   },
   mounted:function(){
-    this.activeBarFun();
-  }
 
+  },
+  watch: {
+    '$route' (to, from) {
+      // 对路由变化作出响应...
+      console.log(to)
+      switch (to.fullPath){
+        case '/index' : this.active0 = true;this.active1 = false;this.active2 = false;this.active3 = false;break;
+        case '/allProduct' : this.active1 = true;this.active0 = false;this.active2 = false;this.active3 = false;break;
+        case '/cart' : this.active2 = true;this.active1 = false;this.active0 = false;this.active3 = false;break;
+        case '/userCenter' : this.active3 = true;this.active1 = false;this.active2 = false;this.active0 = false;break;
+      }
+    }
+  }
 }
 </script>
 
@@ -64,26 +65,26 @@ export default {
 <style scoped lang="less">
     div.tabbar{
       width:100%;
-      height:9vh;
+      height:55px;
       box-shadow:0px 1px 20px 0px #666;
       ul{
         overflow: hidden;
         li{
           float:left;
           width:25%;
-          padding:1vh 0px;
+          padding:5px 0px;
           i{
             display: block;
             margin: 0px auto;
-            width:30px;
+            width:25px;
+            font-size:25px;
           }
-
           span{
             display: block;
             width:100%;
             text-align: center;
             color:#333;
-            font-size:16px;
+            font-size:14px;
           }
         }
         li.active{

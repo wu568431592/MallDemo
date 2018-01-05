@@ -1,8 +1,10 @@
 <template>
+  <!--<transition enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutLeft">-->
     <div class="userCenter">
         userCenter
-      <tabBar activeBar="3"></tabBar>
+      <!--<tabBar activeBar="3"></tabBar>-->
     </div>
+  <!--</transition>-->
 </template>
 
 <script>
@@ -11,7 +13,7 @@
       name:'userCenter',
       components:{tabBar},
       mounted:function(){
-        //document.getElementsByClassName('tabbar')[0].children[0].children[3].setAttribute("class","active")
+
       }
     }
 </script>
@@ -22,5 +24,8 @@
     position:fixed;
     bottom:0px;
     left:0px;
+  }
+  .userCenter{
+    height:100vh;
   }
 </style>

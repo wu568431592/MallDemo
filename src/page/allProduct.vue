@@ -1,8 +1,10 @@
 <template>
+  <!--<transition enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutLeft">-->
     <div class="allProduct">
         allProduct
-      <tabBar activeBar="1"></tabBar>
+      <!--<tabBar activeBar="1"></tabBar>-->
     </div>
+  <!--</transition>-->
 </template>
 
 <script>
@@ -11,7 +13,7 @@
       name:'allProduct',
       components:{tabBar},
       mounted:function(){
-        //document.getElementsByClassName('tabbar')[0].children[0].children[1].setAttribute("class","active")
+
       }
     }
 </script>
@@ -22,5 +24,8 @@
     position:fixed;
     bottom:0px;
     left:0px;
+  }
+  .allProduct{
+    height:100vh;
   }
 </style>

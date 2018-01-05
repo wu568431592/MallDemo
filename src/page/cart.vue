@@ -1,8 +1,10 @@
 s<template>
+  <!--<transition enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutLeft">-->
     <div class="cart">
       cart
-      <tabBar activeBar="2"></tabBar>
+      <!--<tabBar activeBar="2"></tabBar>-->
     </div>
+  <!--</transition>-->
 </template>
 
 <script>
@@ -22,5 +24,8 @@ s<template>
     position:fixed;
     bottom:0px;
     left:0px;
+  }
+  .cart{
+    height:100vh;
   }
 </style>

@@ -1,0 +1,110 @@
+<template>
+    <div class="searchBox">
+      <div class="back" v-if="isBackShow">
+        <i class="icon iconfont icon-back" @click="goBack"></i>
+      </div>
+      <div class="myGoods" v-else="isBackShow">我的商品</div>
+      <div class="searchBox_item" v-bind:class="{long:isBackShow}">
+        <i class="icon iconfont icon-sousuo"></i>
+        <input type="text" placeholder="搜索您想要的商品" @click="goSearchMain">
+      </div>
+      <div class="message_box">
+        <i class="icon iconfont icon-xiaoxizhongxin"></i>
+      </div>
+    </div>
+</template>
+
+<script>
+    export default {
+      name:'searchBox',
+      data(){
+        return{
+
+        }
+      },
+      props:['isBackBtn'],
+      computed:{
+          isBackShow:function(){
+              if(this.isBackBtn == 'false'){
+                  return false
+              }else{
+                  return true
+              }
+          }
+      },
+      methods:{
+        goSearchMain:function(){
+          if(this.$router.history.current.path !== '/searchMain'){
+            this.$router.push({path:'/searchMain'})
+          }else{
+              return
+          }
+        },
+        goBack:function(){
+            console.log(this.$router.go(-1))
+        }
+      }
+    }
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="less">
+  .searchBox{
+    overflow: hidden;
+    width:100%;
+    height:45px;
+    background:#e4393c;
+    >div{
+      float:left;
+      height:45px;
+    }
+    div.back{
+      width:15%;
+      line-height:45px;
+      text-align: center;
+      i.iconfont{
+        color:#fff;
+        font-size: 25px;
+      }
+    }
+    div.myGoods{
+      width:20%;
+      color:#fff;
+      line-height:45px;
+      padding:0px 5px;
+      font-size:13px;
+    }
+    div.searchBox_item.long{
+      width:70%;
+    }
+    div.searchBox_item{
+      width:65%;
+      position: relative;
+      line-height: 45px;
+      i.iconfont{
+        position: absolute;
+        top:0px;
+        left:8px;
+        color:#e4393c;
+        font-size: 20px;
+      }
+      input{
+        background-color: #fff;
+        height:30px;
+        line-height: 30px;
+        width:100%;
+        border:1px solid #fff;
+        padding-left:30px;
+        border-radius: 3px;
+      }
+    }
+    div.message_box{
+      width:15%;
+      text-align: center;
+      line-height: 45px;
+      i.iconfont{
+        color:#fff;
+      }
+    }
+  }
+</style>
