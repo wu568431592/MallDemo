@@ -6,12 +6,12 @@
       <div class="myGoods" v-else="isBackShow">我的商品</div>
       <div class="searchBox_item" v-bind:class="{long:isBackShow}">
         <i class="icon iconfont icon-sousuo"></i>
-        <input v-model="searchValue" type="text" placeholder="搜索您想要的商品" @click="goSearchMain">
+        <input v-model="parentSearchValue" type="text" placeholder="搜索您想要的商品" @click="goSearchMain">
       </div>
-      <div class="button_box" v-if="isMessageShow" @click="seacrhNow">
+      <div class="button_box" v-if="isSearchButtonShow == 'button'" @click="seacrhNow">
         搜索
       </div>
-      <div class="message_box" v-else="isMessageShow">
+      <div class="message_box" v-else-if="isSearchButtonShow == 'message'">
         <i class="icon iconfont icon-xiaoxizhongxin"></i>
       </div>
     </div>
@@ -22,10 +22,10 @@
       name:'searchBox',
       data(){
         return{
-          searchValue:''
+          parentSearchValue:this.searchValue,
         }
       },
-      props:['isBackBtn','isSearchButtonShow'],
+      props:['isBackBtn','isSearchButtonShow','searchValue'],
       computed:{
           isBackShow:function(){
               if(this.isBackBtn == 'false'){
@@ -34,17 +34,10 @@
                   return true
               }
           },
-          isMessageShow:function(){
-            if(this.isSearchButtonShow == 'false'){
-              return false
-            }else{
-              return true
-            }
-          }
       },
       methods:{
         goSearchMain:function(){
-          if(this.$router.history.current.path !== '/searchMain'){
+          if(this.$router.history.current.path == '/index' || this.$router.history.current.path == '/'){
             this.$router.push({path:'/searchMain'})
           }else{
               return
@@ -54,7 +47,7 @@
           this.$router.goBack();
         },
         seacrhNow:function(){
-          var item = this.searchValue;
+          var item = this.parentSearchValue;
           this.$emit('searchNow',item);
         }
       }

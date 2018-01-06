@@ -1,7 +1,8 @@
 <template>
   <!--<transition enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutLeft">-->
     <div class="index">
-        <searchBox isBackBtn="false" isSearchButtonShow='false'></searchBox>
+        <searchBox isBackBtn="false" isSearchButtonShow='message'></searchBox>
+        <productListPage></productListPage>
         index
     </div>
   <!--</transition>-->
@@ -10,9 +11,10 @@
 <script>
   import tabBar from  '../components/tabBar/tabBar.vue'
   import searchBox from  '../components/searchBox/searchBox.vue'
+  import productListPage from  '../components/productListPage/productListPage.vue'
   export default {
     name:'index',
-    components:{tabBar,searchBox},
+    components:{tabBar,searchBox,productListPage},
     mounted:function(){
 
     },

@@ -1,7 +1,7 @@
 <template>
   <!--<transition enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">-->
     <div class="searchMain">
-      <searchBox isBackBtn="true" isSearchButtonShow="true" v-on:searchNow="searchNow"></searchBox>
+      <searchBox isBackBtn="true" isSearchButtonShow="button" v-on:searchNow="searchNow"></searchBox>
       <div class="hotSearch">
         <p>热门搜索</p>
         <ul>
