@@ -86,7 +86,7 @@
       .viewChange{
         float:right;
         i.iconfont{
-          font-size: 22px;
+          font-size: 24px;
           color:#e4393c;
         }
       }
