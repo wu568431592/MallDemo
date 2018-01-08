@@ -15,6 +15,19 @@
           <i class="icon iconfont icon-viewlist" v-show="!viewChage"></i>
         </div>
       </div>
+      <div class="productList">
+        <ul :class="{'listView':islistView}">
+          <li v-for="v in nowList">
+            <router-link to="/index">
+              <div class="img_box">
+                <img :src="v.imgSrc" alt="">
+              </div>
+              <h4>{{v.proName}}</h4>
+              <p>&yen;{{v.proPrice}} <i class="icon iconfont icon-add"></i></p>
+            </router-link>
+          </li>
+        </ul>
+      </div>
     </div>
 </template>
 
@@ -27,23 +40,45 @@
           upDownShow:true,
           upDown:0,
           allSortActive:true,
-          priceSortActive:false
+          priceSortActive:false,
+          nowList:this.listData,
+          islistView:false
         }
       },
+      props:['listData'],
       methods:{
         changeView:function(){
-            this.viewChage = !this.viewChage;
+          this.viewChage = !this.viewChage;
+          this.islistView = !this.islistView;
         },
         allSortDo:function(){
           this.allSortActive=true;
           this.priceSortActive=false;
           this.upDownShow = true;
+          this.nowList = sortByKey(this.nowList,'pid')
+          function sortByKey(array, key) {
+            return array.sort(function(a, b) {
+              var x = a[key]; var y = b[key];
+              return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+            });
+          }
         },
         priceSortDo:function(){
           this.allSortActive=false;
           this.priceSortActive=true;
           this.upDownShow = false;
           this.upDown++;
+          if(this.upDown %2 == 0){
+            this.nowList = sortByKey(this.nowList,'proPrice')
+          }else{
+            this.nowList = sortByKey(this.nowList,'proPrice').reverse();
+          }
+          function sortByKey(array, key) {
+            return array.sort(function(a, b) {
+              var x = parseInt(a[key]); var y = parseInt(b[key]);
+              return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+            });
+          }
         }
       }
     }
@@ -52,11 +87,15 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
   .productListPage{
-    padding:1vh 0px;
-    border-bottom:1px solid #eee;
+    position:relative;
     .sortBox{
+      position:fixed;
+      top:45px;
+      left:0px;
+      width:100%;
       background-color: #fff;
-      padding:0px 10px;
+      border-bottom:1px solid #eee;
+      padding:5px 10px;
       overflow: hidden;
       ul{
         float:left;
@@ -88,6 +127,69 @@
         i.iconfont{
           font-size: 24px;
           color:#e4393c;
+        }
+      }
+    }
+    .productList{
+      padding-top:6vh;
+      background:#fff;
+      ul{
+        overflow: hidden;
+        li{
+          float:left;
+          width:50%;
+          border-bottom:1px solid  #eee;
+          border-right:1px solid #eee;
+          div.img_box{
+            width:100px;
+            height:100px;
+            margin:10px auto;
+            overflow: hidden;
+            img{
+              width:100%;
+            }
+          }
+          h4{
+            padding:0px 10px;
+            height:8vh;
+            line-height: 4vh;
+            overflow: hidden;
+            font-size: 12px;
+            margin-bottom:1vh;
+          }
+          p{
+            padding:0px 10px;
+            overflow: hidden;
+            color:#e4393c;
+            height:4vh;
+            line-height: 4vh;
+            margin-bottom:1vh;
+            i.iconfont{
+              float:right;
+              font-size:20px;
+              color:#e4393c;
+            }
+          }
+        }
+        li:nth-child(even){
+          border-right:none;
+        }
+      }
+      ul.listView{
+        li{
+          overflow: hidden;
+          width:100%;
+          padding:10px;
+          border-right:none;
+          div.img_box{
+            float:left;
+            width:80px;
+            height:80px;
+            margin:0px;
+            img{
+              margin:0px;
+            }
+          }
         }
       }
     }
