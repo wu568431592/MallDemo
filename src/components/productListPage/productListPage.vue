@@ -124,6 +124,8 @@
       }
       .viewChange{
         float:right;
+        height: 5vh;
+        line-height: 5vh;
         i.iconfont{
           font-size: 24px;
           color:#e4393c;
@@ -131,7 +133,7 @@
       }
     }
     .productList{
-      padding-top:6vh;
+      padding-top:6.5vh;
       background:#fff;
       ul{
         overflow: hidden;

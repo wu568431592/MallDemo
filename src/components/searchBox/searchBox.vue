@@ -1,9 +1,11 @@
 <template>
     <div class="searchBox">
-      <div class="back" v-if="isBackShow">
+      <div class="back" v-if="isBackBtn == 'true'">
         <i class="icon iconfont icon-back" @click="goBack"></i>
       </div>
-      <div class="myGoods" v-else="isBackShow">我的商品</div>
+      <div class="myGoods" v-else-if="isBackBtn == 'false'">我的商品</div>
+      <div class="empty" v-else="isBackBtn == 'empty'"></div>
+      <div v-else="isBackBtn == empty"></div>
       <div class="searchBox_item" v-bind:class="{long:isBackShow}">
         <i class="icon iconfont icon-sousuo"></i>
         <input v-model="parentSearchValue" type="text" placeholder="搜索您想要的商品" @click="goSearchMain">
@@ -11,7 +13,7 @@
       <div class="button_box" v-if="isSearchButtonShow == 'button'" @click="seacrhNow">
         搜索
       </div>
-      <div class="message_box" v-else-if="isSearchButtonShow == 'message'">
+      <div class="message_box" v-else-if="isSearchButtonShow == 'message'" @click="goMyMessage">
         <i class="icon iconfont icon-xiaoxizhongxin"></i>
       </div>
     </div>
@@ -49,6 +51,9 @@
         seacrhNow:function(){
           var item = this.parentSearchValue;
           this.$emit('searchNow',item);
+        },
+        goMyMessage:function(){
+          this.$router.push({path:'/myMessageInfo'})
         }
       }
     }
@@ -73,6 +78,10 @@
         color:#fff;
         font-size: 25px;
       }
+    }
+    div.empty{
+      width:20%;
+      line-height:45px;
     }
     div.myGoods{
       width:20%;

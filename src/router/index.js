@@ -6,6 +6,7 @@ import cart from '../page/cart.vue'
 import userCenter from '../page/userCenter.vue'
 import searchMain from '../page/searchMain.vue'
 import searchInfo from '../page/searchInfo.vue'
+import myMessageInfo from '../page/myMessageInfo.vue'
 
 Vue.use(Router);
 
@@ -45,6 +46,10 @@ export default new Router({
       path: '/searchInfo',
       component: searchInfo,
       props: (route) => ({ query: route.query.info })
+    },
+    {
+      path: '/myMessageInfo',
+      component: myMessageInfo
     },
     {
       path: '*',
