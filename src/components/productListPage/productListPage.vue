@@ -23,8 +23,8 @@
                 <img :src="v.imgSrc" alt="">
               </div>
               <h4>{{v.proName}}</h4>
-              <p>&yen;{{v.proPrice}} <i class="icon iconfont icon-add"></i></p>
             </router-link>
+            <p>&yen;{{v.proPrice}} <i class="icon iconfont icon-add"></i></p>
           </li>
         </ul>
       </div>
