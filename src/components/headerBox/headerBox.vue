@@ -1,16 +1,16 @@
 <template>
     <div class="headerBox">
       <div class="back">
-        <i class="icon iconfont icon-back"></i>
+        <i class="icon iconfont icon-back" v-show="isBackShow" @click="goback"></i>
       </div>
       <div class="title">
         {{title}}
       </div>
       <div class="domain" v-show="showDomain">
-        <i class="icon iconfont icon-xiaoxizhongxin"></i>
-        <i class="icon iconfont icon-sousuo"></i>
-        <i class="icon iconfont icon-lajixiang"></i>
-        <span>编辑/完成</span>
+        <i class="icon iconfont icon-sousuo" v-if="rightSearch"></i>
+        <i class="icon iconfont icon-xiaoxizhongxin" v-if="rightMessage"></i>
+        <i class="icon iconfont icon-lajixiang" v-if="rightDelete"></i>
+        <span v-if="rightWord">{{rightWordstext}}</span>
       </div>
     </div>
 </template>
@@ -22,19 +22,82 @@
         return{
           rightButtons:this.rightButton,
           showDomain:true,
+          isBackShow:true,
+          rightMessage:false,
+          rightSearch:false,
+          rightDelete:false,
+          rightWords:false,
+          rightWordstext:''
         }
       },
-      props:['title','rightButton'],
+      props:['title','rightButton','rightWord'],
       beforeMount:function(){
-          console.log(this.rightButtons)
-        if(this.rightButtons.length == 0){
-            this.showDomain = false;
+        var checkKey =function(array,key){
+          for(var i = 0;i<array.length;i++){
+            if(array[i] == key){
+              return true
+            }
+          }
+          return false
         }
+        if(this.rightButtons.length == '0'){
+          this.showDomain = false;
+        }else{
+          if(checkKey(this.rightButtons,'messageBtn')){
+            this.rightMessage = true;
+          }
+          if(checkKey(this.rightButtons,'searchBtn')){
+            this.rightSearch = true;
+          }
+          if(checkKey(this.rightButtons,'deleteBtn')){
+            this.rightDelete = true;
+          }
+        }
+        if(this.rightWord == 'false'){
+          this.rightWords = false;
+        }else{
+          this.rightWords = true;
+          this.rightWordstext = this.rightWord;
+        }
+      },
+      methods:{
+          goback:function(){
+            this.$router.goBack();
+          }
       }
     }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-
+  .headerBox{
+    background-color: #e4393c;
+    color:#fff;
+    height:45px;
+    line-height:45px;
+    overflow: hidden;
+    >div{
+      float:left;
+      height:45px;
+     }
+    div.back{
+      width:20%;
+      padding:0px 10px;
+      text-align: left;
+      i.iconfont{
+        color:#fff;
+      }
+    }
+    div.title{
+      width:60%;
+      text-align: center;
+      font-size: 15px;
+    }
+    div.domain{
+      width:20%;
+      i.iconfont{
+        color:#fff;
+      }
+    }
+  }
 </style>
