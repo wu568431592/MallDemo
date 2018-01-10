@@ -73,12 +73,12 @@
   .headerBox{
     background-color: #e4393c;
     color:#fff;
-    height:45px;
-    line-height:45px;
+    height:7.5vh;
+    line-height:7.5vh;
     overflow: hidden;
     >div{
       float:left;
-      height:45px;
+      height:7.5vh;
      }
     div.back{
       width:20%;

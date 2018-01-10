@@ -64,15 +64,15 @@
   .searchBox{
     overflow: hidden;
     width:100%;
-    height:45px;
+    height:7.5vh;
     background:#e4393c;
     >div{
       float:left;
-      height:45px;
+      height:7.5vh;
     }
     div.back{
       width:15%;
-      line-height:45px;
+      line-height:7.5vh;
       text-align: center;
       i.iconfont{
         color:#fff;
@@ -81,12 +81,12 @@
     }
     div.empty{
       width:20%;
-      line-height:45px;
+      line-height:7.5vh;
     }
     div.myGoods{
       width:20%;
       color:#fff;
-      line-height:45px;
+      line-height:7.5vh;
       padding:0px 5px;
       font-size:13px;
     }
@@ -96,7 +96,7 @@
     div.searchBox_item{
       width:65%;
       position: relative;
-      line-height: 45px;
+      line-height: 7.5vh;
       i.iconfont{
         position: absolute;
         top:0px;
@@ -117,7 +117,7 @@
     div.message_box{
       width:15%;
       text-align: center;
-      line-height: 45px;
+      line-height: 7.5vh;
       i.iconfont{
         color:#fff;
       }
@@ -125,7 +125,7 @@
     div.button_box{
       width:15%;
       text-align: center;
-      line-height: 45px;
+      line-height: 7.5vh;
       color:#fff;
     }
   }

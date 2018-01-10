@@ -90,20 +90,20 @@
     position:relative;
     .sortBox{
       position:fixed;
-      top:45px;
+      top:7.5vh;
       left:0px;
       width:100%;
       background-color: #fff;
       border-bottom:1px solid #eee;
-      padding:5px 10px;
+      padding:0px 10px;
       overflow: hidden;
       ul{
         float:left;
         overflow: hidden;
         li{
           float:left;
-          height:5vh;
-          line-height:5vh;
+          height:7vh;
+          line-height:7vh;
           padding:0px 2vw;
           overflow: hidden;
           font-size:14px;
@@ -124,8 +124,8 @@
       }
       .viewChange{
         float:right;
-        height: 5vh;
-        line-height: 5vh;
+        height: 7vh;
+        line-height: 7vh;
         i.iconfont{
           font-size: 24px;
           color:#e4393c;
@@ -133,7 +133,9 @@
       }
     }
     .productList{
-      padding-top:6.5vh;
+      margin-top: 14.5vh;
+      height:85.5vh;
+      overflow-y: scroll;
       background:#fff;
       ul{
         overflow: hidden;

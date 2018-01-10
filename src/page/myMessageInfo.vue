@@ -4,11 +4,11 @@
       <!--<headerBox title="我的消息" isBackShow="true" :rightButton="rightButtonList" rightWord="编辑"></headerBox>-->
       <div class="mainBox">
         <ul class="changeBtn">
-          <li :class="{active:changeBtnActive%2==0}" @click="changeBtnAdd">交易物流</li>
-          <li :class="{active:changeBtnActive%2==1}" @click="changeBtnAdd">服务通知</li>
+          <li :class="{active:activeWuliu}" @click="changeBtnWuliu">交易物流</li>
+          <li :class="{active:activeFuwu}" @click="changeBtnFuwu">服务通知</li>
         </ul>
         <div class="msgListBox">
-          <ul :class="['wuliuBox',{hide:isHide%2==1}]">
+          <ul :class="['animated','fadeInRight','wuliuBox',{hide:isWuliuHide}]">
             <li v-for="v in wuliList">
               <h2 class="time">{{v.time}}</h2>
               <div class="wuliuMsgItem">
@@ -23,7 +23,7 @@
               </div>
             </li>
           </ul>
-          <ul :class="['fuwuBox',{hide:isHide%2==0}]">
+          <ul :class="['animated','fadeInRight','fuwuBox',{hide:isFuwuHide}]">
             <li v-for="v in fuwuList">
               <h2 class="time">{{v.time}}</h2>
               <div class="fuwuMsgItem">
@@ -52,6 +52,10 @@
 //          rightButtonList:['searchBtn','messageBtn'],
           changeBtnActive:0,
           isHide:0,
+          activeWuliu:true,
+          activeFuwu:false,
+          isWuliuHide:false,
+          isFuwuHide:true,
           wuliList:[
             {
               time:'2018年08月27日 06:17',
@@ -105,8 +109,6 @@
               proImgSrc:'//img10.360buyimg.com/N2/jfs/t11089/67/2744083331/68075/b567bf6/5a1d025aNc42009ef.jpg',
               fuwuInfo:'您的订单234567已完成，感谢您对正康送药的支持，欢迎再次光临',
             },
-
-
           ]
         }
       },
@@ -115,9 +117,19 @@
       },
       components:{headerBox,},
       methods:{
-        changeBtnAdd:function(e){
-            this.changeBtnActive ++;
-            this.isHide ++ ;
+        changeBtnWuliu:function(){
+            this.activeWuliu = true;
+            this.activeFuwu = false;
+            this.isWuliuHide = false;
+            this.isFuwuHide = true;
+            document.getElementsByClassName('msgListBox')[0].scrollTop = 0;
+        },
+        changeBtnFuwu:function(){
+          this.activeWuliu = false;
+          this.activeFuwu = true;
+          this.isWuliuHide = true;
+          this.isFuwuHide = false;
+          document.getElementsByClassName('msgListBox')[0].scrollTop = 0;
         }
       }
     }
@@ -125,9 +137,21 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
+  .headerBox{
+    position: fixed;
+    top:0px;
+    left:0px;
+    width:100%;
+  }
   .mainBox{
     .changeBtn{
       overflow: hidden;
+      position: fixed;
+      top:7.5vh;
+      left:0px;
+      background-color: #ffffff;
+      z-index:100000;
+      width:100%;
       li{
         float:left;
         width:50%;
@@ -147,7 +171,10 @@
       }
     }
     .msgListBox{
+      margin-top:15.5vh;
       background-color: #eee;
+      overflow-y: scroll;
+      height:84.5vh;
       .wuliuBox{
         li{
           background-color: #fff;

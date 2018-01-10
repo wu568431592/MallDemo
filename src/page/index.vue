@@ -3,7 +3,6 @@
     <div class="index">
         <searchBox isBackBtn="false" isSearchButtonShow='message'></searchBox>
         <productListPage :listData="searchData"></productListPage>
-        index
     </div>
   <!--</transition>-->
 </template>
@@ -16,10 +15,12 @@
     name:'index',
     components:{tabBar,searchBox,productListPage},
     mounted:function(){
-
+      //修正index 产品列表 被tabbar 遮挡的问题
+      document.getElementsByClassName('productList')[0].childNodes[0].style.paddingBottom='56px';
     },
     beforeMount:function(){
       this.$emit('showTabBar');
+
     },
     data(){
         return{
@@ -112,8 +113,7 @@
   .index{
     height:100vh;
   }
-  .productListPage{
-    margin-top:45px;
-    margin-bottom:45px;
+  .productList ul{
+    padding-bottom:55px;
   }
 </style>
