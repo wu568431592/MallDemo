@@ -18,7 +18,7 @@
       <div class="productList">
         <ul :class="{'listView':islistView}">
           <li v-for="v in nowList">
-            <router-link to="/index">
+            <router-link to="/proInformation">
               <div class="img_box">
                 <img :src="v.imgSrc" alt="">
               </div>

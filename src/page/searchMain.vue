@@ -68,7 +68,6 @@
           this.showConfirmBox = false;
         },
         searchNow:function(item){
-          console.log(item);
           this.$router.push({path:'/searchInfo?info='+item})
         },
       },

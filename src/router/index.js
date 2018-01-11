@@ -7,6 +7,7 @@ import userCenter from '../page/userCenter.vue'
 import searchMain from '../page/searchMain.vue'
 import searchInfo from '../page/searchInfo.vue'
 import myMessageInfo from '../page/myMessageInfo.vue'
+import proInformation from '../page/proInformation.vue'
 
 Vue.use(Router);
 
@@ -50,6 +51,10 @@ export default new Router({
     {
       path: '/myMessageInfo',
       component: myMessageInfo
+    },
+    {
+      path: '/proInformation',
+      component: proInformation
     },
     {
       path: '*',
