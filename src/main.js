@@ -4,7 +4,6 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store1 from './store/index'
-import { AlertPlugin } from 'vux'
 require('!style-loader!css-loader!less-loader!./assets/css/animate.css')
 require('!style-loader!css-loader!less-loader!./assets/css/iconfont/iconfont.css')
 require('!style-loader!css-loader!less-loader!./assets/css/index.css')
@@ -20,4 +19,3 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
-
