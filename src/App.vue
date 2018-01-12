@@ -45,6 +45,7 @@
 </script>
 
 <style scoped lang="less">
+  @import '~vux/src/styles/reset.less';
   .tabbar{
     position:fixed;
     bottom:0px;

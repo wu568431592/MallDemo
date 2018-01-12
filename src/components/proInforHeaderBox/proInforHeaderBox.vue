@@ -62,6 +62,11 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
   .proInforHeaderBox{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 100000;
+    width: 100%;
     height:7.5vh;
     line-height:7.5vh;
     background-color: #e4393c;
