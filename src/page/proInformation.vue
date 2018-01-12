@@ -67,6 +67,9 @@
   .proInformation{
     background:#eee;
     div.proInfor{
+      height:100vh;
+      overflow-x: hidden;
+      overflow-y: scroll;
       div.proName{
         background:#fff;
         height:9vh;
@@ -81,6 +84,42 @@
         color:#e4393c;
         font-size: 4vw;
         margin-bottom:1vh;
+        height:4vh;
+        line-height: 4vh;
+      }
+      .chooseBox{
+        background:#fff;
+        position:relative;
+        padding:5px 10px;
+        margin-bottom:1vh;
+        .chooseItem{
+          height:4vh;
+          line-height: 4vh;
+        }
+        .kucun{
+          height:4vh;
+          line-height: 4vh;
+        }
+        .chooseBtn{
+          position:absolute;
+          top:2.5vh;
+          right:10px;
+        }
+      }
+      .address{
+        height:6vh;
+        line-height: 6vh;
+        background:#fff;
+        padding:0px 10px;
+        margin-bottom:1vh;
+      }
+      .proInfomain{
+        background:#fff;
+        width:100vw;
+        padding:10px 0px;
+        img{
+          width:100%;
+        }
       }
     }
   }
