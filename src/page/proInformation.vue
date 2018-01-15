@@ -12,7 +12,7 @@
         <div class="chooseBox">
           <div class="chooseItem">已选：1件 原装+套餐1</div>
           <div class="kucun">库存：1232123件</div>
-          <div class="chooseBtn">
+          <div class="chooseBtn" @click="chooseOtherItem">
             <i class="icon iconfont icon-more"></i>
           </div>
         </div>
@@ -23,6 +23,30 @@
           <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
         </div>
       </div>
+      <div class="bottom_box">
+        <ul>
+          <li>
+            <i class="icon iconfont icon-service"></i>
+            <p>客服</p>
+          </li>
+          <li>
+            <i class="icon iconfont icon-jushoucang"></i>
+            <p>收藏</p>
+          </li>
+          <li>
+            <i class="icon iconfont icon-gouwuche"></i>
+            <p>购物车</p>
+          </li>
+        </ul>
+        <div>
+          加入购物车
+        </div>
+      </div>
+      <!--<div class="chooseItemAlert">-->
+        <!--<div class="chooseItemAlertMain">-->
+          <!---->
+        <!--</div>-->
+      <!--</div>-->
     </div>
 </template>
 
@@ -51,6 +75,11 @@
       components:{proInforHeaderBox,Swiper},
       beforeMount:function(){
         this.$emit('hideTabBar');
+      },
+      methods:{
+        chooseOtherItem:function(){
+            console.log('hahahh')
+        }
       }
     }
 </script>
@@ -70,6 +99,7 @@
       height:100vh;
       overflow-x: hidden;
       overflow-y: scroll;
+      padding-bottom:55px;
       div.proName{
         background:#fff;
         height:9vh;
@@ -120,6 +150,39 @@
         img{
           width:100%;
         }
+      }
+    }
+    .bottom_box{
+      position: fixed;
+      bottom:0px;
+      left:0px;
+      width:100%;
+      background-color: #fff;
+      height:55px;
+      box-shadow: 0px -1px 20px 0px #666;
+      overflow: hidden;
+      >ul{
+         padding:5px 0px;
+        float:left;
+        width:50%;
+        overflow: hidden;
+        li{
+          text-align: center;
+          float:left;
+          widtH:33.33333333%;
+          i.iconfont{
+            color:#e4393c;
+          }
+        }
+       }
+      >div{
+         float:right;
+         width:50%;
+        text-align: center;
+        line-height: 55px;
+        color:#fff;
+        background-color: #e4393c;
+        font-size:4.5vw;
       }
     }
   }
