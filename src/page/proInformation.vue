@@ -21,6 +21,8 @@
         </div>
         <div class="proInfomain">
           <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
+          <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
+          <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
         </div>
       </div>
       <div class="bottom_box">
@@ -29,24 +31,27 @@
             <i class="icon iconfont icon-service"></i>
             <p>客服</p>
           </li>
-          <li>
-            <i class="icon iconfont icon-jushoucang"></i>
+          <li @click="shoucangFun">
+            <i class="icon iconfont icon-jushoucang" v-show="!isShoucang"></i>
+            <i class="icon iconfont icon-jushoucanggift" v-show="isShoucang"></i>
             <p>收藏</p>
           </li>
           <li>
-            <i class="icon iconfont icon-gouwuche"></i>
-            <p>购物车</p>
+            <router-link to="/cart">
+              <i class="icon iconfont icon-gouwuche" ></i>
+              <p>购物车</p>
+            </router-link>
           </li>
         </ul>
         <div>
           加入购物车
         </div>
       </div>
-      <!--<div class="chooseItemAlert">-->
-        <!--<div class="chooseItemAlertMain">-->
-          <!---->
-        <!--</div>-->
-      <!--</div>-->
+      <div class="chooseItemAlert">
+        <div class="chooseItemAlertMain">
+
+        </div>
+      </div>
     </div>
 </template>
 
@@ -70,6 +75,7 @@
               url: 'javascript:',
               img: '//img14.360buyimg.com/N1/s450x450_jfs/t16189/116/1460008662/19113/8da609ca/5a53174bN19fbb5f2.jpg',
             }],
+            isShoucang:false,
           }
       },
       components:{proInforHeaderBox,Swiper},
@@ -79,6 +85,9 @@
       methods:{
         chooseOtherItem:function(){
             console.log('hahahh')
+        },
+        shoucangFun:function(){
+          this.isShoucang = !this.isShoucang;
         }
       }
     }
