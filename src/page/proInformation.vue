@@ -1,8 +1,8 @@
 <template>
     <div class="proInformation">
       <div class="cover" v-show="isCoverShow"></div>
-      <proInforHeaderBox></proInforHeaderBox>
-      <div class="proInfor">
+      <proInforHeaderBox @hideDetails="detailsHide" @showDetails="detailsShow"></proInforHeaderBox>
+      <div class="proInfor animated slideInRight" v-show="!isShopDetailsShow">
         <Swiper class="diy_swiper" loop  :list="proPicList" height="100vw"  dots-position="center" ></Swiper>
         <div class="proName">
           360手机 N6 Pro 全网通 6GB+64GB 钛泽银色 移动联通电信4G手机 双卡双待 全面屏 游戏手机
@@ -24,6 +24,29 @@
           <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
           <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
           <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
+        </div>
+      </div>
+      <div class="tabBox" v-show="isShopDetailsShow">
+        <span :class="{active:isPicBoxShow}" @click="activePicBox">商品介绍</span>
+        <span :class="{active:isTableBoxShow}" @click="activeTableBox">规格参数</span>
+      </div>
+      <div class="proDetails animated slideInRight" v-show="isShopDetailsShow">
+        <div class="tabMainBox">
+          <div class="pictureBox" v-show="isPicBoxShow">
+            <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
+            <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
+            <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
+          </div>
+          <div class="tableBox" v-show="isTableBoxShow">
+            <div class="tr" v-for="n in 20">
+              <div class="td">
+                商品名称{{n}}
+              </div>
+              <div class="td">
+                360手机N{{n}}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="bottom_box">
@@ -83,6 +106,9 @@
             isChooseAlertShow:false,
             isCoverShow:false,
             isKefuShow:false,
+            isShopDetailsShow:false,
+            isPicBoxShow:true,
+            isTableBoxShow:false,
           }
       },
       components:{proInforHeaderBox,Swiper,chooseItemAlert},
@@ -120,6 +146,28 @@
           setTimeout(function(){
             this.isKefuShow = false;
           },2000)
+        },
+        detailsShow:function(){
+          var me = document.getElementsByClassName('proDetails')[0];
+          me.setAttribute('class','proDetails animated slideInRight');
+          this.isShopDetailsShow = true;
+        },
+        detailsHide:function(){
+          var me = document.getElementsByClassName('proInfor')[0];
+          me.setAttribute('class','proInfor animated slideInRight');
+          this.isShopDetailsShow = false;
+        },
+        activePicBox:function(){
+          var me = document.getElementsByClassName('pictureBox')[0];
+          me.setAttribute('class','pictureBox animated slideInRight');
+          this.isPicBoxShow = true;
+          this.isTableBoxShow =false;
+        },
+        activeTableBox:function(){
+          var me = document.getElementsByClassName('tableBox')[0];
+          me.setAttribute('class','tableBox animated slideInRight');
+          this.isPicBoxShow = false;
+          this.isTableBoxShow = true;
         }
       }
     }
@@ -135,7 +183,7 @@
     width:100%;
   }
   .proInformation{
-    background:#eee;
+    background:#fff;
     .cover{
       position: fixed;
       background-color: rgba(0,0,0,0.5);
@@ -146,6 +194,7 @@
       left:0px;
     }
     div.proInfor{
+      background:#eee;
       height:100vh;
       overflow-x: hidden;
       overflow-y: scroll;
@@ -199,6 +248,71 @@
         padding:10px 0px;
         img{
           width:100%;
+        }
+      }
+    }
+    .tabBox{
+      position:fixed;
+      top:7.5vh;
+      left:0px;
+      width:100%;
+      background-color: #fff;
+      z-index: 100000;
+      height:7vh;
+      line-height: 6.6vh;
+      text-align: center;
+      font-size:4.5vw;
+      box-shadow:0px 1px 20px 0px #999;
+      span{
+        float:left;
+        width:50%;
+      }
+      span.active{
+        border-bottom: 2px solid #e4393c;
+      }
+      span:first-child{
+        border-right:1px solid #eee;
+      }
+    }
+    .proDetails{
+      margin-top: 14.5vh;
+      height: 85.5vh;
+      overflow-y: scroll;
+      position:static;
+      background: #fff;
+      padding-bottom:55px;
+      .tabMainBox{
+        padding:10px 5px;
+        background-color:#fff;
+        .pictureBox{
+          width:100%;
+          img{
+            width:100%;
+            vertical-align: middle;
+          }
+        }
+        .tableBox{
+          color:#333;
+          border-left:1px solid #999;
+          border-top:1px solid #999;
+          .tr{
+            width:100%;
+            overflow:hidden;
+            .td{
+              border-right:1px solid #999;
+              border-bottom:1px solid #999;
+              float:left;
+              height:5vh;
+              line-height:5vh;
+              padding-left:5px;
+            }
+            .td:first-child{
+              width:30%;
+            }
+            .td:nth-child(2){
+              width:70%;
+            }
+          }
         }
       }
     }

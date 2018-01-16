@@ -47,10 +47,12 @@
         activeProInfo:function(){
           this.isProInfoActive = true;
           this.isProDetailsActive = false;
+          this.$emit('hideDetails');
         },
         activeProDetails:function(){
           this.isProInfoActive = false;
           this.isProDetailsActive = true;
+          this.$emit('showDetails');
         },
         showDomain:function(){
             this.doMainItemShow = !this.doMainItemShow;
@@ -65,7 +67,7 @@
     position: fixed;
     top: 0px;
     left: 0px;
-    z-index: 100000;
+    z-index: 100000000000000;
     width: 100%;
     height:7.5vh;
     line-height:7.5vh;
