@@ -28,7 +28,7 @@
       </div>
       <div class="bottom_box">
         <ul>
-          <li>
+          <li @click="showKefu">
             <i class="icon iconfont icon-service"></i>
             <p>客服</p>
           </li>
@@ -49,6 +49,12 @@
         </div>
       </div>
       <chooseItemAlert v-show="isChooseAlertShow" @hideChooseAlert="hideChooseAlertFun"></chooseItemAlert>
+      <div class="kefuInfoAlert animated slideInUp" v-show="isKefuShow">
+        <p>客服电话：13963633569</p>
+        <p>通讯地址：北京市西城区</p>
+        <p>QQ:5684315927</p>
+        <i class="icon iconfont icon-ioscloseoutline" @click="hideKefu"></i>
+      </div>
     </div>
 </template>
 
@@ -76,6 +82,7 @@
             isShoucang:false,
             isChooseAlertShow:false,
             isCoverShow:false,
+            isKefuShow:false,
           }
       },
       components:{proInforHeaderBox,Swiper,chooseItemAlert},
@@ -84,6 +91,8 @@
       },
       methods:{
         chooseOtherItem:function(){
+            var me = document.getElementsByClassName('chooseItemAlert')[0]
+            me.setAttribute('class','chooseItemAlert animated slideInUp')
             this.isChooseAlertShow = true;
             this.isCoverShow = true;
         },
@@ -91,8 +100,26 @@
           this.isShoucang = !this.isShoucang;
         },
         hideChooseAlertFun:function(){
-          this.isChooseAlertShow = false;
+          var me = document.getElementsByClassName('chooseItemAlert')[0]
+          me.setAttribute('class','chooseItemAlert animated slideOutDown')
           this.isCoverShow = false;
+          setTimeout(function(){
+            this.isChooseAlertShow = false;
+          },2000)
+        },
+        showKefu:function(){
+          var me = document.getElementsByClassName('kefuInfoAlert')[0];
+          me.setAttribute('class','kefuInfoAlert animated slideInUp')
+          this.isCoverShow = true;
+          this.isKefuShow = true;
+        },
+        hideKefu:function(){
+          var me = document.getElementsByClassName('kefuInfoAlert')[0];
+          me.setAttribute('class','kefuInfoAlert animated slideOutDown')
+          this.isCoverShow = false;
+          setTimeout(function(){
+            this.isKefuShow = false;
+          },2000)
         }
       }
     }
@@ -205,6 +232,25 @@
         line-height: 55px;
         color:#fff;
         background-color: #e4393c;
+        font-size:4.5vw;
+      }
+    }
+    .kefuInfoAlert{
+      position: fixed;
+      bottom:0px;
+      left:0px;
+      width:100%;
+      background-color: #fff;
+      z-index: 10000000;
+      padding:2vw 4vw;
+      i.iconfont{
+        position: absolute;
+        top:5px;
+        right:10px;
+      }
+      p{
+        line-height: 4vh;
+        height: 4vh;
         font-size:4.5vw;
       }
     }
