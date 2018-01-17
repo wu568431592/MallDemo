@@ -1,20 +1,19 @@
 <template>
   <!--<transition enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutLeft">-->
     <div class="allProduct">
-        allProduct
-      <!--<tabBar activeBar="1"></tabBar>-->
+      <searchBox isBackBtn="empty" isSearchButtonShow='message'></searchBox>
+      <div class="allProductMain">
+
+      </div>
     </div>
-  <!--</transition>-->
 </template>
 
 <script>
-  import tabBar from  '../components/tabBar/tabBar.vue'
-    export default {
+  import searchBox from  '../components/searchBox/searchBox.vue'
+     export default {
       name:'allProduct',
-      components:{tabBar},
-      mounted:function(){
+      components:{searchBox},
 
-      }
     }
 </script>
 

@@ -5,7 +5,6 @@
       </div>
       <div class="myGoods" v-else-if="isBackBtn == 'false'">我的商品</div>
       <div class="empty" v-else="isBackBtn == 'empty'"></div>
-      <div v-else="isBackBtn == empty"></div>
       <div class="searchBox_item" v-bind:class="{long:isBackShow}">
         <i class="icon iconfont icon-sousuo"></i>
         <input v-model="parentSearchValue" type="text" placeholder="搜索您想要的商品" @click="goSearchMain">
@@ -39,7 +38,7 @@
       },
       methods:{
         goSearchMain:function(){
-          if(this.$router.history.current.path == '/index' || this.$router.history.current.path == '/'){
+          if(this.$router.history.current.path == '/index' || this.$router.history.current.path == '/'|| this.$router.history.current.path == '/allProduct'){
             this.$router.push({path:'/searchMain'})
           }else{
               return
@@ -80,7 +79,7 @@
       }
     }
     div.empty{
-      width:20%;
+      width:15%;
       line-height:7.5vh;
     }
     div.myGoods{
