@@ -20,7 +20,6 @@
     },
     beforeMount:function(){
       this.$emit('showTabBar');
-
     },
     data(){
         return{

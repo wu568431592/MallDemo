@@ -86,7 +86,7 @@ img{
   display: none;
 }
 ::-webkit-scrollbar {
-  width: 3px;
+  width: 2px;
   height: 2px;
   background-color: #fff;
 }
