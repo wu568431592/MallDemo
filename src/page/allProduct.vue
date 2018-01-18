@@ -9,12 +9,12 @@
           </ul>
         </div>
         <div class="typeMainBox">
-          <div class="typeMain" v-for="(i,index) in typeList" :data-listNum = "index">
+          <div class="typeMain" v-for="(j,index) in typeList" :data-listNum = "index">
             <div class="imgBox">
               <img src="//img.i360mall.com/0d15436c-8579-4e78-a6a3-2a9310f4047b.jpg" alt="">
             </div>
             <div class="product" v-for="i in 3">
-              <p>分类{{i}}<router-link to="/" class="gowhere">查看更多<span>&gt;&gt;</span></router-link></p>
+              <p>分类{{index}}.{{i}}<router-link to="searchInfo?info=" class="gowhere">查看更多<span>&gt;&gt;</span></router-link></p>
               <ul>
                 <li v-for="n in 6">
                   <div class="imgBox">
@@ -48,7 +48,21 @@
        },
        methods:{
          changeType:function(e,index){
-            console.log(e.target)
+           console.log(e.target)
+           var me = e.target;
+           var lis = document.getElementsByClassName('typeListItem');
+           var mains = document.getElementsByClassName('typeMain');
+           for(var i = 0; i<lis.length;i++){
+               lis[i].setAttribute('class','typeListItem');
+           }
+           for(var j = 0; j<mains.length;j++){
+               mains[j].style.display = 'none';
+               mains[j].scrollTop = 0;
+             if(mains[j].getAttribute('data-listnum') == index){
+                mains[j].style.display = 'block'
+             }
+           }
+            me.setAttribute('class','typeListItem active');
          }
        }
     }
