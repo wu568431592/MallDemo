@@ -48,7 +48,6 @@
        },
        methods:{
          changeType:function(e,index){
-           console.log(e.target)
            var me = e.target;
            var lis = document.getElementsByClassName('typeListItem');
            var mains = document.getElementsByClassName('typeMain');
