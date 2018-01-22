@@ -10,7 +10,7 @@
         <i class="icon iconfont icon-sousuo" v-if="rightSearch"></i>
         <i class="icon iconfont icon-xiaoxizhongxin" v-if="rightMessage"></i>
         <i class="icon iconfont icon-lajixiang" v-if="rightDelete"></i>
-        <span v-if="rightWord">{{rightWordstext}}</span>
+        <span v-if="rightWord" @click="changeItem">{{rightWordstext}}</span>
       </div>
     </div>
 </template>
@@ -27,7 +27,7 @@
           rightSearch:false,
           rightDelete:false,
           rightWords:false,
-          rightWordstext:''
+          rightWordstext:'编辑'
         }
       },
       props:['title','rightButton','rightWord'],
@@ -57,13 +57,19 @@
           this.rightWords = false;
         }else{
           this.rightWords = true;
-          this.rightWordstext = this.rightWord;
         }
       },
       methods:{
-          goback:function(){
-            this.$router.goBack();
+        goback:function(){
+          this.$router.goBack();
+        },
+        changeItem:function(){
+          if(this.rightWordstext == '完成'){
+              this.rightWordstext = '编辑'
+          }else{
+              this.rightWordstext = '完成'
           }
+        }
       }
     }
 </script>
@@ -97,6 +103,14 @@
       width:20%;
       i.iconfont{
         color:#fff;
+      }
+      span{
+        text-align: center;
+        font-size: 15px;
+        height:7.5vh;
+        line-height:7.5vh;
+        float:left;
+        margin-right:5px;
       }
     }
   }

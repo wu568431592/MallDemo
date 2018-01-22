@@ -1,10 +1,8 @@
 <template>
-  <!--<transition enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutLeft">-->
     <div class="index">
         <searchBox isBackBtn="false" isSearchButtonShow='message'></searchBox>
         <productListPage :listData="searchData"></productListPage>
     </div>
-  <!--</transition>-->
 </template>
 
 <script>
