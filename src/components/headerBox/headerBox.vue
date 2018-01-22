@@ -65,9 +65,11 @@
         },
         changeItem:function(){
           if(this.rightWordstext == '完成'){
-              this.rightWordstext = '编辑'
+              this.rightWordstext = '编辑';
+              this.$emit('edit');
           }else{
-              this.rightWordstext = '完成'
+              this.rightWordstext = '完成';
+              this.$emit('closeeidt');
           }
         }
       }

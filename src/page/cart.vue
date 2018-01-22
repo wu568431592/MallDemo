@@ -1,18 +1,18 @@
 s<template>
     <div class="cart">
-      <headerBox title="购物车" isBackShow="true" rightWord="true" :rightButton="rightButtonList" ></headerBox>
+      <headerBox title="购物车" isBackShow="true" rightWord="true" :rightButton="rightButtonList" @edit="edit" @closeeidt="closeeidt"></headerBox>
       cart
       <div class="countBox">
         <div class="checkboxBox">
           <input type="checkbox">
           <label for="">全选</label>
         </div>
-        <div class="countNow">
-          <span>合计</span>
-          <span>&yen;0元</span>
+        <div class="countNow" v-show="!isedit">
+          <span>合计:</span>
+          <span class="cost">&yen;0元</span>
           <button>结算(0)</button>
         </div>
-        <div class="buttonBox">
+        <div class="buttonBox" v-show="isedit">
           <button>移入收藏</button>
           <button>删除</button>
         </div>
@@ -27,7 +27,16 @@ s<template>
       components:{headerBox},
       data(){
         return{
-          rightButtonList:['messageBtn']
+          rightButtonList:['messageBtn'],
+          isedit:false,
+        }
+      },
+      methods:{
+        edit:function(){
+          this.isedit = false;
+        },
+        closeeidt:function(){
+          this.isedit = true;
         }
       }
     }
@@ -58,28 +67,57 @@ s<template>
        }
       .checkboxBox{
         width:30%;
-        padding-left:10px;
         overflow: hidden;
+        padding:5px 10px;
         input{
           float:left;
           width:15px;
-          height:25px;
-          line-height:25px;
+          height:40px;
+          line-height:40px;
           margin-right:5px;
         }
         label{
           float:left;
-          height:25px;
-          line-height:25px;
+          line-height:40px;
           font-size:15px;
         }
       }
       .countNow{
         width:70%;
+        font-size:15px;
+        span{
+          display: inline-block;
+          padding:5px 10px;
+          line-height:40px;
+        }
+        span.cost{
+          color:#e4393c;
+        }
+        button{
+          float:right;
+          width:50%;
+          padding:5px 10px;
+          line-height:40px;
+          border:none;
+          color:#fff;
+          background-color: #e4393c;
+        }
       }
       .buttonBox{
         width:70%;
-        display: none;
+        button{
+          float:left;
+          width:50%;
+          padding:5px 10px;
+          line-height:40px;
+          border:none;
+          color:#fff;
+          background-color: #e4393c;
+          font-size:15px;
+        }
+        button:nth-child(2){
+          background-color: #ff5a00;
+        }
       }
     }
   }
