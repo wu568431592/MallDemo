@@ -7,9 +7,9 @@
         {{title}}
       </div>
       <div class="domain" v-show="showDomain">
-        <i class="icon iconfont icon-sousuo" v-if="rightSearch"></i>
-        <i class="icon iconfont icon-xiaoxizhongxin" v-if="rightMessage"></i>
-        <i class="icon iconfont icon-lajixiang" v-if="rightDelete"></i>
+        <i class="icon iconfont icon-sousuo" v-if="rightSearch" @click="goSearch"></i>
+        <i class="icon iconfont icon-xiaoxizhongxin" v-if="rightMessage" @click="goMyMessage"></i>
+        <i class="icon iconfont icon-lajixiang" v-if="rightDelete" ></i>
         <span v-if="rightWord" @click="changeItem">{{rightWordstext}}</span>
       </div>
     </div>
@@ -71,6 +71,12 @@
               this.rightWordstext = '完成';
               this.$emit('closeeidt');
           }
+        },
+        goMyMessage:function(){
+          this.$router.push({path:'/myMessageInfo'})
+        },
+        goSearch:function(){
+          this.$router.push({path:'/searchMain'})
         }
       }
     }

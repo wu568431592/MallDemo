@@ -38,7 +38,10 @@ s<template>
         closeeidt:function(){
           this.isedit = true;
         }
-      }
+      },
+      beforeMount:function(){
+        this.$emit('showTabBar');
+      },
     }
 </script>
 
@@ -51,9 +54,9 @@ s<template>
     left:0px;
   }
   .cart{
-    height:90vh;
+    height:100vh;
     padding-top:7.5vh;
-    margin-bottom:55px;
+    padding-bottom:55px;
     .countBox{
       position:fixed;
       bottom:55px;
