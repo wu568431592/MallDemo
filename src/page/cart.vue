@@ -4,8 +4,8 @@ s<template>
       cart
       <div class="countBox">
         <div class="checkboxBox">
-          <input type="checkbox">
-          <label for="">全选</label>
+          <input type="checkbox" id="checkAll" name="checkAll">
+          <label for="checkAll">全选</label>
         </div>
         <div class="countNow" v-show="!isedit">
           <span>合计:</span>
