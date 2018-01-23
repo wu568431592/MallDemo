@@ -65,17 +65,19 @@ export default {
     div.tabbar{
       background-color: #fff;
       width:100%;
-      height:55px;
+      height:9vh;
       box-shadow:0px 1px 10px 0px #666;
       ul{
         overflow: hidden;
         li{
           float:left;
           width:25%;
-          padding:5px 0px;
+          padding:0px 0px;
+          height:9vh;
           i{
             display: block;
             margin: 0px auto;
+            margin-top:0.5vh;
             width:25px;
             font-size:25px;
           }

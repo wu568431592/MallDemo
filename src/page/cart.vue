@@ -1,7 +1,33 @@
 s<template>
     <div class="cart">
       <headerBox title="购物车" isBackShow="true" rightWord="true" :rightButton="rightButtonList" @edit="edit" @closeeidt="closeeidt"></headerBox>
-      cart
+      <div class="cartMain">
+        <ul>
+          <li v-for="i in 5">
+            <div class="store">
+              <input type="checkbox">
+              <i class="icon iconfont icon-store"></i>
+              <span>我是店铺名称</span>
+            </div>
+            <ul class="storeProductList">
+              <li v-for="n in 3">
+                <input type="checkbox">
+                <div class="imgBox">
+                  <img src="//img14.360buyimg.com/N2/jfs/t3448/115/304606616/252246/a8e91519/58074aeaN63a3a8bb.jpg" alt="">
+                </div>
+                <div class="proInfo">
+                  <h5>尤卓尔 丁酸氢化可的松乳膏10g/盒  商品名最多两行...</h5>
+                  <p>规格：1盒装10g</p>
+                  <span>&yen;15</span>
+                  <button>-</button>
+                  <input type="number">
+                  <button>+</button>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
       <div class="countBox">
         <div class="checkboxBox">
           <input type="checkbox" id="checkAll" name="checkAll">
@@ -55,14 +81,12 @@ s<template>
   }
   .cart{
     height:100vh;
-    padding-top:7.5vh;
-    padding-bottom:55px;
     .countBox{
       position:fixed;
-      bottom:55px;
+      bottom:9vh;
       left:0px;
       width:100%;
-      /*box-shadow: 0px 1px 10px 0px #666;*/
+      background-color: #fff;
       border-top:1px solid #999;
       overflow:hidden;
       >div{
@@ -71,17 +95,17 @@ s<template>
       .checkboxBox{
         width:30%;
         overflow: hidden;
-        padding:5px 10px;
+        padding:0px 10px;
         input{
           float:left;
           width:15px;
-          height:40px;
-          line-height:40px;
+          height:7vh;
+          line-height:7vh;
           margin-right:5px;
         }
         label{
           float:left;
-          line-height:40px;
+          line-height:7vh;
           font-size:15px;
         }
       }
@@ -90,8 +114,8 @@ s<template>
         font-size:15px;
         span{
           display: inline-block;
-          padding:5px 10px;
-          line-height:40px;
+          padding:0px 10px;
+          line-height:7vh;
         }
         span.cost{
           color:#e4393c;
@@ -99,8 +123,8 @@ s<template>
         button{
           float:right;
           width:50%;
-          padding:5px 10px;
-          line-height:40px;
+          padding:0px 10px;
+          line-height:7vh;
           border:none;
           color:#fff;
           background-color: #e4393c;
@@ -111,8 +135,8 @@ s<template>
         button{
           float:left;
           width:50%;
-          padding:5px 10px;
-          line-height:40px;
+          padding:0px 10px;
+          line-height:7vh;
           border:none;
           color:#fff;
           background-color: #e4393c;
@@ -122,6 +146,11 @@ s<template>
           background-color: #ff5a00;
         }
       }
+    }
+    .cartMain{
+      height:74vh;
+      margin-top:7.5vh;
+      overflow-y: scroll;
     }
   }
 

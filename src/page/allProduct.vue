@@ -80,7 +80,7 @@
     .allProductMain{
       height:92.5vh;
       margin-top:7.5vh;
-      padding-bottom:55px;
+      padding-bottom:9vh;
       overflow: hidden;
       .typeList{
         float:left;
