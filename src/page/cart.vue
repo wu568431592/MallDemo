@@ -19,9 +19,9 @@ s<template>
                   <h5>尤卓尔 丁酸氢化可的松乳膏10g/盒  商品名最多两行...</h5>
                   <p>规格：1盒装10g</p>
                   <span>&yen;15</span>
-                  <button>-</button>
-                  <input type="number">
-                  <button>+</button>
+                  <button class="add">+</button>
+                  <input type="number" value="1">
+                  <button class="reduce">-</button>
                 </div>
               </li>
             </ul>
@@ -148,9 +148,103 @@ s<template>
       }
     }
     .cartMain{
-      height:74vh;
+      height:76.5vh;
       margin-top:7.5vh;
       overflow-y: scroll;
+      >ul{
+          li{
+            .store{
+              padding:0px 10px;
+              border-bottom:1px solid #aaa;
+              overflow: hidden;
+              height:7vh;
+              line-height:7vh;
+              input{
+                width:15px;
+                margin-right:10px;
+                height:15px;
+              }
+              i.iconfont{
+                font-size:20px;
+                margin-right:10px;
+                color:#e4393c;
+              }
+              span{
+                font-size: 14px;
+              }
+            }
+            .storeProductList{
+              border-bottom:1px solid #999;
+              >li{
+                  overflow: hidden;
+                  position:relative;
+                  padding:3vw 3vw;
+                  border-bottom:1px dashed #aaa;
+                  >input{
+                    float:left;
+                    width:5vw;
+                    height:5vw;
+                    margin-right:3vw;
+                    margin-top:8vh;
+                  }
+                  .imgBox{
+                    float:left;
+                    width:30vw;
+                    height:30vw;
+                    margin-right:3vw;
+                    img{
+                      width:100%;
+                    }
+                  }
+                  .proInfo{
+                    float:left;
+                    width:52vw;
+                    h5{
+                      margin-top: 2vh;
+                      font-weight: normal;
+                      line-height: 3vh;
+                      height:6vh;
+                      margin-bottom: 1vh;
+                    }
+                    p{
+                      line-height: 3vh;
+                      height:3vh;
+                      color:#999;
+                      margin-bottom: 1vh;
+                    }
+                    span{
+                      color:#e4393c;
+                      font-size:14px;
+                    }
+                    button{
+                      float:right;
+                      border:1px solid #999;
+                      width:18px;
+                      height:18px;
+                    }
+                    button.reduce{
+                      border-top-left-radius: 5px;
+                      border-bottom-left-radius: 5px;
+                    }
+                    button.add{
+                      border-top-right-radius: 5px;
+                      border-bottom-right-radius: 5px;
+                    }
+                    input{
+                      float:right;
+                      height:18px;
+                      width:18px;
+                      border:1px solid #999;
+                      text-align: center;
+                    }
+                  }
+               }
+                li:last-child{
+                  border:none;
+                }
+            }
+          }
+       }
     }
   }
 
