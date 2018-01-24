@@ -67,6 +67,7 @@ s<template>
       },
       beforeMount:function(){
         this.$emit('showTabBar');
+
       },
     }
 </script>
@@ -151,8 +152,10 @@ s<template>
       height:76.5vh;
       margin-top:7.5vh;
       overflow-y: scroll;
+      background:#eee;
       >ul{
           li{
+            background:#fff;
             .store{
               padding:0px 10px;
               border-bottom:1px solid #aaa;
@@ -174,7 +177,7 @@ s<template>
               }
             }
             .storeProductList{
-              border-bottom:1px solid #999;
+              margin-bottom:10px;
               >li{
                   overflow: hidden;
                   position:relative;
@@ -225,10 +228,12 @@ s<template>
                     button.reduce{
                       border-top-left-radius: 5px;
                       border-bottom-left-radius: 5px;
+                      border-right:none;
                     }
                     button.add{
                       border-top-right-radius: 5px;
                       border-bottom-right-radius: 5px;
+                      border-left:none;
                     }
                     input{
                       float:right;
