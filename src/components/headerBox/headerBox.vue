@@ -10,6 +10,7 @@
         <i class="icon iconfont icon-sousuo" v-if="rightSearch" @click="goSearch"></i>
         <i class="icon iconfont icon-xiaoxizhongxin" v-if="rightMessage" @click="goMyMessage"></i>
         <i class="icon iconfont icon-lajixiang" v-if="rightDelete" ></i>
+        <i class="icon iconfont icon-set" v-if="rightSet" ></i>
         <span v-if="rightWord" @click="changeItem">{{rightWordstext}}</span>
       </div>
     </div>
@@ -23,6 +24,7 @@
           rightButtons:this.rightButton,
           showDomain:true,
           isBackShow:true,
+          rightSet:false,
           rightMessage:false,
           rightSearch:false,
           rightDelete:false,
@@ -45,6 +47,9 @@
         }else{
           if(checkKey(this.rightButtons,'messageBtn')){
             this.rightMessage = true;
+          }
+          if(checkKey(this.rightButtons,'setBtn')){
+            this.rightSet = true;
           }
           if(checkKey(this.rightButtons,'searchBtn')){
             this.rightSearch = true;
