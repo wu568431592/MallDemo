@@ -140,7 +140,7 @@
           i.iconfont{
             position:absolute;
             top:1px;
-            right:0px;
+            right:-5px;
           }
         }
       }
