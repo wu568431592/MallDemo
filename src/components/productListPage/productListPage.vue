@@ -17,7 +17,7 @@
       </div>
       <div class="productList">
         <ul :class="{'listView':islistView}">
-          <li v-for="v in nowList">
+          <li v-for="v in listData">
             <router-link to="/proInformation">
               <div class="img_box">
                 <img :src="v.imgSrc" alt="">
@@ -41,11 +41,14 @@
           upDown:0,
           allSortActive:true,
           priceSortActive:false,
-          nowList:this.listData,
+          //nowList:this.listData,
           islistView:false
         }
       },
       props:['listData'],
+      updated:{
+        //nowList:this.listData,
+      },
       methods:{
         changeView:function(){
           this.viewChage = !this.viewChage;

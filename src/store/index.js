@@ -6,13 +6,13 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 var state;
 state ={
-
+    serverIP : '172.17.161.67',
 }
 
 const mutations ={
-  go:function(state,options){
-    options[0].push({path:'/'+options[1]});
-  },
+  // go:function(state,options){
+  //   options[0].push({path:'/'+options[1]});
+  // },
 
 }
 const getters = {
