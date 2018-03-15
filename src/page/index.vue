@@ -23,15 +23,7 @@
       document.getElementsByClassName('productList')[0].childNodes[0].style.paddingBottom='9vh';
       axios.get('http://'+this.$store.state.serverIP+'/server/indexgoods.json')
         .then(response => {
-          //console.log(response.data);
-          //console.log(this.searchData);
-          //console.log(this)
-//          for(var k in response.data){
-//            this.searchData.push(response.data[k]);
-//          }
           this.searchData = response.data;
-          //this.searchData.push(response.data);
-          console.log(this.searchData);
         })
         .catch(err => {
           console.log(err);
@@ -39,7 +31,6 @@
     },
     beforeMount:function(){
       this.$emit('showTabBar');
-
     }
   }
 </script>

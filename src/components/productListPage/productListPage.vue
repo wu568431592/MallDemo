@@ -41,14 +41,14 @@
           upDown:0,
           allSortActive:true,
           priceSortActive:false,
-          //nowList:this.listData,
+          nowList:this.listData,
           islistView:false
         }
       },
-      props:['listData'],
-      updated:{
-        //nowList:this.listData,
+      updated:function(){
+        this.nowList=this.listData;
       },
+      props:['listData'],
       methods:{
         changeView:function(){
           this.viewChage = !this.viewChage;
