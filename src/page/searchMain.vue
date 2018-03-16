@@ -26,16 +26,13 @@
 <script>
   import searchBox from  '../components/searchBox/searchBox.vue'
   import confirmBox from  '../components/confirmBox/confirmBox.vue'
+  import axios from 'axios'
     export default {
       name:'searchMain',
       data(){
           return{
-              list1:[
-                '搜索1','搜索记录2','搜索记录3','搜索记录记录4','搜索记录5'
-              ],
-              list:[
-                '搜索1','搜索记录2','搜索记录3','搜索记录记录4','搜索记录5'
-              ],
+              list1:[],
+              list:[],
               deleteHistory:true,
               showHistory:true,
               showConfirmBox:false,
@@ -51,6 +48,9 @@
             if(this.list.length == 1){
               this.showHistory = false;
             }
+            var history = JSON.parse(localStorage.getItem('historySearch'));
+            history.splice(i,1);
+            localStorage.setItem('historySearch',JSON.stringify(history))
             this.list.splice(i,1);
         },
         comleteDelete:function(){
@@ -64,15 +64,51 @@
         },
         confirmFun:function(){
           this.list.splice(0);
+          localStorage.removeItem('historySearch');
           this.showHistory = false;
           this.showConfirmBox = false;
         },
         searchNow:function(item){
-          this.$router.push({path:'/searchInfo?info='+item})
+          if(item != undefined){
+            if(localStorage.getItem('historySearch')){
+              var now = JSON.parse(localStorage.getItem('historySearch'));
+              now.unshift(item);
+              localStorage.setItem('historySearch',JSON.stringify(now));
+              this.showHistory = true;
+              this.$router.push({path:'/searchInfo?info='+item})
+            }else{
+              var now = [];
+              now.unshift(item);
+              localStorage.setItem('historySearch',JSON.stringify(now));
+              this.showHistory = true;
+              this.$router.push({path:'/searchInfo?info='+item})
+            }
+          }
         },
+        getHotSearch:function(){
+          axios.get('http://'+this.$store.state.serverIP+'/server/hotSearch.json')
+            .then(res=>{
+              this.list1 = res.data.search;
+            })
+            .catch(err=>{
+                console.log(err);
+            })
+        },
+        getHistorySearch:function(){
+          if(localStorage.getItem('historySearch')){
+            var now = JSON.parse(localStorage.getItem('historySearch'));
+            this.list =now;
+          }else{
+            this.showHistory = false;
+          }
+        }
       },
       beforeMount:function(){
         this.$emit('hideTabBar');
+      },
+      mounted(){
+        this.getHotSearch();
+        this.getHistorySearch();
       }
     }
 </script>
@@ -112,11 +148,11 @@
   .historySearch{
     background-color: #fff;
     margin-top:10px;
-    padding:10px 10px 0px 10px;
+    padding:0px 10px 0px 10px;
     p{
       font-size:14px;
-      height:5vh;
-      line-height: 5vh;
+      height:6vh;
+      line-height: 6vh;
       border-bottom: 1px solid #ddd;
       i.iconfont{
         float:right;
