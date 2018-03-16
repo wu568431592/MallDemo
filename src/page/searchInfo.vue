@@ -82,6 +82,9 @@
         }
       },
       components:{searchBox,productListPage},
+      beforeMount:function(){
+        this.$emit('hideTabBar');
+      },
     }
 </script>
 

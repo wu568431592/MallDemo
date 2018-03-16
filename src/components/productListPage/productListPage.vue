@@ -16,22 +16,25 @@
         </div>
       </div>
       <div class="productList">
-        <ul :class="{'listView':islistView}">
-          <li v-for="v in listData">
-            <router-link to="/proInformation">
-              <div class="img_box">
-                <img :src="v.imgSrc" alt="">
-              </div>
-              <h4>{{v.proName}}</h4>
-            </router-link>
-            <p>&yen;{{v.proPrice}} <i class="icon iconfont icon-add"></i></p>
-          </li>
-        </ul>
+        <pull-to :top-load-method="refresh" :bottom-load-method="geMore">
+          <ul :class="{'listView':islistView}">
+            <li v-for="v in listData">
+              <router-link to="/proInformation">
+                <div class="img_box">
+                  <img :src="v.imgSrc" alt="">
+                </div>
+                <h4>{{v.proName}}</h4>
+              </router-link>
+              <p>&yen;{{v.proPrice}} <i class="icon iconfont icon-add"></i></p>
+            </li>
+          </ul>
+        </pull-to>
       </div>
     </div>
 </template>
 
 <script>
+    import PullTo from 'vue-pull-to'
     export default {
       name:'productListPage',
       data(){
@@ -49,6 +52,9 @@
         this.nowList=this.listData;
       },
       props:['listData'],
+      components: {
+        PullTo
+      },
       methods:{
         changeView:function(){
           this.viewChage = !this.viewChage;
@@ -82,6 +88,18 @@
               return ((x < y) ? -1 : ((x > y) ? 1 : 0));
             });
           }
+        },
+        refresh(loaded) {
+          setTimeout(() => {
+            this.listData.unshift(this.listData[0]);
+            loaded('done');
+          }, 2000);
+        },
+        geMore(loaded){
+            setTimeout(()=>{
+                this.listData = this.listData.concat(this.listData);
+                loaded('done')
+            },2000)
         }
       }
     }
@@ -93,6 +111,7 @@
     position:relative;
     .sortBox{
       position:fixed;
+      z-index: 1000;
       top:7.5vh;
       left:0px;
       width:100%;
@@ -138,7 +157,7 @@
     .productList{
       margin-top: 14.5vh;
       height:85.5vh;
-      overflow-y: scroll;
+      /*overflow-y: scroll;*/
       background:#fff;
       ul{
         overflow: hidden;

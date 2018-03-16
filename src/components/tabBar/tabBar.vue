@@ -77,7 +77,7 @@ export default {
           i{
             display: block;
             margin: 0px auto;
-            margin-top:0.5vh;
+            margin-top:1vh;
             width:25px;
             font-size:25px;
           }

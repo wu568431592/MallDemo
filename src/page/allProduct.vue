@@ -120,7 +120,7 @@
             >p{
               line-height: 5vh;
               overflow: hidden;
-              font-size: 4.5vw;
+              font-size: 4vw;
               height:5vh;
               .gowhere{
                 float:right;

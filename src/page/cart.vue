@@ -5,13 +5,13 @@ s<template>
         <ul>
           <li v-for="i in 5">
             <div class="store">
-              <input type="checkbox" @click="checkStoreAll($event)">
+              <i class="icon iconfont icon-checkbox lit" @click="checkStoreAll($event)"></i>
               <i class="icon iconfont icon-store"></i>
               <span>我是店铺名称</span>
             </div>
             <ul class="storeProductList">
               <li v-for="n in 3">
-                <input type="checkbox">
+                <i class="icon iconfont icon-checkbox lit" @click="checkMe($event)"></i>
                 <div class="imgBox">
                   <img src="//img14.360buyimg.com/N2/jfs/t3448/115/304606616/252246/a8e91519/58074aeaN63a3a8bb.jpg" alt="">
                 </div>
@@ -30,7 +30,7 @@ s<template>
       </div>
       <div class="countBox">
         <div class="checkboxBox">
-          <input type="checkbox" id="checkAll" name="checkAll" @click="checkAll($event)">
+          <i class="icon iconfont icon-checkbox" id="checkAll" @click="checkAll($event)"></i>
           <label for="checkAll">全选</label>
         </div>
         <div class="countNow" v-show="!isedit">
@@ -97,34 +97,63 @@ s<template>
           }
         },
         checkStoreAll:function(e){
-            var me =e.target;
-            var lis = me.parentNode.nextElementSibling.children;
-            var ischecked = me.checked;
-            for(var i = 0; i<lis.length;i++){
-              if(ischecked == true){
-                lis[i].children[0].setAttribute('checked','true')
-              }
-              if(ischecked == false){
-                lis[i].children[0].setAttribute('checked',false)
-                lis[i].children[0].removeAttribute('checked')
-              }
-            }
-        },
-        checkAll:function(e){
-          var me = e.target;
-          var check= document.getElementsByTagName('input');
-          for (var i=0;i<check.length ;i++){
-            if(check[i].type == "checkbox"){
-              if(me.checked == true){
-                check[i].setAttribute('checked',true);
-              }
-              if(me.checked == false){
-                check[i].setAttribute('checked',false);
-                check[i].removeAttribute('checked');
-              }
+          var me =e.target;
+          var lis = me.parentNode.nextElementSibling.children;
+          var className = me.getAttribute('class');
+          for(var i = 0; i<lis.length;i++){
+            if(className == 'icon iconfont icon-checkbox lit'){
+              me.setAttribute('class','icon iconfont icon-checkbox active lit');
+              lis[i].children[0].setAttribute('class','icon iconfont icon-checkbox active lit');
+            }else{
+              me.setAttribute('class','icon iconfont icon-checkbox lit');
+              lis[i].children[0].setAttribute('class','icon iconfont icon-checkbox lit');
+              document.getElementById('checkAll').setAttribute('class','icon iconfont icon-checkbox');
             }
           }
-        }
+          this.autoCheckAll();
+        },
+        checkAll:function(e){
+          var check= document.getElementsByClassName('icon-checkbox');
+          var meClassName = e.target.getAttribute('class');
+          if(meClassName == 'icon iconfont icon-checkbox active lit'){
+            for (var i=0;i<check.length ;i++){
+              check[i].setAttribute('class','icon iconfont icon-checkbox lit')
+            }
+          }else{
+            for (var i=0;i<check.length ;i++){
+              check[i].setAttribute('class','icon iconfont icon-checkbox active lit')
+            }
+          }
+        },
+        checkMe(e){
+          var className = e.target.getAttribute('class');
+          if(className == 'icon iconfont icon-checkbox active lit'){
+            e.target.setAttribute('class','icon iconfont icon-checkbox lit');
+            var tt = e.target.parentNode.parentNode.previousElementSibling.children[0]
+            tt.setAttribute('class','icon iconfont icon-checkbox lit');
+            document.getElementById('checkAll').setAttribute('class','icon iconfont icon-checkbox');
+          }else{
+            e.target.setAttribute('class','icon iconfont icon-checkbox active lit');
+          }
+          this.autoCheckAll();
+        },
+        autoCheckAll:function(){
+          var check = document.getElementsByClassName('lit');
+          console.log(check);
+          var allcheck = false;
+          for(var i = 0;i<check.length;i++){
+            if(check[i].getAttribute('class')=='icon iconfont icon-checkbox lit'){
+              allcheck = false;
+              break
+            }else{
+              allcheck = true;
+            }
+          }
+          console.log(allcheck);
+          if(allcheck){
+            document.getElementById('checkAll').setAttribute('class','icon iconfont icon-checkbox active');
+          }
+        },
       },
       beforeMount:function(){
         this.$emit('showTabBar');
@@ -166,12 +195,17 @@ s<template>
         width:30%;
         overflow: hidden;
         padding:0px 10px;
-        input{
+        i.iconfont{
+          font-size:22px;
+          color:#ccc;
           float:left;
           width:15px;
           height:7vh;
           line-height:7vh;
-          margin-right:5px;
+          margin-right:15px;
+        }
+        i.iconfont.active{
+          color:#e4393c;
         }
         label{
           float:left;
@@ -241,6 +275,12 @@ s<template>
                 margin-right:10px;
                 color:#e4393c;
               }
+              i.icon.iconfont.icon-checkbox{
+                color:#ccc;
+              }
+              i.icon.iconfont.icon-checkbox.active{
+                color:#e4393c;
+              }
               span{
                 font-size: 14px;
               }
@@ -252,14 +292,23 @@ s<template>
                   position:relative;
                   padding:3vw 3vw;
                   border-bottom:1px dashed #aaa;
-                  >input{
-                    float:left;
+                  position:relative;
+                  >i.iconfont{
+                    /*float:left;*/
+                    position:absolute;
+                    top:50%;
+                    left:2vw;
                     width:5vw;
                     height:5vw;
-                    margin-right:3vw;
-                    margin-top:8vh;
+                    font-size:22px;
+                    margin-top:-2.5vw;
+                    color:#ccc;
                   }
+                  >i.iconfont.active{
+                     color:#e4393c;
+                   }
                   .imgBox{
+                    margin-left:8vw;
                     float:left;
                     width:30vw;
                     height:30vw;
