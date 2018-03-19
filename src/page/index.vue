@@ -31,6 +31,9 @@
     },
     beforeMount:function(){
       this.$emit('showTabBar');
+    },
+    updated:function(){
+      document.getElementsByClassName('productList')[0].childNodes[0].style.paddingBottom='9vh';
     }
   }
 </script>

@@ -18,7 +18,7 @@
       <div class="productList">
         <pull-to :top-load-method="refresh" :bottom-load-method="geMore">
           <ul :class="{'listView':islistView}">
-            <li v-for="v in listData">
+            <li v-for="v in nowList">
               <router-link to="/proInformation">
                 <div class="img_box">
                   <img :src="v.imgSrc" alt="">
@@ -44,12 +44,22 @@
           upDown:0,
           allSortActive:true,
           priceSortActive:false,
-          nowList:this.listData,
+//          nowList:this.listData,
           islistView:false
         }
       },
       updated:function(){
-        this.nowList=this.listData;
+//        this.nowList=this.listData;
+      },
+      computed:{
+          nowList:{
+              get:function(){
+                return this.listData
+              },
+              set:function(v){
+                this.nowList.push(...v);
+              }
+          }
       },
       props:['listData'],
       components: {
@@ -67,7 +77,8 @@
           this.nowList = sortByKey(this.nowList,'pid')
           function sortByKey(array, key) {
             return array.sort(function(a, b) {
-              var x = a[key]; var y = b[key];
+              var x = a[key];
+              var y = b[key];
               return ((x < y) ? -1 : ((x > y) ? 1 : 0));
             });
           }
@@ -91,13 +102,14 @@
         },
         refresh(loaded) {
           setTimeout(() => {
-            this.listData.unshift(this.listData[0]);
+            this.nowList.unshift(this.nowList[0]);
             loaded('done');
           }, 2000);
         },
         geMore(loaded){
             setTimeout(()=>{
-                this.listData = this.listData.concat(this.listData);
+                //console.log(this.nowList)
+                this.nowList = this.listData;
                 loaded('done')
             },2000)
         }

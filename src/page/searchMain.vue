@@ -1,11 +1,10 @@
 <template>
-  <!--<transition enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">-->
     <div class="searchMain">
       <searchBox isBackBtn="true" isSearchButtonShow="button" v-on:searchNow="searchNow"></searchBox>
       <div class="hotSearch">
         <p>热门搜索</p>
         <ul>
-          <li v-for="v in list1">{{v}}</li>
+          <li v-for="v in list1" v-on:click="selectMe(v)">{{v}}</li>
         </ul>
       </div>
       <div class="historySearch" v-show="showHistory">
@@ -20,7 +19,6 @@
       </div>
       <confirmBox v-show="showConfirmBox" titleMessage="确定要清除历史记录吗？" v-on:cancleFun="cancleFun" v-on:confirmFun="confirmFun"></confirmBox>
     </div>
-  <!--</transition>-->
 </template>
 
 <script>
@@ -36,7 +34,8 @@
               deleteHistory:true,
               showHistory:true,
               showConfirmBox:false,
-              searchValue:''
+              searchValue:'',
+              quickSearch:''
           }
       },
       components:{searchBox,confirmBox},
@@ -72,17 +71,13 @@
           if(item != undefined){
             if(localStorage.getItem('historySearch')){
               var now = JSON.parse(localStorage.getItem('historySearch'));
-              now.unshift(item);
-              localStorage.setItem('historySearch',JSON.stringify(now));
-              this.showHistory = true;
-              this.$router.push({path:'/searchInfo?info='+item})
             }else{
               var now = [];
-              now.unshift(item);
-              localStorage.setItem('historySearch',JSON.stringify(now));
-              this.showHistory = true;
-              this.$router.push({path:'/searchInfo?info='+item})
             }
+            now.unshift(item);
+            localStorage.setItem('historySearch',JSON.stringify(now));
+            this.showHistory = true;
+            this.$router.push({path:'/searchInfo?info='+item})
           }
         },
         getHotSearch:function(){
@@ -101,6 +96,10 @@
           }else{
             this.showHistory = false;
           }
+        },
+        selectMe:function(e){
+          this.quickSearch = e;
+          this.searchNow(this.quickSearch);
         }
       },
       beforeMount:function(){
