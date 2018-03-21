@@ -18,13 +18,13 @@
       <div class="productList">
         <pull-to :top-load-method="refresh" :bottom-load-method="geMore">
           <ul :class="{'listView':islistView}">
-            <li v-for="v in nowList">
-              <router-link to="/proInformation">
+            <li v-for="v in nowList" v-on:click="goInformation(v.pid)">
+              <!--<router-link to="/proInformation?pid=v.pid">-->
                 <div class="img_box">
                   <img :src="v.imgSrc" alt="">
                 </div>
                 <h4>{{v.proName}}</h4>
-              </router-link>
+              <!--</router-link>-->
               <p>&yen;{{v.proPrice}} <i class="icon iconfont icon-add"></i></p>
             </li>
           </ul>
@@ -112,6 +112,9 @@
                 this.nowList = this.listData;
                 loaded('done')
             },2000)
+        },
+        goInformation:function(pid){
+          this.$router.push({path:'/proInformation?pid='+pid})
         }
       }
     }

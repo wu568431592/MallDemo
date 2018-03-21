@@ -50,11 +50,12 @@ export default new Router({
     },
     {
       path: '/myMessageInfo',
-      component: myMessageInfo
+      component: myMessageInfo,
     },
     {
       path: '/proInformation',
-      component: proInformation
+      component: proInformation,
+      props: (route) => ({ query: route.query.pid })
     },
     {
       path: '*',

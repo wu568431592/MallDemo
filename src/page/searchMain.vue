@@ -14,7 +14,12 @@
           <i @click="beginDelete" class="icon iconfont icon-lajixiang" v-show="deleteHistory"></i>
         </p>
         <ul>
-          <li v-for="(v,i) in list">{{v}} <i @click="deleteMe(i)" v-show="!deleteHistory" class="icon iconfont icon-shanchutupian"></i></li>
+          <li v-for="(v,i) in list">
+            <slot v-if="i<=5">
+              {{v}} <i @click="deleteMe(i)" v-show="!deleteHistory" class="icon iconfont icon-shanchutupian"></i>
+            </slot>
+
+          </li>
         </ul>
       </div>
       <confirmBox v-show="showConfirmBox" titleMessage="确定要清除历史记录吗？" v-on:cancleFun="cancleFun" v-on:confirmFun="confirmFun"></confirmBox>

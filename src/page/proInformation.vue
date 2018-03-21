@@ -5,14 +5,14 @@
       <div class="proInfor animated slideInRight" v-show="!isShopDetailsShow">
         <Swiper class="diy_swiper" loop  :list="proPicList" height="100vw"  dots-position="center" ></Swiper>
         <div class="proName">
-          360手机 N6 Pro 全网通 6GB+64GB 钛泽银色 移动联通电信4G手机 双卡双待 全面屏 游戏手机
+          <span v-if="proInfor.proName"> {{proInfor.proName}}</span>
         </div>
         <div class="proPrice">
-          &yen;2000.00元
+          &yen;<span>{{proInfor ? proInfor.proPrice:'0'}}</span>元
         </div>
         <div class="chooseBox" @click="chooseOtherItem">
-          <div class="chooseItem">已选：1件 原装+套餐1</div>
-          <div class="kucun">库存：1232123件</div>
+          <div class="chooseItem">已选：1件 {{proInfor ? proInfor.proType[0].proTypeName:''}}</div>
+          <div class="kucun">库存：{{proInfor ? proInfor.proType[0].proTypeNum:''}}件</div>
           <div class="chooseBtn">
             <i class="icon iconfont icon-more"></i>
           </div>
@@ -21,9 +21,9 @@
           <span>送至：北京市海淀区万寿路甲49号院</span>
         </div>
         <div class="proInfomain">
-          <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
-          <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
-          <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
+          <slot v-if="proInfor">
+            <img :src="img" alt="" v-for="img in proInfor.proImg">
+          </slot>
         </div>
       </div>
       <div class="tabBox" v-show="isShopDetailsShow">
@@ -33,19 +33,21 @@
       <div class="proDetails animated slideInRight" v-show="isShopDetailsShow">
         <div class="tabMainBox">
           <div class="pictureBox" v-show="isPicBoxShow">
-            <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
-            <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
-            <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
+            <slot v-if="proInfor">
+              <img :src="img" alt="" v-for="img in proInfor.proImg">
+            </slot>
           </div>
           <div class="tableBox" v-show="isTableBoxShow">
-            <div class="tr" v-for="n in 20">
-              <div class="td">
-                商品名称{{n}}
+            <slot v-if-="proInfor">
+              <div class="tr" v-for="n in 20">
+                <div class="td">
+                  商品名称{{n}}
+                </div>
+                <div class="td">
+                  360手机N{{n}}
+                </div>
               </div>
-              <div class="td">
-                360手机N{{n}}
-              </div>
-            </div>
+            </slot>
           </div>
         </div>
       </div>
@@ -85,6 +87,7 @@
     import proInforHeaderBox from '../components/proInforHeaderBox/proInforHeaderBox.vue'
     import { Swiper }  from 'vux'
     import chooseItemAlert from '../components/chooseItemAlert/chooseItemAlert.vue'
+    import axios from 'axios'
     export default {
       name:'proInformation',
       data(){
@@ -109,6 +112,7 @@
             isShopDetailsShow:false,
             isPicBoxShow:true,
             isTableBoxShow:false,
+            proInfor:''
           }
       },
       components:{proInforHeaderBox,Swiper,chooseItemAlert},
@@ -169,6 +173,16 @@
           this.isPicBoxShow = false;
           this.isTableBoxShow = true;
         }
+      },
+      mounted:function(){
+        axios.get('http://'+this.$store.state.serverIP+'/server/product'+this.$route.query.pid+'.json')
+          .then(res=>{
+            console.log(res.data)
+            this.proInfor = res.data;
+          })
+          .catch(err=>{
+            //console.log(err)
+          })
       }
     }
 </script>
@@ -286,6 +300,7 @@
         background-color:#fff;
         .pictureBox{
           width:100%;
+          overflow:hidden;
           img{
             width:100%;
             vertical-align: middle;
@@ -295,6 +310,8 @@
           color:#333;
           border-left:1px solid #999;
           border-top:1px solid #999;
+          width:100%;
+          overflow:hidden;
           .tr{
             width:100%;
             overflow:hidden;
