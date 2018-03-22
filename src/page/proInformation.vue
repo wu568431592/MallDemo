@@ -22,7 +22,7 @@
         </div>
         <div class="proInfomain">
           <slot v-if="proInfor">
-            <img :src="img" alt="" v-for="img in proInfor.proImg">
+            <img :src="img" alt="" v-for="img in proInfor.proInforImg">
           </slot>
         </div>
       </div>
@@ -37,18 +37,23 @@
               <img :src="img" alt="" v-for="img in proInfor.proImg">
             </slot>
           </div>
-          <div class="tableBox" v-show="isTableBoxShow">
-            <slot v-if-="proInfor">
-              <div class="tr" v-for="n in 20">
-                <div class="td">
-                  商品名称{{n}}
-                </div>
-                <div class="td">
-                  360手机N{{n}}
-                </div>
-              </div>
-            </slot>
-          </div>
+          <slot v-if-="proInfor">
+            <div class="tableBox" v-show="isTableBoxShow" v-for="n in proInfor.proTable">
+                <slot v-for="(val , key) in n">
+                  <div class="th">
+                    {{key}}
+                  </div>
+                  <div class="tr" v-for="(val1 , key1) in val">
+                    <div class="td key" v-for="(v ,k) in val1">
+                      {{k}}
+                    </div>
+                    <div class="td val" v-for="(v ,k) in val1">
+                      {{v}}
+                    </div>
+                  </div>
+                </slot>
+            </div>
+          </slot>
         </div>
       </div>
       <div class="bottom_box">
@@ -162,14 +167,14 @@
           this.isShopDetailsShow = false;
         },
         activePicBox:function(){
-          var me = document.getElementsByClassName('pictureBox')[0];
-          me.setAttribute('class','pictureBox animated slideInRight');
+//          var me = document.getElementsByClassName('pictureBox')[0];
+//          me.setAttribute('class','pictureBox animated slideInRight');
           this.isPicBoxShow = true;
           this.isTableBoxShow =false;
         },
         activeTableBox:function(){
-          var me = document.getElementsByClassName('tableBox')[0];
-          me.setAttribute('class','tableBox animated slideInRight');
+          //var me = document.getElementsByClassName('tableBox')[0];
+          //me.setAttribute('class','tableBox animated slideInRight');
           this.isPicBoxShow = false;
           this.isTableBoxShow = true;
         }
@@ -323,12 +328,21 @@
               line-height:5vh;
               padding-left:5px;
             }
-            .td:first-child{
+            .td.key{
               width:30%;
             }
-            .td:nth-child(2){
+            .td.val{
               width:70%;
             }
+          }
+          .th{
+            width:100%;
+            border-right:1px solid #999;
+            border-bottom:1px solid #999;
+            height:5vh;
+            line-height:5vh;
+            padding-left:5px;
+            text-align: center;
           }
         }
       }

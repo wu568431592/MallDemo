@@ -6,7 +6,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 var state;
 state ={
-    serverIP : '172.17.160.70',
+    serverIP : '172.17.160.20',
 }
 
 const mutations ={
