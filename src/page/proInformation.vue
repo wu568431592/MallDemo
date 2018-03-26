@@ -121,7 +121,7 @@
             me.setAttribute('class','chooseItemAlert animated slideInUp')
             this.isChooseAlertShow = true;
             this.isCoverShow = true;
-            this.proinformat =this.proInfor;
+            this.proinformat =this.proInfor
         },
         shoucangFun:function(){
           this.isShoucang = !this.isShoucang;
@@ -175,7 +175,7 @@
         axios.get('http://'+this.$store.state.serverIP+'/server/product'+this.$route.query.pid+'.json')
           .then(res=>{
             this.proInfor = res.data;
-            //this.proinformat = res.data;
+            this.proinformat = res.data;
           })
           .catch(err=>{
             //console.log(err)

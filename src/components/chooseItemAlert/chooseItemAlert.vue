@@ -5,17 +5,18 @@
         <div class="imgBox">
           <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
         </div>
-        <p class="proPrice">&yen;1900元</p>
-        <p class="proId">商品编码：104389798</p>
+        <p class="proPrice">&yen;{{proinformat? proinformat.proType[0].proPrice:'0'}}</p>
+        <p class="proId">商品编码：{{proinformat? proinformat.proId:'0'}}</p>
         <i class="icon iconfont icon-ioscloseoutline" @click="closeChooseAlert"></i>
       </div>
       <div class="xuanxiangBox">
         <p>包装：</p>
         <ul @click="changeItemFun($event)">
-          <li class="active">原装+套餐1</li>
-          <li>原装+套餐2</li>
-          <li>原装+套餐3</li>
-          <li>原装+套餐4</li>
+          <slot v-if="proinformat">
+            <li v-for="(v,k) in proinformat.proType" :class="{active: k==0? true:false}">
+              {{v.proTypeName}}
+            </li>
+          </slot>
         </ul>
         <p>颜色：</p>
         <ul @click="changeItemFun($event)">
