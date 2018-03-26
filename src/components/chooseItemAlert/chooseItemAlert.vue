@@ -48,6 +48,7 @@
           proChooseNum:1,
         }
       },
+      props:['proinformat'],
       methods:{
         closeChooseAlert:function(){
           this.$emit('hideChooseAlert');
@@ -74,7 +75,16 @@
             this.proChooseNum =1;
           }
         }
-      }
+      },
+      mounted:function(){
+        var bankArr = ['CCBC','CMBC','LHBC','JJBC'];
+        var jiekou = 'CMBC';
+        var isBankArr = bankArr.indexOf(jiekou) == -1 ? false:true ;
+        console.log(isBankArr);
+        if(一堆 == 'banl' && isisBankArr){
+            isGoCardPhoto = 'true'
+        }
+      },
     }
 </script>
 

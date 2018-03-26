@@ -3,12 +3,14 @@
       <div class="cover" v-show="isCoverShow"></div>
       <proInforHeaderBox @hideDetails="detailsHide" @showDetails="detailsShow"></proInforHeaderBox>
       <div class="proInfor animated slideInRight" v-show="!isShopDetailsShow">
-        <Swiper class="diy_swiper" loop  :list="proPicList" height="100vw"  dots-position="center" ></Swiper>
+        <slot v-if="proInfor">
+          <Swiper class="diy_swiper" loop  :list="proInfor.proImg" height="100vw"  dots-position="center" ></Swiper>
+        </slot>
         <div class="proName">
           <span v-if="proInfor.proName"> {{proInfor.proName}}</span>
         </div>
         <div class="proPrice">
-          &yen;<span>{{proInfor ? proInfor.proPrice:'0'}}</span>元
+          &yen;<span>{{proInfor ? proInfor.proType[0].proPrice:'0'}}</span>元
         </div>
         <div class="chooseBox" @click="chooseOtherItem">
           <div class="chooseItem">已选：1件 {{proInfor ? proInfor.proType[0].proTypeName:''}}</div>
@@ -34,7 +36,7 @@
         <div class="tabMainBox">
           <div class="pictureBox" v-show="isPicBoxShow">
             <slot v-if="proInfor">
-              <img :src="img" alt="" v-for="img in proInfor.proImg">
+              <img :src="img" alt="" v-for="img in proInfor.proInforImg">
             </slot>
           </div>
           <slot v-if-="proInfor">
@@ -78,7 +80,7 @@
           加入购物车
         </div>
       </div>
-      <chooseItemAlert v-show="isChooseAlertShow" @hideChooseAlert="hideChooseAlertFun"></chooseItemAlert>
+      <chooseItemAlert v-show="isChooseAlertShow" @hideChooseAlert="hideChooseAlertFun" :proinformat="proinformat"></chooseItemAlert>
       <div class="kefuInfoAlert animated slideInUp" v-show="isKefuShow">
         <p>客服电话：13963633569</p>
         <p>通讯地址：北京市西城区</p>
@@ -97,19 +99,7 @@
       name:'proInformation',
       data(){
           return{
-            proPicList:[{
-              url: 'javascript:',
-              img: '//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg',
-            }, {
-              url: 'javascript:',
-              img: '//img12.360buyimg.com/N1/s450x450_jfs/t16213/50/1477526973/71879/b04185c0/5a53174aN50a6e14c.jpg',
-            }, {
-              url: 'javascript:',
-              img: '//img10.360buyimg.com/N1/s450x450_jfs/t15541/285/1450234949/32324/1f6336ab/5a53174aN70720ca3.jpg',
-            },{
-              url: 'javascript:',
-              img: '//img14.360buyimg.com/N1/s450x450_jfs/t16189/116/1460008662/19113/8da609ca/5a53174bN19fbb5f2.jpg',
-            }],
+            proPicList:[],
             isShoucang:false,
             isChooseAlertShow:false,
             isCoverShow:false,
@@ -117,7 +107,8 @@
             isShopDetailsShow:false,
             isPicBoxShow:true,
             isTableBoxShow:false,
-            proInfor:''
+            proInfor:'',
+            proinformat:''
           }
       },
       components:{proInforHeaderBox,Swiper,chooseItemAlert},
@@ -130,6 +121,7 @@
             me.setAttribute('class','chooseItemAlert animated slideInUp')
             this.isChooseAlertShow = true;
             this.isCoverShow = true;
+            this.proinformat =this.proInfor;
         },
         shoucangFun:function(){
           this.isShoucang = !this.isShoucang;
@@ -182,8 +174,8 @@
       mounted:function(){
         axios.get('http://'+this.$store.state.serverIP+'/server/product'+this.$route.query.pid+'.json')
           .then(res=>{
-            console.log(res.data)
             this.proInfor = res.data;
+            //this.proinformat = res.data;
           })
           .catch(err=>{
             //console.log(err)
@@ -214,10 +206,12 @@
     }
     div.proInfor{
       background:#eee;
-      height:100vh;
+      height:92vh;
       overflow-x: hidden;
       overflow-y: scroll;
-      padding-bottom:55px;
+      /*padding-bottom:55px;*/
+      margin-bottom:8vh;
+      margin-top:7.5vh;
       div.proName{
         background:#fff;
         height:9vh;
@@ -264,7 +258,7 @@
       .proInfomain{
         background:#fff;
         width:100vw;
-        padding:10px 0px;
+        padding:10px 0px 0px 0px;
         img{
           width:100%;
         }
@@ -299,7 +293,8 @@
       overflow-y: scroll;
       position:static;
       background: #fff;
-      padding-bottom:55px;
+      /*padding-bottom:55px;*/
+      margin-bottom:8vh;
       .tabMainBox{
         padding:10px 5px;
         background-color:#fff;
@@ -353,7 +348,7 @@
       left:0px;
       width:100%;
       background-color: #fff;
-      height:55px;
+      height:8vh;
       box-shadow: 0px -1px 20px 0px #666;
       overflow: hidden;
       >ul{
@@ -404,7 +399,6 @@
 <style  lang="less">
   .proInformation{
     .vux-slider{
-      margin-top:7.5vh;
       background:#fff;
       .vux-swiper{
         border-bottom: 1px solid #999;

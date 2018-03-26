@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <transition :name="transitionName">
-      <router-view class="child-view" v-on:hideTabBar="hideTabBar" v-on:showTabBar="showTabBar"/>
+        <router-view class="child-view" v-on:hideTabBar="hideTabBar" v-on:showTabBar="showTabBar"/>
     </transition>
     <tabBar v-show="showBar"></tabBar>
   </div>

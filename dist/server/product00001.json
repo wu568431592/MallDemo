@@ -1,11 +1,11 @@
 {
   "proName":"360手机 N6 Pro 全网通 6GB+64GB 钛泽银色 移动联通电信4G手机 双卡双待 全面屏 游戏手机",
-  "proPrice":"2000",
   "proId":"0001",
   "proType":[
     {
       "proTypeName":"原装+套餐1",
       "proTypeNum":"111",
+      "proPrice":"2001",
       "proColor":[
         "红色","黑色","紫色"
       ]
@@ -13,6 +13,7 @@
     {
       "proTypeName":"原装+套餐2",
       "proTypeNum":"12321",
+      "proPrice":"2002",
       "proColor":[
         "红色","绿色","黑色","紫色"
       ]
@@ -20,6 +21,7 @@
     {
       "proTypeName":"原装+套餐3",
       "proTypeNum":"142111",
+      "proPrice":"2003",
       "proColor":[
         "红色","绿色","黑色"
       ]
@@ -27,20 +29,25 @@
     {
       "proTypeName":"原装+套餐4",
       "proTypeNum":"11331",
+      "proPrice":"2004",
       "proColor":[
         "红色","绿色","紫色"
       ]
     }
   ],
-  "proImg":[
-    "//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg",
-    "//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg",
-    "//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg",
-    "//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg",
-    "//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg",
-    "//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg",
-    "//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg"
-  ],
+  "proImg":[{
+    "url": "javascript:",
+    "img": "//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg"
+  }, {
+    "url": "javascript:",
+    "img": "//img12.360buyimg.com/N1/s450x450_jfs/t16213/50/1477526973/71879/b04185c0/5a53174aN50a6e14c.jpg"
+  }, {
+    "url": "javascript:",
+    "img": "//img10.360buyimg.com/N1/s450x450_jfs/t15541/285/1450234949/32324/1f6336ab/5a53174aN70720ca3.jpg"
+  },{
+    "url": "javascript:",
+    "img": "//img14.360buyimg.com/N1/s450x450_jfs/t16189/116/1460008662/19113/8da609ca/5a53174bN19fbb5f2.jpg"
+  }],
   "proInforImg":[
     "//img10.360buyimg.com/imgzone/jfs/t15322/364/2148778349/2559849/74392e9b/5a70490fN62d58393.jpg"
   ],

@@ -44,12 +44,8 @@
           upDown:0,
           allSortActive:true,
           priceSortActive:false,
-//          nowList:this.listData,
           islistView:false
         }
-      },
-      updated:function(){
-//        this.nowList=this.listData;
       },
       computed:{
           nowList:{
