@@ -207,7 +207,7 @@
     }
     div.proInfor{
       background:#eee;
-      height:91vh;
+      height:84.5vh;
       overflow-x: hidden;
       overflow-y: scroll;
       /*padding-bottom:55px;*/
