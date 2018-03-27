@@ -67,7 +67,7 @@
     position: fixed;
     top: 0px;
     left: 0px;
-    z-index: 100000000000000;
+    z-index: 100000;
     width: 100%;
     height:7.5vh;
     line-height:7.5vh;

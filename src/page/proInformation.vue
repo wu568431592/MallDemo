@@ -121,7 +121,7 @@
             me.setAttribute('class','chooseItemAlert animated slideInUp')
             this.isChooseAlertShow = true;
             this.isCoverShow = true;
-            this.proinformat =this.proInfor
+
         },
         shoucangFun:function(){
           this.isShoucang = !this.isShoucang;
@@ -174,6 +174,7 @@
       mounted:function(){
         axios.get('http://'+this.$store.state.serverIP+'/server/product'+this.$route.query.pid+'.json')
           .then(res=>{
+              console.log(res.data)
             this.proInfor = res.data;
             this.proinformat = res.data;
           })
@@ -206,7 +207,7 @@
     }
     div.proInfor{
       background:#eee;
-      height:92vh;
+      height:91vh;
       overflow-x: hidden;
       overflow-y: scroll;
       /*padding-bottom:55px;*/
@@ -289,7 +290,7 @@
     }
     .proDetails{
       margin-top: 14.5vh;
-      height: 85.5vh;
+      height: 78.5vh;
       overflow-y: scroll;
       position:static;
       background: #fff;

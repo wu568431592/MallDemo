@@ -3,29 +3,31 @@ s<template>
       <headerBox title="购物车" isBackShow="true" rightWord="true" :rightButton="rightButtonList" @edit="edit" @closeeidt="closeeidt"></headerBox>
       <div class="cartMain">
         <ul>
-          <li v-for="i in 5">
-            <div class="store">
-              <i class="icon iconfont icon-checkbox lit" @click="checkStoreAll($event)"></i>
-              <i class="icon iconfont icon-store"></i>
-              <span>我是店铺名称</span>
-            </div>
-            <ul class="storeProductList">
-              <li v-for="n in 3">
-                <i class="icon iconfont icon-checkbox lit" @click="checkMe($event)"></i>
-                <div class="imgBox">
-                  <img src="//img14.360buyimg.com/N2/jfs/t3448/115/304606616/252246/a8e91519/58074aeaN63a3a8bb.jpg" alt="">
-                </div>
-                <div class="proInfo">
-                  <h5>尤卓尔 丁酸氢化可的松乳膏10g/盒  商品名最多两行...</h5>
-                  <p :class="{active:isedit}" @click="changeType($event)">规格：1盒装10g</p>
-                  <span>&yen;15</span>
-                  <button class="add" @click="addFun($event)">+</button>
-                  <input type="number" value="1">
-                  <button class="reduce" @click="reduceFun($event)">-</button>
-                </div>
-              </li>
-            </ul>
-          </li>
+          <slot v-if="cartInfor">
+            <li v-for="(v,k) in cartInfor">
+              <div class="store">
+                <i class="icon iconfont icon-checkbox lit" @click="checkStoreAll($event)"></i>
+                <i class="icon iconfont icon-store"></i>
+                <span>{{v.storeName}}</span>
+              </div>
+              <ul class="storeProductList">
+                <li v-for="(v1,k1) in v.storeProductList">
+                  <i class="icon iconfont icon-checkbox lit" @click="checkMe($event)"></i>
+                  <div class="imgBox">
+                    <img :src="v1.proImg" alt="">
+                  </div>
+                  <div class="proInfo">
+                    <h5>{{v1.proName}}</h5>
+                    <p :class="{active:isedit}" @click="changeType($event)">规格：{{v1.proType}} <slot v-if="v1.proColor">颜色：{{v1.proColor}}</slot></p>
+                    <span>&yen;{{v1.proPrice}}</span>
+                    <button class="add" @click="addFun($event)">+</button>
+                    <input type="number" v-model="v1.proNum">
+                    <button class="reduce" @click="reduceFun($event)">-</button>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </slot>
         </ul>
       </div>
       <div class="countBox">
@@ -52,6 +54,7 @@ s<template>
 <script>
     import headerBox from  '../components/headerBox/headerBox.vue'
     import chooseItemAlert from  '../components/chooseItemAlert/chooseItemAlert.vue'
+    import axios from 'axios'
     export default {
       name:'cart',
       components:{headerBox,chooseItemAlert},
@@ -60,7 +63,8 @@ s<template>
           rightButtonList:['messageBtn'],
           isedit:false,
           itemEdit:false,
-          isCoverShow:false
+          isCoverShow:false,
+          cartInfor:''
         }
       },
       methods:{
@@ -135,11 +139,27 @@ s<template>
           }else{
             e.target.setAttribute('class','icon iconfont icon-checkbox active lit');
           }
+          this.autoCheckStoreAll(e)
           this.autoCheckAll();
+        },
+        autoCheckStoreAll:function(e){
+          var me = e.target;
+          var lis = me.parentNode.parentNode.getElementsByClassName('icon-checkbox')
+          var allcheck = false;
+          for(var i = 0;i<lis.length;i++){
+            if(lis[i].getAttribute('class')=='icon iconfont icon-checkbox lit'){
+              allcheck = false;
+              break
+            }else{
+              allcheck = true;
+            }
+          }
+          if(allcheck){
+            me.parentNode.parentNode.previousElementSibling.children[0].setAttribute('class','icon iconfont icon-checkbox active lit');
+          }
         },
         autoCheckAll:function(){
           var check = document.getElementsByClassName('lit');
-          console.log(check);
           var allcheck = false;
           for(var i = 0;i<check.length;i++){
             if(check[i].getAttribute('class')=='icon iconfont icon-checkbox lit'){
@@ -149,7 +169,6 @@ s<template>
               allcheck = true;
             }
           }
-          console.log(allcheck);
           if(allcheck){
             document.getElementById('checkAll').setAttribute('class','icon iconfont icon-checkbox active');
           }
@@ -158,6 +177,16 @@ s<template>
       beforeMount:function(){
         this.$emit('showTabBar');
       },
+      mounted:function(){
+        axios.get('http://'+this.$store.state.serverIP+'/server/cartInfo.json')
+          .then(res=>{
+            //console.log(res.data)
+            this.cartInfor = res.data.cartInfor;
+        })
+          .catch(err=>{
+            //console.log(err)
+          })
+      }
     }
 </script>
 
@@ -326,6 +355,11 @@ s<template>
                       line-height: 3vh;
                       height:6vh;
                       margin-bottom: 1vh;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                      display: -webkit-box;
+                      -webkit-line-clamp: 2;
+                      -webkit-box-orient: vertical;
                     }
                     p{
                       line-height: 3.5vh;

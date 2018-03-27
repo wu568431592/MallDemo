@@ -5,25 +5,24 @@
         <div class="imgBox">
           <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
         </div>
-        <p class="proPrice">&yen;{{proinformat? proinformat.proType[0].proPrice:'0'}}</p>
-        <p class="proId">商品编码：{{proinformat? proinformat.proId:'0'}}</p>
+        <p class="proPrice">&yen;{{proPrice ? proPrice : '0'}}</p>
+        <p class="proId">商品编码：{{proinformat ? proinformat.proId : '0'}}</p>
         <i class="icon iconfont icon-ioscloseoutline" @click="closeChooseAlert"></i>
       </div>
       <div class="xuanxiangBox">
         <p>包装：</p>
         <ul @click="changeItemFun($event)">
           <slot v-if="proinformat">
-            <li v-for="(v,k) in proinformat.proType" :class="{active: k==0? true:false}">
+            <li v-for="(v,k) in proinformat.proType" :class="{active: k==0? true:false}" :data-index="k">
               {{v.proTypeName}}
             </li>
           </slot>
         </ul>
         <p>颜色：</p>
-        <ul @click="changeItemFun($event)">
-          <li class="active">红色</li>
-          <li>绿色</li>
-          <li>黑色</li>
-          <li>白色</li>
+        <ul @click="changeColorFun($event)">
+          <slot v-if="colorList">
+            <li v-for="(v,k) in colorList" :class="{active : k == 0 ? true : false}">{{v}}</li>
+          </slot>
         </ul>
       </div>
       <div class="numChangeBox">
@@ -47,6 +46,8 @@
       data(){
         return{
           proChooseNum:1,
+          colorList:'',
+          proPrice:''
         }
       },
       props:['proinformat'],
@@ -57,8 +58,20 @@
         changeItemFun:function(e){
           var lis = e.target.parentNode.children;
           if(e.target.tagName == "LI"){
+            var index = e.target.getAttribute('data-index');
+            this.colorList = this.proinformat.proType[index].proColor;
+            this.proPrice = this.proinformat.proType[index].proPrice;
             for(var i = 0; i<lis.length;i++){
-              lis[i].setAttribute('class','')
+              lis[i].setAttribute('class','');
+            }
+            e.target.setAttribute('class','active')
+          }
+        },
+        changeColorFun:function(e){
+          var lis = e.target.parentNode.children;
+          if(e.target.tagName == "LI"){
+            for(var i = 0; i<lis.length;i++){
+              lis[i].setAttribute('class','');
             }
             e.target.setAttribute('class','active')
           }
@@ -80,6 +93,12 @@
       mounted:function(){
 
       },
+      watch:{
+        proinformat:function(){
+          this.colorList = this.proinformat.proType[0].proColor;
+          this.proPrice = this.proinformat.proType[0].proPrice;
+        }
+      }
     }
 </script>
 
