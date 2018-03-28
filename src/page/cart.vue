@@ -95,6 +95,7 @@ s<template>
             if(e.target.parentNode.parentNode.children[0].getAttribute('class')=='icon iconfont icon-checkbox active lit'){
               var price = this.cartInfor[k].storeProductList[k1].proPrice;
               this.totalMoney -= parseInt(price);
+              console.log(1)
             }
           }
         },
