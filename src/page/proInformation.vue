@@ -95,6 +95,7 @@
     import { Swiper }  from 'vux'
     import chooseItemAlert from '../components/chooseItemAlert/chooseItemAlert.vue'
     import axios from 'axios'
+    import { mapGetters } from 'vuex'
     export default {
       name:'proInformation',
       data(){
@@ -114,6 +115,11 @@
       components:{proInforHeaderBox,Swiper,chooseItemAlert},
       beforeMount:function(){
         this.$emit('hideTabBar');
+      },
+      computed:{
+        ...mapGetters([
+            'getServerIp'
+        ])
       },
       methods:{
         chooseOtherItem:function(){
@@ -172,9 +178,8 @@
         }
       },
       mounted:function(){
-        axios.get('http://'+this.$store.state.serverIP+'/server/product'+this.$route.query.pid+'.json')
+        axios.get('http://'+this.getServerIp+'/server/product'+this.$route.query.pid+'.json')
           .then(res=>{
-              console.log(res.data)
             this.proInfor = res.data;
             this.proinformat = res.data;
           })
@@ -271,7 +276,7 @@
       left:0px;
       width:100%;
       background-color: #fff;
-      z-index: 100000;
+      z-index: 1000;
       height:7vh;
       line-height: 6.6vh;
       text-align: center;
@@ -290,7 +295,7 @@
     }
     .proDetails{
       margin-top: 14.5vh;
-      height: 78.5vh;
+      height: 77.5vh;
       overflow-y: scroll;
       position:static;
       background: #fff;

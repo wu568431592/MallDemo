@@ -4,15 +4,15 @@ s<template>
       <div class="cartMain">
         <ul>
           <slot v-if="cartInfor">
-            <li v-for="(v,k) in cartInfor">
+            <li v-for="(v,k) in cartInfor" :data-storeId="v.storeId">
               <div class="store">
-                <i class="icon iconfont icon-checkbox lit" @click="checkStoreAll($event)"></i>
+                <i class="icon iconfont icon-checkbox lit" @click="checkStoreAll($event,v.storeProductList)"></i>
                 <i class="icon iconfont icon-store"></i>
                 <span>{{v.storeName}}</span>
               </div>
               <ul class="storeProductList">
                 <li v-for="(v1,k1) in v.storeProductList">
-                  <i class="icon iconfont icon-checkbox lit" @click="checkMe($event)"></i>
+                  <i class="icon iconfont icon-checkbox lit" @click="checkMe($event)" :data-proId="v1.proId"></i>
                   <div class="imgBox">
                     <img :src="v1.proImg" alt="">
                   </div>
@@ -20,9 +20,9 @@ s<template>
                     <h5>{{v1.proName}}</h5>
                     <p :class="{active:isedit}" @click="changeType($event)">规格：{{v1.proType}} <slot v-if="v1.proColor">颜色：{{v1.proColor}}</slot></p>
                     <span>&yen;{{v1.proPrice}}</span>
-                    <button class="add" @click="addFun($event)">+</button>
-                    <input type="number" v-model="v1.proNum">
-                    <button class="reduce" @click="reduceFun($event)">-</button>
+                    <button class="add" @click="addFun($event,k,k1)">+</button>
+                    <input type="number" v-model.number="v1.proNum">
+                    <button class="reduce" @click="reduceFun($event,k,k1)">-</button>
                   </div>
                 </li>
               </ul>
@@ -37,8 +37,8 @@ s<template>
         </div>
         <div class="countNow" v-show="!isedit">
           <span>合计:</span>
-          <span class="cost">&yen;0元</span>
-          <button>结算(0)</button>
+          <span class="cost">&yen;{{totalMoney}}元</span>
+          <button>结算({{totalNum}})</button>
         </div>
         <div class="buttonBox" v-show="isedit">
           <button>移入收藏</button>
@@ -55,6 +55,7 @@ s<template>
     import headerBox from  '../components/headerBox/headerBox.vue'
     import chooseItemAlert from  '../components/chooseItemAlert/chooseItemAlert.vue'
     import axios from 'axios'
+    import { mapGetters } from 'vuex'
     export default {
       name:'cart',
       components:{headerBox,chooseItemAlert},
@@ -64,8 +65,15 @@ s<template>
           isedit:false,
           itemEdit:false,
           isCoverShow:false,
-          cartInfor:''
+          cartInfor:'',
+          totalMoney:0,
+          totalNum:0
         }
+      },
+      computed:{
+        ...mapGetters([
+          "getServerIp"
+        ])
       },
       methods:{
         edit:function(){
@@ -74,14 +82,20 @@ s<template>
         closeeidt:function(){
           this.isedit = true;
         },
-        addFun:function(e){
-          var me = e.target;
-          me.nextElementSibling.value ++;
+        addFun:function(e,k,k1){
+          this.cartInfor[k].storeProductList[k1].proNum ++;
+          if(e.target.parentNode.parentNode.children[0].getAttribute('class')=='icon iconfont icon-checkbox active lit'){
+            var price = this.cartInfor[k].storeProductList[k1].proPrice;
+            this.totalMoney += parseInt(price);
+          }
         },
-        reduceFun:function(e){
-          var me = e.target;
-          if(me.previousElementSibling.value>1){
-            me.previousElementSibling.value --
+        reduceFun:function(e,k,k1){
+          if(this.cartInfor[k].storeProductList[k1].proNum>1){
+            this.cartInfor[k].storeProductList[k1].proNum --;
+            if(e.target.parentNode.parentNode.children[0].getAttribute('class')=='icon iconfont icon-checkbox active lit'){
+              var price = this.cartInfor[k].storeProductList[k1].proPrice;
+              this.totalMoney -= parseInt(price);
+            }
           }
         },
         hideChooseAlert:function(){
@@ -104,6 +118,7 @@ s<template>
           var me =e.target;
           var lis = me.parentNode.nextElementSibling.children;
           var className = me.getAttribute('class');
+          var storeTotal = 0;
           for(var i = 0; i<lis.length;i++){
             if(className == 'icon iconfont icon-checkbox lit'){
               me.setAttribute('class','icon iconfont icon-checkbox active lit');
@@ -130,13 +145,17 @@ s<template>
           }
         },
         checkMe(e){
+          var num = e.target.parentNode.children[2].children[4].value;
+          var price = e.target.parentNode.children[2].children[2].innerHTML.split('¥')[1];
           var className = e.target.getAttribute('class');
           if(className == 'icon iconfont icon-checkbox active lit'){
             e.target.setAttribute('class','icon iconfont icon-checkbox lit');
             var tt = e.target.parentNode.parentNode.previousElementSibling.children[0]
             tt.setAttribute('class','icon iconfont icon-checkbox lit');
             document.getElementById('checkAll').setAttribute('class','icon iconfont icon-checkbox');
+            this.totalMoney = this.totalMoney-price*num;
           }else{
+            this.totalMoney = this.totalMoney+price*num;
             e.target.setAttribute('class','icon iconfont icon-checkbox active lit');
           }
           this.autoCheckStoreAll(e)
@@ -173,12 +192,15 @@ s<template>
             document.getElementById('checkAll').setAttribute('class','icon iconfont icon-checkbox active');
           }
         },
+        updateProNum:function(k,k1){
+          this.cartInfor[k].storeProductList[k1].proNum ++;
+        }
       },
       beforeMount:function(){
         this.$emit('showTabBar');
       },
       mounted:function(){
-        axios.get('http://'+this.$store.state.serverIP+'/server/cartInfo.json')
+        axios.get('http://'+this.getServerIp+'/server/cartInfo.json')
           .then(res=>{
             //console.log(res.data)
             this.cartInfor = res.data.cartInfor;
@@ -221,7 +243,7 @@ s<template>
         float:left;
        }
       .checkboxBox{
-        width:30%;
+        width:22%;
         overflow: hidden;
         padding:0px 10px;
         i.iconfont{
@@ -243,11 +265,11 @@ s<template>
         }
       }
       .countNow{
-        width:70%;
+        width:78%;
         font-size:15px;
         span{
           display: inline-block;
-          padding:0px 10px;
+          padding:0px 5px;
           line-height:7vh;
         }
         span.cost{
@@ -255,7 +277,7 @@ s<template>
         }
         button{
           float:right;
-          width:50%;
+          width:40%;
           padding:0px 10px;
           line-height:7vh;
           border:none;

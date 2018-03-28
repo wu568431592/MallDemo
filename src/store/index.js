@@ -13,7 +13,9 @@ const mutations ={
 
 }
 const getters = {
-
+  getServerIp:function(state){
+    return state.serverIP;
+  }
 }
 const store = new Vuex.Store({
   state,

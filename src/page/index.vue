@@ -10,6 +10,7 @@
   import searchBox from  '../components/searchBox/searchBox.vue'
   import productListPage from  '../components/productListPage/productListPage.vue'
   import axios from 'axios'
+  import { mapGetters } from 'vuex'
   export default {
     name:'index',
     data(){
@@ -21,7 +22,7 @@
     mounted:function(){
       //修正index 产品列表 被tabbar 遮挡的问题
       document.getElementsByClassName('productList')[0].childNodes[0].style.paddingBottom='9vh';
-      axios.get('http://'+this.$store.state.serverIP+'/server/indexgoods.json')
+      axios.get('http://'+this.getServerIp+'/server/indexgoods.json')
         .then(response => {
           this.searchData = response.data;
         })
@@ -34,6 +35,11 @@
     },
     updated:function(){
       document.getElementsByClassName('productList')[0].childNodes[0].style.paddingBottom='9vh';
+    },
+    computed:{
+      ...mapGetters([
+          'getServerIp'
+      ])
     }
   }
 </script>
