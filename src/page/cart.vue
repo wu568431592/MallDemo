@@ -8,7 +8,7 @@ s<template>
               <div class="store">
                 <i class="icon iconfont icon-checkbox lit" @click="checkStoreAll($event,v.storeProductList)"></i>
                 <i class="icon iconfont icon-store"></i>
-                <span>{{v.storeName}}</span>
+                <span class="fuck">{{v.storeName}}</span>
               </div>
               <ul class="storeProductList">
                 <li v-for="(v1,k1) in v.storeProductList">
@@ -86,7 +86,9 @@ s<template>
           this.cartInfor[k].storeProductList[k1].proNum ++;
           if(e.target.parentNode.parentNode.children[0].getAttribute('class')=='icon iconfont icon-checkbox active lit'){
             var price = this.cartInfor[k].storeProductList[k1].proPrice;
+            var num = this.cartInfor[k].storeProductList[k1].proNum;
             this.totalMoney += parseInt(price);
+            this.totalNum ++;
           }
         },
         reduceFun:function(e,k,k1){
@@ -94,8 +96,9 @@ s<template>
             this.cartInfor[k].storeProductList[k1].proNum --;
             if(e.target.parentNode.parentNode.children[0].getAttribute('class')=='icon iconfont icon-checkbox active lit'){
               var price = this.cartInfor[k].storeProductList[k1].proPrice;
+              var num = this.cartInfor[k].storeProductList[k1].proNum;
               this.totalMoney -= parseInt(price);
-              console.log(1)
+              this.totalNum --;
             }
           }
         },
@@ -119,30 +122,64 @@ s<template>
           var me =e.target;
           var lis = me.parentNode.nextElementSibling.children;
           var className = me.getAttribute('class');
-          var storeTotal = 0;
-          for(var i = 0; i<lis.length;i++){
+          var storeTotalPrice = 0;
+          var storeTotalNum = 0;
+          for(var i = 0; i<lis.length; i++){
             if(className == 'icon iconfont icon-checkbox lit'){
+              if(lis[i].children[0].getAttribute('class') == 'icon iconfont icon-checkbox lit'){
+                let price = lis[i].children[2].children[2].innerHTML.split('¥')[1];
+                let num = lis[i].children[2].children[4].value;
+                storeTotalPrice += parseInt(price*num);
+                storeTotalNum += parseInt(num);
+              }
               me.setAttribute('class','icon iconfont icon-checkbox active lit');
               lis[i].children[0].setAttribute('class','icon iconfont icon-checkbox active lit');
             }else{
+              let price = lis[i].children[2].children[2].innerHTML.split('¥')[1];
+              let num = lis[i].children[2].children[4].value;
+              storeTotalPrice += parseInt(price*num);
+              storeTotalNum += parseInt(num);
               me.setAttribute('class','icon iconfont icon-checkbox lit');
               lis[i].children[0].setAttribute('class','icon iconfont icon-checkbox lit');
               document.getElementById('checkAll').setAttribute('class','icon iconfont icon-checkbox');
             }
           }
+          if(className == 'icon iconfont icon-checkbox lit'){
+            this.totalMoney += parseInt(storeTotalPrice);
+            this.totalNum += parseInt(storeTotalNum);
+          }else{
+            this.totalMoney -= parseInt(storeTotalPrice);
+            this.totalNum -= parseInt(storeTotalNum);
+          }
           this.autoCheckAll();
         },
         checkAll:function(e){
-          var check= document.getElementsByClassName('icon-checkbox');
+          var check= document.getElementsByClassName('lit');
           var meClassName = e.target.getAttribute('class');
-          if(meClassName == 'icon iconfont icon-checkbox active lit'){
+          if( meClassName == 'icon iconfont icon-checkbox active'){
             for (var i=0;i<check.length ;i++){
-              check[i].setAttribute('class','icon iconfont icon-checkbox lit')
+              check[i].setAttribute('class','icon iconfont icon-checkbox lit');
+              if(check[i].parentNode.children[2].getAttribute('class') == 'proInfo'){
+                let price = check[i].parentNode.children[2].children[2].innerHTML.split('¥')[1];
+                let num = check[i].parentNode.children[2].children[4].value;
+                this.totalNum -= Number(num);
+                this.totalMoney -= Number(price*num);
+              }
             }
+            e.target.setAttribute('class','icon iconfont icon-checkbox');
           }else{
+            this.totalNum = 0;
+            this.totalMoney = 0;
             for (var i=0;i<check.length ;i++){
-              check[i].setAttribute('class','icon iconfont icon-checkbox active lit')
+              if(check[i].parentNode.children[2].getAttribute('class') == 'proInfo'){
+                let price = check[i].parentNode.children[2].children[2].innerHTML.split('¥')[1];
+                let num = check[i].parentNode.children[2].children[4].value;
+                this.totalNum += Number(num);
+                this.totalMoney += parseInt(parseInt(price)*parseInt(num));
+              }
+              check[i].setAttribute('class','icon iconfont icon-checkbox active lit');
             }
+            e.target.setAttribute('class','icon iconfont icon-checkbox active')
           }
         },
         checkMe(e){
@@ -154,9 +191,11 @@ s<template>
             var tt = e.target.parentNode.parentNode.previousElementSibling.children[0]
             tt.setAttribute('class','icon iconfont icon-checkbox lit');
             document.getElementById('checkAll').setAttribute('class','icon iconfont icon-checkbox');
-            this.totalMoney = this.totalMoney-price*num;
+            this.totalMoney -= price*num;
+            this.totalNum  -= num
           }else{
-            this.totalMoney = this.totalMoney+price*num;
+            this.totalMoney +=price*num;
+            this.totalNum += parseInt(num);
             e.target.setAttribute('class','icon iconfont icon-checkbox active lit');
           }
           this.autoCheckStoreAll(e)
@@ -287,7 +326,7 @@ s<template>
         }
       }
       .buttonBox{
-        width:70%;
+        width:78%;
         button{
           float:left;
           width:50%;
