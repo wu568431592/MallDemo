@@ -18,7 +18,7 @@ s<template>
                   </div>
                   <div class="proInfo">
                     <h5>{{v1.proName}}</h5>
-                    <p :class="{active:isedit}" @click="changeType($event)">规格：{{v1.proType}} <slot v-if="v1.proColor">颜色：{{v1.proColor}}</slot></p>
+                    <p :class="{active:isedit}" @click="changeType($event,v1.proId)">规格：{{v1.proType}} <slot v-if="v1.proColor">颜色：{{v1.proColor}}</slot></p>
                     <span>&yen;{{v1.proPrice}}</span>
                     <button class="add" @click="addFun($event,k,k1)">+</button>
                     <input type="number" v-model.number="v1.proNum">
@@ -45,7 +45,13 @@ s<template>
           <button>删除</button>
         </div>
       </div>
-      <chooseItemAlert v-show="itemEdit" @hideChooseAlert="hideChooseAlert"></chooseItemAlert>
+      <chooseItemAlert v-show="itemEdit" @hideChooseAlert="hideChooseAlert" :proinformat="productInfo" :selectNum="selectNum">
+        <template slot-scope="props" slot="confirmBox">
+          <div class="confirmBox">
+            <span @click="updateCart">确定</span>
+          </div>
+        </template>
+      </chooseItemAlert>
       <div v-show="isCoverShow" class="cover">
       </div>
     </div>
@@ -67,7 +73,9 @@ s<template>
           isCoverShow:false,
           cartInfor:'',
           totalMoney:0,
-          totalNum:0
+          totalNum:0,
+          productInfo:'',
+          selectNum:1,
         }
       },
       computed:{
@@ -76,6 +84,9 @@ s<template>
         ])
       },
       methods:{
+        updateCart(){
+          console.log('updateCart')
+        },
         edit:function(){
           this.isedit = false;
         },
@@ -110,12 +121,21 @@ s<template>
             this.itemEdit = false;
           },2000)
         },
-        changeType:function(e){
+        changeType:function(e,proId){
           if(e.target.getAttribute('class') == 'active'){
             var me = document.getElementsByClassName('chooseItemAlert')[0]
-            me.setAttribute('class','chooseItemAlert animated slideInUp')
+            me.setAttribute('class','chooseItemAlert animated slideInUp');
             this.itemEdit = true;
             this.isCoverShow = true;
+            let num = e.target.nextElementSibling.nextElementSibling.nextElementSibling.value;
+            this.selectNum = num;
+            axios.get('http://'+this.getServerIp+'/server/product'+proId+'.json')
+              .then( res =>{
+                  this.productInfo = res.data;
+              })
+              .catch( err =>{
+                  //console.log(err)
+              })
           }
         },
         checkStoreAll:function(e){

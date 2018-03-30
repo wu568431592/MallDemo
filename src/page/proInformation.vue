@@ -80,7 +80,12 @@
           加入购物车
         </div>
       </div>
-      <chooseItemAlert v-show="isChooseAlertShow" @hideChooseAlert="hideChooseAlertFun" :proinformat="proinformat"></chooseItemAlert>
+      <chooseItemAlert v-show="isChooseAlertShow" @hideChooseAlert="hideChooseAlertFun" :proinformat="proinformat">
+        <div class="buttonBox" slot="buttonBox">
+          <span>立即购买</span>
+          <span>加入购物车</span>
+        </div>
+      </chooseItemAlert>
       <div class="kefuInfoAlert animated slideInUp" v-show="isKefuShow">
         <p>客服电话：13963633569</p>
         <p>通讯地址：北京市西城区</p>

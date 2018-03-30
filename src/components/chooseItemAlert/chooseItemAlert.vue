@@ -3,7 +3,7 @@
     <div class="chooseItemAlertMain">
       <div class="promessage">
         <div class="imgBox">
-          <img src="//img13.360buyimg.com/N1/s450x450_jfs/t16159/202/1360563117/191137/451cc5dc/5a531749Nd8d592f8.jpg" alt="">
+          <img :src="proinformat ? proinformat.proImg[0].img : 'https://m.360buyimg.com/mobilecms/s357x357_jfs/t6019/205/157969858/195398/ba8744bf/59264e5dN9862a0ac.jpg!q50.jpg'" alt="">
         </div>
         <p class="proPrice">&yen;{{proPrice ? proPrice : '0'}}</p>
         <p class="proId">商品编码：{{proinformat ? proinformat.proId : '0'}}</p>
@@ -31,10 +31,8 @@
         <input type="number" v-model="proChooseNum" @blur="numReturn">
         <button @click="addNum">+</button>
       </div>
-      <div class="buttonBox">
-        <span>立即购买</span>
-        <span>加入购物车</span>
-      </div>
+      <slot name="buttonBox"></slot>
+      <slot name="confirmBox" :num="proChooseNum"></slot>
     </div>
   </div>
   </div>
@@ -50,7 +48,7 @@
           proPrice:''
         }
       },
-      props:['proinformat'],
+      props:['proinformat','selectNum'],
       methods:{
         closeChooseAlert:function(){
           this.$emit('hideChooseAlert');
@@ -97,6 +95,10 @@
         proinformat:function(){
           this.colorList = this.proinformat.proType[0].proColor;
           this.proPrice = this.proinformat.proType[0].proPrice;
+        },
+        selectNum:function(){
+          console.log('change')
+          this.proChooseNum = this.selectNum;
         }
       }
     }
@@ -192,8 +194,8 @@
         }
       }
       .buttonBox{
-        height:10vh;
-        line-height: 10vh;
+        height:8vh;
+        line-height: 8vh;
         text-align: center;
         span{
           float:left;
@@ -204,6 +206,18 @@
         }
         span:first-child{
           background-color: rgba(255, 153, 0, 1);
+        }
+      }
+      .confirmBox{
+        height:8vh;
+        line-height: 8vh;
+        text-align: center;
+        span{
+          float:left;
+          width:100%;
+          color:#fff;
+          font-size: 15px;
+          background-color: #e4393c;
         }
       }
     }

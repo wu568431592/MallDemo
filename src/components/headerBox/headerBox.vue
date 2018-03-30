@@ -114,6 +114,9 @@
     }
     div.domain{
       width:20%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
       i.iconfont{
         color:#fff;
       }
