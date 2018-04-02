@@ -52,8 +52,7 @@ s<template>
           </div>
         </template>
       </chooseItemAlert>
-      <div v-show="isCoverShow" class="cover">
-      </div>
+      <div v-show="isCoverShow" class="cover"></div>
     </div>
 </template>
 
@@ -86,20 +85,21 @@ s<template>
       methods:{
         updateCart(props){
           let proId = props.cartUpdateInfo.proId;
+          //console.log(proId)
           //console.log(this.cartInfor);
-          for(let i = 0;i<this.cartInfor.length;i++){
-              let storeList = this.cartInfor[i].storeProductList;
-              for(let j = 0; j<storeList.length;j++){
-                  if(storeList[i].proId == proId ){
-                      console.log(storeList[i].proId)
-                    storeList[i].proColor = props.cartUpdateInfo.proColor;
-                    storeList[i].proNum = props.cartUpdateInfo.proNum;
-                    storeList[i].proPrice = props.cartUpdateInfo.proPrice;
-                    storeList[i].proType = props.cartUpdateInfo.proType;
+          for(var i = 0;i<this.cartInfor.length;i++){
+              var storeList = this.cartInfor[i].storeProductList;
+              for(var j = 0; j<storeList.length;j++){
+                  if(storeList[j].proId == proId ){
+                    console.log(storeList[j].proId)
+                    storeList[j].proColor = props.cartUpdateInfo.proColor;
+                    storeList[j].proNum = props.cartUpdateInfo.proNum;
+                    storeList[j].proPrice = props.cartUpdateInfo.proPrice;
+                    storeList[j].proType = props.cartUpdateInfo.proType;
                   }
               }
-
           }
+          console.log(this.cartInfor)
           this.hideChooseAlert();
         },
         edit:function(){
