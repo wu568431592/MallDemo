@@ -13,7 +13,7 @@
         <p>包装：</p>
         <ul @click="changeItemFun($event)">
           <slot v-if="proinformat">
-            <li v-for="(v,k) in proinformat.proType" :class="{active: k==0? true:false}" :data-index="k">
+            <li v-for="(v,k) in proinformat.proType" :class="{active : k==0? true:false}" :data-index="k">
               {{v.proTypeName}}
             </li>
           </slot>
@@ -21,7 +21,7 @@
         <p>颜色：</p>
         <ul @click="changeColorFun($event)">
           <slot v-if="colorList">
-            <li v-for="(v,k) in colorList" :class="{active : k == 0 ? true : false}">{{v}}</li>
+            <li v-for="(v,k) in colorList" :class="{active : k == 0 ? true:false}">{{v}}</li>
           </slot>
         </ul>
       </div>
@@ -32,7 +32,7 @@
         <button @click="addNum">+</button>
       </div>
       <slot name="buttonBox"></slot>
-      <slot name="confirmBox" :num="proChooseNum"></slot>
+      <slot name="confirmBox" :cartUpdateInfo="cartUpdateInfo"></slot>
     </div>
   </div>
   </div>
@@ -45,11 +45,23 @@
         return{
           proChooseNum:1,
           colorList:'',
-          proPrice:''
+          proPrice:'',
+          proType:'',
+          proColor:'',
+          cartUpdateInfo:{
+            proType:'',
+            proColor:'',
+            proNum:null,
+            proId:'',
+            proPrice:null
+          }
         }
       },
       props:['proinformat','selectNum'],
       methods:{
+        clickme:function(){
+            alert(1)
+        },
         closeChooseAlert:function(){
           this.$emit('hideChooseAlert');
         },
@@ -62,7 +74,8 @@
             for(var i = 0; i<lis.length;i++){
               lis[i].setAttribute('class','');
             }
-            e.target.setAttribute('class','active')
+            e.target.setAttribute('class','active');
+            this.proType = e.target.innerHTML.trim();
           }
         },
         changeColorFun:function(e){
@@ -71,7 +84,8 @@
             for(var i = 0; i<lis.length;i++){
               lis[i].setAttribute('class','');
             }
-            e.target.setAttribute('class','active')
+            e.target.setAttribute('class','active');
+            this.proColor = e.target.innerHTML;
           }
         },
         reduceNum:function(){
@@ -86,6 +100,13 @@
           if(this.proChooseNum == ''){
             this.proChooseNum =1;
           }
+        },
+        updateInfor:function(){
+          this.cartUpdateInfo.proPrice = this.proPrice;
+          this.cartUpdateInfo.proNum = this.proChooseNum;
+          this.cartUpdateInfo.proId = this.proinformat.proId;
+          this.cartUpdateInfo.proType = this.proType;
+          this.cartUpdateInfo.proColor = this.proColor;
         }
       },
       mounted:function(){
@@ -97,9 +118,11 @@
           this.proPrice = this.proinformat.proType[0].proPrice;
         },
         selectNum:function(){
-          console.log('change')
           this.proChooseNum = this.selectNum;
         }
+      },
+      updated:function(){
+          this.updateInfor();
       }
     }
 </script>

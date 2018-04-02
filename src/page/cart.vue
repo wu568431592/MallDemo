@@ -21,7 +21,7 @@ s<template>
                     <p :class="{active:isedit}" @click="changeType($event,v1.proId)">规格：{{v1.proType}} <slot v-if="v1.proColor">颜色：{{v1.proColor}}</slot></p>
                     <span>&yen;{{v1.proPrice}}</span>
                     <button class="add" @click="addFun($event,k,k1)">+</button>
-                    <input type="number" v-model.number="v1.proNum">
+                    <input type="number" v-model="v1.proNum">
                     <button class="reduce" @click="reduceFun($event,k,k1)">-</button>
                   </div>
                 </li>
@@ -48,7 +48,7 @@ s<template>
       <chooseItemAlert v-show="itemEdit" @hideChooseAlert="hideChooseAlert" :proinformat="productInfo" :selectNum="selectNum">
         <template slot-scope="props" slot="confirmBox">
           <div class="confirmBox">
-            <span @click="updateCart">确定</span>
+            <span @click="updateCart(props)">确定</span>
           </div>
         </template>
       </chooseItemAlert>
@@ -84,8 +84,23 @@ s<template>
         ])
       },
       methods:{
-        updateCart(){
-          console.log('updateCart')
+        updateCart(props){
+          let proId = props.cartUpdateInfo.proId;
+          //console.log(this.cartInfor);
+          for(let i = 0;i<this.cartInfor.length;i++){
+              let storeList = this.cartInfor[i].storeProductList;
+              for(let j = 0; j<storeList.length;j++){
+                  if(storeList[i].proId == proId ){
+                      console.log(storeList[i].proId)
+                    storeList[i].proColor = props.cartUpdateInfo.proColor;
+                    storeList[i].proNum = props.cartUpdateInfo.proNum;
+                    storeList[i].proPrice = props.cartUpdateInfo.proPrice;
+                    storeList[i].proType = props.cartUpdateInfo.proType;
+                  }
+              }
+
+          }
+          this.hideChooseAlert();
         },
         edit:function(){
           this.isedit = false;
@@ -252,9 +267,9 @@ s<template>
             document.getElementById('checkAll').setAttribute('class','icon iconfont icon-checkbox active');
           }
         },
-        updateProNum:function(k,k1){
-          this.cartInfor[k].storeProductList[k1].proNum ++;
-        }
+//        updateProNum:function(k,k1){
+//          this.cartInfor[k].storeProductList[k1].proNum ++;
+//        }
       },
       beforeMount:function(){
         this.$emit('showTabBar');
