@@ -19,13 +19,70 @@
               <i class="icon iconfont icon-more"></i>
             </div>
           </div>
+          <div class="myorder_box">
+            <ul>
+              <li>
+               <router-link to="myOrder">
+                 <i class="icon iconfont icon-daifukuan"></i>
+                 <p>待付款</p>
+               </router-link>
+              </li>
+              <li>
+                <router-link to="myOrder">
+                  <i class="icon iconfont icon-daifahuo"></i>
+                  <p>待发货</p>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="myOrder">
+                  <i class="icon iconfont icon-daishouhuo"></i>
+                  <p>待收货</p>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="myOrder">
+                  <i class="icon iconfont icon-201"></i>
+                  <p>退换/售后</p>
+                </router-link>
+              </li>
+            </ul>
+          </div>
+          <div class="shoucang_box">
+            <ul>
+              <li>
+                <router-link to="userCenter">
+                  <i class="icon iconfont icon-favorites"></i>
+                  <p>商品收藏(<span>0</span>)</p>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="userCenter">
+                  <i class="icon iconfont icon-browse"></i>
+                  <p>浏览记录(<span>0</span>)</p>
+                </router-link>
+              </li>
+            </ul>
+          </div>
+          <div class="address">
+            <h3>收货地址</h3>
+            <div class="address_main">
+              <router-link to="userCenter">
+                <p>某市某区某街X号，某市某区某街X号</p>
+                <p>李二狗</p>
+                <p>17310161773</p>
+                <div class="right">
+                  <i class="icon iconfont icon-more"></i>
+                </div>
+              </router-link>
+            </div>
+          </div>
         </div>
     </div>
 </template>
 
 <script>
-    import tabBar from  '../components/tabBar/tabBar.vue'
-    import headerBox from  '../components/headerBox/headerBox.vue'
+    import tabBar from  '../../components/tabBar/tabBar.vue'
+    import headerBox from  '../../components/headerBox/headerBox.vue'
     export default {
       name:'userCenter',
       components:{tabBar,headerBox},
@@ -141,6 +198,57 @@
             position:absolute;
             top:1px;
             right:-5px;
+          }
+        }
+      }
+      .myorder_box,.shoucang_box{
+        ul{
+          overflow: hidden;
+          display: flex;
+          justify-content: space-around;
+          padding:2vh 0px;
+          background:#fff;
+          margin-top:5px;
+          li{
+            text-align: center;
+            i.icon{
+              color:#e4393c;
+              font-size:8vw;
+            }
+            p{
+              margin-top:0.5vh;
+              font-size: 3.8vw;
+            }
+          }
+        }
+      }
+      .address{
+        margin-top:5px;
+        background:#fff;
+        h3{
+          border-bottom:2px solid #eee;
+          font-weight: normal;
+          height:5vh;
+          line-height: 5vh;
+          padding:0px 10px;
+          font-size:3.8vw;
+        }
+        .address_main{
+          position:relative;
+          p{
+            height:4vh;
+            line-height: 4.0vh;
+            padding:0px 10px;
+            font-size:3.8vw;
+          }
+          .right{
+            position:absolute;
+            right:10px;
+            top:50%;
+            margin-top:-15px;
+            i.icon{
+              font-size: 30px;
+            }
           }
         }
       }

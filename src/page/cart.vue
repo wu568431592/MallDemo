@@ -99,7 +99,6 @@ s<template>
                   }
               }
           }
-          console.log(this.cartInfor)
           this.hideChooseAlert();
         },
         edit:function(){
