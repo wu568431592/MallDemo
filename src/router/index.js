@@ -11,6 +11,9 @@ import proInformation from '../page/proInformation.vue'
 import myOrder from '../page/userCenter/myOrder.vue'
 import myOrderAll from '../page/userCenter/children/myOrderAll.vue'
 import myOrderNotPay from '../page/userCenter/children/myOrderNotPay.vue'
+import myOrderNotSend from '../page/userCenter/children/myOrderNotSend.vue'
+import myOrderSending from '../page/userCenter/children/myOrderSending.vue'
+
 Vue.use(Router);
 
 Router.prototype.goBack = function () { //为router 新增一个返回前一页的方法
@@ -56,6 +59,14 @@ export default new Router({
         {
           path: 'myOrderNotPay',
           component:myOrderNotPay
+        },
+        {
+          path:'myOrderNotSend',
+          component:myOrderNotSend
+        },
+        {
+          path: 'myOrderSending',
+          component:myOrderSending
         }
       ]
     },

@@ -1,5 +1,5 @@
 <template>
-    <div class="myOrderNotPay">
+    <div class="myOrderNotSend">
       <orderList></orderList>
     </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
   import orderList from '../../../components/orderList/orderList.vue'
     export default {
-      name:'myOrderNotPay',
+      name:'myOrderNotSend',
       data(){
         return{
 

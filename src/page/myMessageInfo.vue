@@ -171,9 +171,11 @@
       }
     }
     .msgListBox{
-      margin-top:15.5vh;
       background-color: #eee;
       overflow-y: scroll;
+      position:absolute;
+      top:15.5vh;
+      left:0px;
       height:84.5vh;
       .wuliuBox{
         li{
