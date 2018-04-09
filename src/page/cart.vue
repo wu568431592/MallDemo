@@ -143,7 +143,8 @@ s<template>
             this.isCoverShow = true;
             let num = e.target.nextElementSibling.nextElementSibling.nextElementSibling.value;
             this.selectNum = num;
-            axios.get('http://'+this.getServerIp+'/server/product'+proId+'.json')
+            //axios.get('http://'+this.getServerIp+'/server/product'+proId+'.json')
+            axios.get('http://localhost:8081/product'+proId)
               .then( res =>{
                   this.productInfo = res.data;
               })
@@ -274,7 +275,7 @@ s<template>
         this.$emit('showTabBar');
       },
       mounted:function(){
-        axios.get('http://'+this.getServerIp+'/server/cartInfo.json')
+        axios.get('http://localhost:8081/cartInfo')
           .then(res=>{
             //console.log(res.data)
             this.cartInfor = res.data.cartInfor;

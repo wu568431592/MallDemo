@@ -86,7 +86,7 @@
           }
         },
         getHotSearch:function(){
-          axios.get('http://'+this.$store.state.serverIP+'/server/hotSearch.json')
+          axios.get('http://localhost:8081/hotsearch')
             .then(res=>{
               this.list1 = res.data.search;
             })

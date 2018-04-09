@@ -22,7 +22,8 @@
     mounted:function(){
       //修正index 产品列表 被tabbar 遮挡的问题
       document.getElementsByClassName('productList')[0].childNodes[0].style.paddingBottom='9vh';
-      axios.get('http://'+this.getServerIp+'/server/indexgoods.json')
+      //axios.get('http://'+this.getServerIp+'/server/indexgoods.json')
+      axios.get('http://localhost:8081/indexgoods')
         .then(response => {
           this.searchData = response.data;
         })

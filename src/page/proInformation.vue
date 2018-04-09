@@ -183,7 +183,8 @@
         }
       },
       mounted:function(){
-        axios.get('http://'+this.getServerIp+'/server/product'+this.$route.query.pid+'.json')
+        //axios.get('http://'+this.getServerIp+'/server/product'+this.$route.query.pid+'.json')
+        axios.get('http://localhost:8081/product'+this.$route.query.pid)
           .then(res=>{
             this.proInfor = res.data;
             this.proinformat = res.data;

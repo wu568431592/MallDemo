@@ -10,17 +10,7 @@
             </div>
             <div class="order_list_main">
               <ul>
-                <li class="order_list_item">
-                  <div class="img_box">
-                    <img src="https://m.360buyimg.com/n12/jfs/t8557/113/1923694712/235168/b384c6f8/59c1d7c6N91cfca84.jpg!q70.jpg" alt="">
-                  </div>
-                  <div class="right">
-                    <p class="pname">小米Note3 美颜双摄拍照手机 6GB+64GB 蓝色 全网通4G手机 双卡双待</p>
-                    <p class="ptype">规格：原装+套餐1 颜色：红色</p>
-                    <span>数量：3</span>
-                  </div>
-                </li>
-                <li class="order_list_item">
+                <li class="order_list_item" v-for="i in 2">
                   <div class="img_box">
                     <img src="https://m.360buyimg.com/n12/jfs/t8557/113/1923694712/235168/b384c6f8/59c1d7c6N91cfca84.jpg!q70.jpg" alt="">
                   </div>
