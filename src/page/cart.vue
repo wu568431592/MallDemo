@@ -144,7 +144,7 @@ s<template>
             let num = e.target.nextElementSibling.nextElementSibling.nextElementSibling.value;
             this.selectNum = num;
             //axios.get('http://'+this.getServerIp+'/server/product'+proId+'.json')
-            axios.get('http://localhost:8081/product'+proId)
+            axios.get('http://'+this.getServerIp+'/product'+proId)
               .then( res =>{
                   this.productInfo = res.data;
               })

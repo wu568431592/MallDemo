@@ -30,13 +30,13 @@
         this.$emit('hideTabBar');
       },
       mounted:function(){
-//        axios.get('http://'+this.getServerIp+'/server/indexgoods.json')
-//          .then(response => {
-//            this.searchData = response.data;
-//          })
-//          .catch(err => {
-//            console.log(err);
-//          });
+        axios.get('http://'+this.getServerIp+'/indexgoods')
+          .then(response => {
+            this.searchData = response.data;
+          })
+          .catch(err => {
+            console.log(err);
+          });
       }
     }
 </script>

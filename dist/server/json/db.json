@@ -751,5 +751,115 @@
       "https://img30.360buyimg.com/sku/jfs/t10558/176/2637626923/246156/f648f397/59fbeb0bN0b33f190.jpg"
     ],
     "proTable":[{"存储":[{"ROM":"64GB"},{"RAM":"4GB"},{"存储卡":"不支持"}]},{"基本信息":[{"机身长度（mm）":"145.17mm"},{"机身宽度（mm）":"70.49mm"},{"机身厚度（mm）":"7.45mm"},{"机身重量（g）":"168g"},{"运营商标志或内容":"无"},{"机身材质分类":"玻璃后盖"},{"机身颜色":"黑色"}]},{"手机特性":[{"指纹识别":"支持"},{"GPS":"支持"},{"陀螺仪":"支持"}]},{"后置摄像头":[{"摄像头数量":"2个"},{"拍照特点":"连拍"},{"拍照特点":"HDR"},{"拍照特点":"夜间拍摄"},{"后置摄像头":"双1200万像素"}]},{"数据接口":[{"数据传输接口":"WIFI"},{"数据传输接口":"NFC"},{"数据传输接口":"蓝牙"},{"数据传输接口":"WiFi热点"},{"数据传输接口":"OTG接口"},{"NFC/NFC模式":"支持卡模拟"},{"耳机接口类型":"Type-C"},{"充电接口类型":"Type-C"}]},{"辅助功能":[{"常用功能":"录音"},{"常用功能":"便签"},{"常用功能":"超大字体"}]},{"屏幕":[{"主屏幕尺寸（英寸）":"5.15英寸"},{"分辨率":"1920*1080(FHD)"},{"屏幕材质类型":"其他"}]},{"主芯片":[{"CPU品牌":"骁龙（Snapdragon)"},{"CPU核数":"八核"},{"CPU型号":"骁龙835（MSM8998）"},{"CPU频率":"最高2.45GHz"}]},{"前置摄像头":[{"前摄光圈大小":"f/2.2"},{"拍照特点":"美颜"},{"前置摄像头":"800万像素"}]},{"网络支持":[{"双卡机类型":"双卡双待单通"},{"最大支持SIM卡数量":"2个"},{"SIM卡类型":"Nano SIM"},{"4G网络":"4G：移动（TD-LTE)"},{"4G网络":"4G：联通(FDD-LTE)"},{"4G网络":"4G：电信(FDD-LTE)"},{"4G网络":"4G：联通(TD-LTE)"},{"3G/2G网络":"3G：移动(TD-SCDMA)"},{"3G/2G网络":"3G：联通(WCDMA)"},{"3G/2G网络":"3G：电信(CDMA2000)"},{"3G/2G网络":"2G：移动（GSM）+联通(GSM)"},{"3G/2G网络":"2G：电信(CDMA)"},{"3G/2G网络":"2G：移动联通(GSM)+电信(CDMA)"},{"副SIM卡4G网络":"不支持主副卡同时使用电信卡"},{"副SIM卡3G/2G网络":"不支持主副卡同时使用电信卡"},{"网络频率（2G/3G）":"2G：GSM 850/900/1800/1900"},{"网络频率（2G/3G）":"2G：CDMA 800"},{"网络频率（2G/3G）":"3G：TD-SCDMA 1900/2000"},{"网络频率（2G/3G）":"3G：WCDMA 850/900/1900/2100"},{"网络频率（2G/3G）":"3G：CDMA2000"},{"网络频率（2G/3G）":"2G：GSM 900/1800"},{"网络频率（2G/3G）":"2G：GSM 900/1800/1900"},{"网络频率（2G/3G）":"3G：CDMA 800MHz 1X&EVDO"},{"网络频率（2G/3G）":"3G：WCDMA：850/900/1700/1900/2100MHz"},{"网络频率（2G/3G）":"TD-SCDMA1880/2010"}]},{"电池信息":[{"电池容量（mAh）":"3350mAh（typ）/3250mAh（min）"},{"电池是否可拆卸":"否"},{"充电器":"快充 3.0 ，18W 充电"}]},{"主体":[{"品牌":"小米（MI）"},{"型号":"小米6"},{"上市年份":"2017年"},{"上市月份":"11月"},{"入网型号":"MCE16"}]},{"操作系统":[{"操作系统":"Android"}]}]
-  }
+  },
+  "orderList":[
+    {
+      "orderId":"123456789",
+      "orderStaus":"0",
+      "orderProductList":[
+        {
+          "proImg":"https://m.360buyimg.com/mobilecms/s357x357_jfs/t16039/81/409267958/402750/7d462ca6/5a30a8feNf3203825.jpg!q50.jpg",
+          "proName":"360 N6 lite 手机 璀璨金 全网通(4G RAM+32G ROM)",
+          "proType":"原装+套餐1",
+          "proColor":"红色",
+          "proPrice":"899",
+          "proNum":"1",
+          "proId":"00001"
+        },
+        {
+          "proImg":"https://m.360buyimg.com/mobilecms/s357x357_jfs/t15817/179/2112984449/213492/ad7d0774/5a7c3369Nbda10159.jpg!q50.jpg",
+          "proName":"360手机 N6 全网通 6GB+64GB 燧石黑 移动联通电信4G手机 双卡双待",
+          "proType":"原装+套餐1",
+          "proColor":"绿色",
+          "proPrice":"1499",
+          "proNum":"6",
+          "proId":"00002"
+        },
+        {
+          "proImg":"https://m.360buyimg.com/mobilecms/s357x357_jfs/t6019/205/157969858/195398/ba8744bf/59264e5dN9862a0ac.jpg!q50.jpg",
+          "proName":"奥多金 360N5/N5S全屏覆盖钢化玻璃膜 适用360手机贴膜 N5S-全屏钢化膜-炫酷黑",
+          "proType":"原装+套餐1",
+          "proColor":"黑色",
+          "proPrice":"1499",
+          "proNum":"4",
+          "proId":"00003"
+        }
+      ]
+    },
+    {
+      "orderId":"133456789",
+      "orderStaus":"1",
+      "orderProductList":[
+        {
+          "proImg":"https://m.360buyimg.com/mobilecms/s357x357_jfs/t16039/81/409267958/402750/7d462ca6/5a30a8feNf3203825.jpg!q50.jpg",
+          "proName":"360 N6 lite 手机 璀璨金 全网通(4G RAM+32G ROM)",
+          "proType":"原装+套餐1",
+          "proColor":"红色",
+          "proPrice":"899",
+          "proNum":"1",
+          "proId":"00001"
+        }
+      ]
+    },
+    {
+      "orderId":"145556789",
+      "orderStaus":"2",
+      "orderProductList":[
+        {
+          "proImg":"https://m.360buyimg.com/mobilecms/s357x357_jfs/t16039/81/409267958/402750/7d462ca6/5a30a8feNf3203825.jpg!q50.jpg",
+          "proName":"360 N6 lite 手机 璀璨金 全网通(4G RAM+32G ROM)",
+          "proType":"原装+套餐1",
+          "proColor":"红色",
+          "proPrice":"899",
+          "proNum":"1",
+          "proId":"00001"
+        }
+      ]
+    },
+    {
+      "orderId":"16556789",
+      "orderStaus":"3",
+      "orderProductList":[
+        {
+          "proImg":"https://m.360buyimg.com/mobilecms/s357x357_jfs/t16039/81/409267958/402750/7d462ca6/5a30a8feNf3203825.jpg!q50.jpg",
+          "proName":"360 N6 lite 手机 璀璨金 全网通(4G RAM+32G ROM)",
+          "proType":"原装+套餐1",
+          "proColor":"红色",
+          "proPrice":"899",
+          "proNum":"1",
+          "proId":"00001"
+        }
+      ]
+    },
+    {
+      "orderId":"9883456789",
+      "orderStaus":"4",
+      "orderProductList":[
+        {
+          "proImg":"https://m.360buyimg.com/mobilecms/s357x357_jfs/t16039/81/409267958/402750/7d462ca6/5a30a8feNf3203825.jpg!q50.jpg",
+          "proName":"360 N6 lite 手机 璀璨金 全网通(4G RAM+32G ROM)",
+          "proType":"原装+套餐1",
+          "proColor":"红色",
+          "proPrice":"899",
+          "proNum":"1",
+          "proId":"00001"
+        }
+      ]
+    },
+    {
+      "orderId":"663456789",
+      "orderStaus":"5",
+      "orderProductList":[
+        {
+          "proImg":"https://m.360buyimg.com/mobilecms/s357x357_jfs/t16039/81/409267958/402750/7d462ca6/5a30a8feNf3203825.jpg!q50.jpg",
+          "proName":"360 N6 lite 手机 璀璨金 全网通(4G RAM+32G ROM)",
+          "proType":"原装+套餐1",
+          "proColor":"红色",
+          "proPrice":"899",
+          "proNum":"1",
+          "proId":"00001"
+        }
+      ]
+    }
+  ]
 }

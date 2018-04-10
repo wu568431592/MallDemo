@@ -2,10 +2,10 @@
     <div id="myOrder">
       <headerBox isBackShow="true" title="我的订单" :rightButton="rightButtonList"></headerBox>
       <tab bar-active-color="#e4393c">
-        <tab-item selected @on-item-click="onItemClick('myOrderAll')">全部订单</tab-item>
-        <tab-item @on-item-click="onItemClick('myOrderNotPay')">待付款</tab-item>
-        <tab-item @on-item-click="onItemClick('myOrderNotSend')">未发货</tab-item>
-        <tab-item @on-item-click="onItemClick('myOrderSending')">已发货</tab-item>
+        <tab-item :selected="tabIndex == 0" @on-item-click="onItemClick('myOrderAll')">全部订单</tab-item>
+        <tab-item :selected="tabIndex == 1" @on-item-click="onItemClick('myOrderNotPay')">待付款</tab-item>
+        <tab-item :selected="tabIndex == 2" @on-item-click="onItemClick('myOrderNotSend')">未发货</tab-item>
+        <tab-item :selected="tabIndex == 3" @on-item-click="onItemClick('myOrderSending')">已发货</tab-item>
       </tab>
       <transition enter-active-class="slideInRight" leave-acitve-class="slideOutRight" mode="in-out">
         <keep-alive>
@@ -16,6 +16,12 @@
 </template>
 
 <script>
+  //orderStaus 0:已支付
+  //           1:未发货,
+  //           2:已取消，
+  //           3:已发货，
+  //           4:申请退款，
+  //           5：未支付，
     import { Tab, TabItem} from 'vux'
     import headerBox from '../../components/headerBox/headerBox.vue'
     export default {
@@ -23,13 +29,30 @@
       data(){
         return{
           rightButtonList:['searchBtn','messageBtn'],
+          tabIndex:0
         }
       },
       components:{Tab, TabItem,headerBox},
       methods:{
         onItemClick:function(url){
           this.$router.push({ path: '/myOrder/'+url })
+        },
+        changeTabActive(){
+          let path = this.$router.history.current.path;
+          switch (path){
+            case '/myOrder/myOrderAll' : this.tabIndex = 0;break;
+            case '/myOrder/myOrderNotPay' : this.tabIndex = 1;break;
+            case '/myOrder/myOrderNotSend' : this.tabIndex = 2;break;
+            case '/myOrder/myOrderSending' : this.tabIndex = 3;break;
+            default : this.tabIndex = 0;
+          }
         }
+      },
+      mounted:function(){
+        this.changeTabActive();
+      },
+      watch: {
+        $route: 'changeTabActive'
       }
     }
 </script>

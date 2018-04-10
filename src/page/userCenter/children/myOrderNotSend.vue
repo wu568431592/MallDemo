@@ -6,6 +6,8 @@
 
 <script>
   import orderList from '../../../components/orderList/orderList.vue'
+  import axios from 'axios'
+  import { mapGetters } from 'vuex'
     export default {
       name:'myOrderNotSend',
       data(){
@@ -16,6 +18,20 @@
       components: {
         orderList
       },
+      mounted:function(){
+        axios.get('http://'+this.getServerIp+'/orderList?orderStaus=1')
+          .then(res =>{
+            console.log(res.data)
+          })
+          .catch(error =>{
+            console.log(error)
+          })
+      },
+      computed:{
+        ...mapGetters([
+          'getServerIp'
+        ])
+      }
     }
 </script>
 

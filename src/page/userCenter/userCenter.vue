@@ -13,28 +13,30 @@
             <div class="VIPIcon">特权标记<span>&gt;</span></div>
           </div>
           <div class="myorder_title">
-            <p>我的订单</p>
-            <div>
-              <span>查看更多订单</span>
-              <i class="icon iconfont icon-more"></i>
-            </div>
+            <router-link to="myOrder">
+              <p>我的订单</p>
+              <div>
+                <span>查看更多订单</span>
+                <i class="icon iconfont icon-more"></i>
+              </div>
+            </router-link>
           </div>
           <div class="myorder_box">
             <ul>
               <li>
-               <router-link to="myOrder">
+               <router-link to="myOrder/myOrderNotPay">
                  <i class="icon iconfont icon-daifukuan"></i>
                  <p>待付款</p>
                </router-link>
               </li>
               <li>
-                <router-link to="myOrder">
+                <router-link to="myOrder/myOrderNotSend">
                   <i class="icon iconfont icon-daifahuo"></i>
                   <p>待发货</p>
                 </router-link>
               </li>
               <li>
-                <router-link to="myOrder">
+                <router-link to="myOrder/myOrderSending">
                   <i class="icon iconfont icon-daishouhuo"></i>
                   <p>待收货</p>
                 </router-link>
@@ -180,14 +182,14 @@
         margin-top:5px;
         background:#fff;
         font-size:14px;
-        >p{
+        p{
           float:left;
           width:30vw;
           height:7vh;
           line-height: 7vh;
           padding:0px 10px;
         }
-        >div{
+        div{
            width:35vw;
            height:7vh;
            line-height: 7vh;

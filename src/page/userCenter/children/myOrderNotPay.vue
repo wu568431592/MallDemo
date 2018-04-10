@@ -5,6 +5,8 @@
 </template>
 
 <script>
+  import axios from 'axios'
+  import { mapGetters } from 'vuex'
   import orderList from '../../../components/orderList/orderList.vue'
     export default {
       name:'myOrderNotPay',
@@ -16,6 +18,20 @@
       components: {
         orderList
       },
+      mounted:function(){
+        axios.get('http://'+this.getServerIp+'/orderList?orderStaus=5')
+          .then(res =>{
+            console.log(res.data)
+          })
+          .catch(error =>{
+            console.log(error)
+          })
+      },
+      computed:{
+        ...mapGetters([
+          'getServerIp'
+        ])
+      }
     }
 </script>
 
