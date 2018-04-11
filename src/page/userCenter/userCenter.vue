@@ -199,7 +199,7 @@
           i.iconfont{
             position:absolute;
             top:1px;
-            right:-5px;
+            right:5px;
           }
         }
       }
@@ -230,8 +230,8 @@
         h3{
           border-bottom:2px solid #eee;
           font-weight: normal;
-          height:5vh;
-          line-height: 5vh;
+          height:7vh;
+          line-height: 7vh;
           padding:0px 10px;
           font-size:3.8vw;
         }

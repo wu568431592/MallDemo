@@ -96,9 +96,9 @@
 </template>
 
 <script>
-    import proInforHeaderBox from '../components/proInforHeaderBox/proInforHeaderBox.vue'
-    import { Swiper }  from 'vux'
-    import chooseItemAlert from '../components/chooseItemAlert/chooseItemAlert.vue'
+    import proInforHeaderBox from '../../components/proInforHeaderBox/proInforHeaderBox.vue'
+    import { Swiper }  from 'vux/index'
+    import chooseItemAlert from '../../components/chooseItemAlert/chooseItemAlert.vue'
     import axios from 'axios'
     import { mapGetters } from 'vuex'
     export default {
@@ -183,7 +183,6 @@
         }
       },
       mounted:function(){
-        //axios.get('http://'+this.getServerIp+'/server/product'+this.$route.query.pid+'.json')
         axios.get('http://'+this.getServerIp+'/product'+this.$route.query.pid)
           .then(res=>{
             this.proInfor = res.data;

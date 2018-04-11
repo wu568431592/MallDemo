@@ -755,7 +755,7 @@
   "orderList":[
     {
       "orderId":"123456789",
-      "orderStaus":"0",
+      "orderStaus":"1",
       "orderProductList":[
         {
           "proImg":"https://m.360buyimg.com/mobilecms/s357x357_jfs/t16039/81/409267958/402750/7d462ca6/5a30a8feNf3203825.jpg!q50.jpg",
@@ -784,7 +784,9 @@
           "proNum":"4",
           "proId":"00003"
         }
-      ]
+      ],
+      "orderProNum":"3",
+      "orderProTotalMoney":"3897"
     },
     {
       "orderId":"133456789",
@@ -799,7 +801,9 @@
           "proNum":"1",
           "proId":"00001"
         }
-      ]
+      ],
+      "orderProNum":"1",
+      "orderProTotalMoney":"899"
     },
     {
       "orderId":"145556789",
@@ -814,7 +818,9 @@
           "proNum":"1",
           "proId":"00001"
         }
-      ]
+      ],
+      "orderProNum":"1",
+      "orderProTotalMoney":"899"
     },
     {
       "orderId":"16556789",
@@ -829,7 +835,9 @@
           "proNum":"1",
           "proId":"00001"
         }
-      ]
+      ],
+      "orderProNum":"1",
+      "orderProTotalMoney":"899"
     },
     {
       "orderId":"9883456789",
@@ -844,7 +852,9 @@
           "proNum":"1",
           "proId":"00001"
         }
-      ]
+      ],
+      "orderProNum":"1",
+      "orderProTotalMoney":"899"
     },
     {
       "orderId":"663456789",
@@ -859,7 +869,9 @@
           "proNum":"1",
           "proId":"00001"
         }
-      ]
+      ],
+      "orderProNum":"1",
+      "orderProTotalMoney":"899"
     }
   ]
 }

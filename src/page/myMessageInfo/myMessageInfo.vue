@@ -43,7 +43,7 @@
 </template>
 
 <script>
-  import headerBox from '../components/headerBox/headerBox.vue'
+  import headerBox from '../../components/headerBox/headerBox.vue'
     export default {
       name:'myMessageInfo',
       data(){

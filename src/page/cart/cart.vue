@@ -11,7 +11,7 @@ s<template>
                 <span class="fuck">{{v.storeName}}</span>
               </div>
               <ul class="storeProductList">
-                <li v-for="(v1,k1) in v.storeProductList">
+                <li v-for="(v1,k1) in v.storeProductList" @click="goInfo($event,v1.proId)">
                   <i class="icon iconfont icon-checkbox lit" @click="checkMe($event)" :data-proId="v1.proId"></i>
                   <div class="imgBox">
                     <img :src="v1.proImg" alt="">
@@ -57,8 +57,8 @@ s<template>
 </template>
 
 <script>
-    import headerBox from  '../components/headerBox/headerBox.vue'
-    import chooseItemAlert from  '../components/chooseItemAlert/chooseItemAlert.vue'
+    import headerBox from  '../../components/headerBox/headerBox.vue'
+    import chooseItemAlert from  '../../components/chooseItemAlert/chooseItemAlert.vue'
     import axios from 'axios'
     import { mapGetters } from 'vuex'
     export default {
@@ -267,9 +267,18 @@ s<template>
             document.getElementById('checkAll').setAttribute('class','icon iconfont icon-checkbox active');
           }
         },
-//        updateProNum:function(k,k1){
-//          this.cartInfor[k].storeProductList[k1].proNum ++;
-//        }
+        goInfo(e,proId){
+          let tname = e.target.tagName;
+          if(this.itemEdit){
+            if(tname != 'I' && tname!='INPUT' && tname!='BUTTON' && tname !='P'){
+              this.$router.push({path:'/proInformation?pid='+proId})
+            }
+          }else{
+            if(tname != 'I' && tname!='INPUT' && tname!='BUTTON'){
+              this.$router.push({path:'/proInformation?pid='+proId})
+            }
+          }
+        }
       },
       beforeMount:function(){
         this.$emit('showTabBar');
@@ -281,7 +290,7 @@ s<template>
             this.cartInfor = res.data.cartInfor;
         })
           .catch(err=>{
-            //console.log(err)
+            console.log(err)
           })
       }
     }

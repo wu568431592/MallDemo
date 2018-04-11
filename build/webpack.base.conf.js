@@ -10,7 +10,7 @@ function resolve (dir) {
 const vuxLoader = require('vux-loader');
 
 
-var originalConfig = module.exports = {
+let originalConfig = module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'

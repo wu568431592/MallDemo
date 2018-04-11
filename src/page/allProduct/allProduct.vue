@@ -31,7 +31,7 @@
 </template>
 
 <script>
-  import searchBox from  '../components/searchBox/searchBox.vue'
+  import searchBox from  '../../components/searchBox/searchBox.vue'
      export default {
       name:'allProduct',
       components:{searchBox},

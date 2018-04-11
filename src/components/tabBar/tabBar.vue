@@ -13,51 +13,91 @@
           <span>分类</span>
         </router-link>
       </li>
-      <li v-bind:class="{active:active2}">
-        <router-link to="/cart">
+      <li v-bind:class="{active:active2}" @click="goCart">
           <i class="icon iconfont icon-gouwuche "></i>
           <span>购物车</span>
-        </router-link>
       </li>
-      <li v-bind:class="{active:active3}">
-        <router-link to="/userCenter">
+      <li v-bind:class="{active:active3}" @click="goUserCenter">
           <i class="icon iconfont icon-wodejuhuasuan"></i>
           <span>我的</span>
-        </router-link>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'tabbar',
-  data () {
-    return {
-      active0 :true,
-      active1 :false,
-      active2 :false,
-      active3 :false,
-    }
-  },
-  methods:{
+  import { mapGetters } from 'vuex'
+  import { TransferDomDirective as TransferDom } from 'vux'
+  export default {
+    name: 'tabbar',
+    data () {
+      return {
+        active0 :true,
+        active1 :false,
+        active2 :false,
+        active3 :false,
+      }
+    },
+    directives: {
+      TransferDom
+    },
+    methods:{
+      goCart:function(){
+        if(!this.getUserInfor){
+            this.$router.push({path:'/cart'})
+        }else{
+            this.showPlugin();
+            //this.$router.push({path:'login'})
+        }
+      },
+      goUserCenter:function(){
+        if(!this.getUserInfor){
+          this.$router.push({path:'/userCenter'})
+        }else{
+          this.showPlugin();
+          //this.$router.push({path:'login'})
+        }
+      },
+      showPlugin () {
+        let that = this;
+        this.$vux.confirm.show({
+          title: '提示',
+          content: '您还没有登录，请先登录哈~',
+          onShow () {
+            //console.log('plugin show')
+          },
+          onHide () {
+            //console.log('plugin hide')
+          },
+          onCancel () {
+            //console.log('plugin cancel')
+          },
+          onConfirm () {
+            that.$router.push({path:'login'})
+          }
+        })
+      },
+    },
+    mounted:function(){
 
-  },
-  mounted:function(){
-
-  },
-  watch: {
-    '$route' (to, from) {
-      // 对路由变化作出响应...
-      switch (to.fullPath){
-        case '/index' : this.active0 = true;this.active1 = false;this.active2 = false;this.active3 = false;break;
-        case '/allProduct' : this.active1 = true;this.active0 = false;this.active2 = false;this.active3 = false;break;
-        case '/cart' : this.active2 = true;this.active1 = false;this.active0 = false;this.active3 = false;break;
-        case '/userCenter' : this.active3 = true;this.active1 = false;this.active2 = false;this.active0 = false;break;
+    },
+    computed:{
+      ...mapGetters([
+        'getUserInfor'
+      ])
+    },
+    watch: {
+      '$route' (to, from) {
+        // 对路由变化作出响应...
+        switch (to.fullPath){
+          case '/index' : this.active0 = true;this.active1 = false;this.active2 = false;this.active3 = false;break;
+          case '/allProduct' : this.active1 = true;this.active0 = false;this.active2 = false;this.active3 = false;break;
+          case '/cart' : this.active2 = true;this.active1 = false;this.active0 = false;this.active3 = false;break;
+          case '/userCenter' : this.active3 = true;this.active1 = false;this.active2 = false;this.active0 = false;break;
+        }
       }
     }
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

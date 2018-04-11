@@ -6,8 +6,8 @@
 </template>
 
 <script>
-    import searchBox from  '../components/searchBox/searchBox.vue'
-    import productListPage from  '../components/productListPage/productListPage.vue'
+    import searchBox from  '../../components/searchBox/searchBox.vue'
+    import productListPage from  '../../components/productListPage/productListPage.vue'
     import axios from 'axios'
     import { mapGetters } from 'vuex'
     export default {

@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  //orderStaus 0:已支付
+  //orderStaus  0：已完成
   //           1:未发货,
   //           2:已取消，
   //           3:已发货，

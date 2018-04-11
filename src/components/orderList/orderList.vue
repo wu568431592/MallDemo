@@ -2,36 +2,45 @@
     <div class="orderList">
       <pull-to :top-load-method="refresh" :bottom-load-method="geMore">
         <ul>
-          <li class="order_list" v-for="i in 5">
-            <div class="title">
-              <p>订单编号：12321232123</p>
-              <i class="icon iconfont icon-lajixiang"></i>
-              <span>等待付款</span>
-            </div>
-            <div class="order_list_main">
-              <ul>
-                <li class="order_list_item" v-for="i in 2">
-                  <div class="img_box">
-                    <img src="https://m.360buyimg.com/n12/jfs/t8557/113/1923694712/235168/b384c6f8/59c1d7c6N91cfca84.jpg!q70.jpg" alt="">
-                  </div>
-                  <div class="right">
-                    <p class="pname">小米Note3 美颜双摄拍照手机 6GB+64GB 蓝色 全网通4G手机 双卡双待</p>
-                    <p class="ptype">规格：原装+套餐1 颜色：红色</p>
-                    <span>数量：3</span>
-                  </div>
-                </li>
-              </ul>
-              <div class="count_total">
-                <p>实付款：<span class="red">&yen;15000</span></p>
-                <p>共100件商品</p>
+          <slot v-if="mydataList">
+            <li class="order_list" v-for="i in mydataList">
+              <div class="title">
+                <p>订单编号：{{i.orderId}}</p>
+                <i class="icon iconfont icon-lajixiang" v-if="i.orderStaus == 2 || i.orderStaus == 0"></i>
+                <span v-if="i.orderStaus == 1">等待发货</span>
+                <span v-else-if="i.orderStaus == 2">已取消</span>
+                <span v-else-if="i.orderStaus == 3">已发货</span>
+                <span v-else-if="i.orderStaus == 4">申请退款中</span>
+                <span v-else-if="i.orderStaus == 5">待支付</span>
+                <span v-else-if="i.orderStaus == 0">已完成</span>
               </div>
-            </div>
-            <div class="button">
-              <span>去支付</span>
-              <span>再次购买</span>
-              <span class="gray">查看物流</span>
-            </div>
-          </li>
+              <div class="order_list_main">
+                <ul>
+                  <li class="order_list_item" v-for="j in i.orderProductList">
+                    <div class="img_box">
+                      <img :src="j.proImg" alt="">
+                    </div>
+                    <div class="right">
+                      <p class="pname">{{j.proName}}</p>
+                      <p class="ptype">规格：{{j.proType}} 颜色：{{j.color}}</p>
+                      <span>数量：{{j.proNum}}</span>
+                    </div>
+                  </li>
+                </ul>
+                <div class="count_total">
+                  <p>实付款：<span class="red">&yen;{{i.orderProTotalMoney}}</span></p>
+                  <p>共{{i.orderProNum}}件商品</p>
+                </div>
+              </div>
+              <div class="button">
+                <span v-if="i.orderStaus == 5">去支付</span>
+                <span v-if="i.orderStaus == 0 || i.orderStaus == 2">再次购买</span>
+                <span v-if="i.orderStaus == 4">查看退款详情</span>
+                <span v-if="i.orderStaus == 3" class="gray">查看物流</span>
+                <span v-if="i.orderStaus == 1">提醒卖家发货</span>
+              </div>
+            </li>
+          </slot>
         </ul>
       </pull-to>
     </div>
@@ -43,12 +52,13 @@
       name:'orderList',
       data(){
         return{
-
+          mydataList:''
         }
       },
       components: {
         PullTo
       },
+      props:['dataList'],
       methods:{
         refresh(loaded) {
           setTimeout(() => {
@@ -63,7 +73,14 @@
             loaded('done')
           },2000)
         },
+      },
+      watch:{
+        dataList:function(){
+            this.mydataList = this.dataList;
+            //console.log(this.mydataList)
+        }
       }
+
     }
 </script>
 

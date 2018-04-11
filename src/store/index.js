@@ -7,6 +7,7 @@ Vue.use(Vuex);
 var state;
 state ={
     serverIP : 'localhost:8081',
+    userInfor : {},
 }
 
 const mutations ={
@@ -15,7 +16,11 @@ const mutations ={
 const getters = {
   getServerIp:function(state){
     return state.serverIP;
+  },
+  getUserInfor:function(state){
+    return state.userInfor
   }
+
 }
 const store = new Vuex.Store({
   state,

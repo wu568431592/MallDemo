@@ -1,18 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import index from '../page/index.vue'
-import allProduct from '../page/allProduct.vue'
-import cart from '../page/cart.vue'
+import index from '../page/index/index.vue'
+import allProduct from '../page/allProduct/allProduct.vue'
+import cart from '../page/cart/cart.vue'
 import userCenter from '../page/userCenter/userCenter.vue'
-import searchMain from '../page/searchMain.vue'
-import searchInfo from '../page/searchInfo.vue'
-import myMessageInfo from '../page/myMessageInfo.vue'
-import proInformation from '../page/proInformation.vue'
+import searchMain from '../page/searchMain/searchMain.vue'
+import searchInfo from '../page/searchInfo/searchInfo.vue'
+import myMessageInfo from '../page/myMessageInfo/myMessageInfo.vue'
+import proInformation from '../page/proInformation/proInformation.vue'
 import myOrder from '../page/userCenter/myOrder.vue'
 import myOrderAll from '../page/userCenter/children/myOrderAll.vue'
 import myOrderNotPay from '../page/userCenter/children/myOrderNotPay.vue'
 import myOrderNotSend from '../page/userCenter/children/myOrderNotSend.vue'
 import myOrderSending from '../page/userCenter/children/myOrderSending.vue'
+import login from '../page/login/login.vue'
+import forgetPassword from '../page/login/children/forgetPassword.vue'
+import register from '../page/register/register.vue'
 
 Vue.use(Router);
 
@@ -82,6 +85,20 @@ export default new Router({
     {
       path: '/myMessageInfo',
       component: myMessageInfo,
+    },
+    {
+      path: '/register',
+      component: register,
+    },
+    {
+      path: '/login',
+      component: login,
+      children:[
+        {
+          path:'forgetPassword',
+          component:forgetPassword
+        }
+      ]
     },
     {
       path: '/proInformation',

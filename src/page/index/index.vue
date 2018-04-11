@@ -6,9 +6,9 @@
 </template>
 
 <script>
-  import tabBar from  '../components/tabBar/tabBar.vue'
-  import searchBox from  '../components/searchBox/searchBox.vue'
-  import productListPage from  '../components/productListPage/productListPage.vue'
+  import tabBar from  '../../components/tabBar/tabBar.vue'
+  import searchBox from  '../../components/searchBox/searchBox.vue'
+  import productListPage from  '../../components/productListPage/productListPage.vue'
   import axios from 'axios'
   import { mapGetters } from 'vuex'
   export default {
@@ -22,7 +22,6 @@
     mounted:function(){
       //修正index 产品列表 被tabbar 遮挡的问题
       document.getElementsByClassName('productList')[0].childNodes[0].style.paddingBottom='9vh';
-      //axios.get('http://'+this.getServerIp+'/server/indexgoods.json')
       axios.get('http://'+this.getServerIp+'/indexgoods')
         .then(response => {
           this.searchData = response.data;

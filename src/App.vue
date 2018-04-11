@@ -12,6 +12,11 @@
   export default {
     name: 'app',
     components:{tabBar},
+    data(){
+      return{
+
+      }
+    },
     computed:{
 
     },
@@ -24,10 +29,10 @@
       }
     },
     data(){
-        return{
-          showBar:true,
-          transitionName: 'slide-right'
-        }
+      return{
+        showBar:true,
+        transitionName: 'slide-right'
+      }
     },
     watch: {
       '$route' (to, from) {
@@ -41,7 +46,6 @@
       }
     }
   }
-
 </script>
 
 <style scoped lang="less">
@@ -67,5 +71,8 @@
     position: absolute;
     width:100%;
     transition: all .8s cubic-bezier(.55,0,.1,1);
+  }
+  .weui-dialog__btn_primary{
+    color:#e4393c;
   }
 </style>

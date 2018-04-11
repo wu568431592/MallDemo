@@ -27,8 +27,8 @@
 </template>
 
 <script>
-  import searchBox from  '../components/searchBox/searchBox.vue'
-  import confirmBox from  '../components/confirmBox/confirmBox.vue'
+  import searchBox from  '../../components/searchBox/searchBox.vue'
+  import confirmBox from  '../../components/confirmBox/confirmBox.vue'
   import axios from 'axios'
     export default {
       name:'searchMain',
