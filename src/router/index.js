@@ -24,7 +24,7 @@ Router.prototype.goBack = function () { //为router 新增一个返回前一页�
   window.history.go(-1)
 }
 export default new Router({
-  mode:'history',
+  //mode:'history',
   base:__dirname,
   routes: [
     {
@@ -88,7 +88,7 @@ export default new Router({
     },
     {
       path: '/register',
-      component: register,
+      component: myMessageInfo,
     },
     {
       path: '/login',
