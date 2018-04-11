@@ -18,8 +18,8 @@ npm run build
 npm run build --report
 ```
 
-##Json-server 
+## Json-server 
 ``` bash
-# json server will loadt at localhost:8081
+# json server will load at localhost:8081
 npm run json:server
 ```
