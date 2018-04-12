@@ -26,7 +26,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters,mapMutations } from 'vuex'
   import { TransferDomDirective as TransferDom } from 'vux'
   export default {
     name: 'tabbar',
@@ -42,20 +42,23 @@
       TransferDom
     },
     methods:{
+      ...mapMutations([
+        'setUnLoginPage'
+      ]),
       goCart:function(){
-        if(!this.getUserInfor){
+        if(this.isLogin){
             this.$router.push({path:'/cart'})
         }else{
+            this.setUnLoginPage('/cart')
             this.showPlugin();
-            //this.$router.push({path:'login'})
         }
       },
       goUserCenter:function(){
-        if(!this.getUserInfor){
+        if(this.isLogin){
           this.$router.push({path:'/userCenter'})
         }else{
+          this.setUnLoginPage('/userCenter')
           this.showPlugin();
-          //this.$router.push({path:'login'})
         }
       },
       showPlugin () {
@@ -83,8 +86,8 @@
     },
     computed:{
       ...mapGetters([
-        'getUserInfor'
-      ])
+        'isLogin'
+      ]),
     },
     watch: {
       '$route' (to, from) {

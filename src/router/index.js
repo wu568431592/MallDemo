@@ -14,7 +14,7 @@ import myOrderNotPay from '../page/userCenter/children/myOrderNotPay.vue'
 import myOrderNotSend from '../page/userCenter/children/myOrderNotSend.vue'
 import myOrderSending from '../page/userCenter/children/myOrderSending.vue'
 import login from '../page/login/login.vue'
-import forgetPassword from '../page/login/children/forgetPassword.vue'
+import forgetPassword from '../page/forgetPassword/forgetPassword.vue'
 import register from '../page/register/register.vue'
 
 Vue.use(Router);
@@ -88,17 +88,15 @@ export default new Router({
     },
     {
       path: '/register',
-      component: myMessageInfo,
+      component: register,
     },
     {
       path: '/login',
       component: login,
-      children:[
-        {
-          path:'forgetPassword',
-          component:forgetPassword
-        }
-      ]
+    },
+    {
+      path:'/forgetPassword',
+      component:forgetPassword
     },
     {
       path: '/proInformation',

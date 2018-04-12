@@ -9,8 +9,9 @@ require('!style-loader!css-loader!less-loader!./assets/css/iconfont/iconfont.css
 require('!style-loader!css-loader!less-loader!./assets/css/index.css')
 
 
-import  { ConfirmPlugin } from 'vux'
+import  { ConfirmPlugin,ToastPlugin } from 'vux'
 Vue.use(ConfirmPlugin)
+Vue.use(ToastPlugin, {position: 'bottom'})
 
 Vue.config.productionTip = false
 var store = store1.store;
