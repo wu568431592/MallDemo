@@ -43,13 +43,13 @@
     },
     methods:{
       ...mapMutations([
-        'setUnLoginPage'
+        'SET_UNLOGIN_PAGE'
       ]),
       goCart:function(){
         if(this.isLogin){
             this.$router.push({path:'/cart'})
         }else{
-            this.setUnLoginPage('/cart')
+            this.SET_UNLOGIN_PAGE('/cart')
             this.showPlugin();
         }
       },
@@ -57,7 +57,7 @@
         if(this.isLogin){
           this.$router.push({path:'/userCenter'})
         }else{
-          this.setUnLoginPage('/userCenter')
+          this.SET_UNLOGIN_PAGE('/userCenter')
           this.showPlugin();
         }
       },

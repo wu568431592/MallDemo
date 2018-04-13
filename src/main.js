@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import store1 from './store/index'
+import store from './store/index'
 require('!style-loader!css-loader!less-loader!./assets/css/animate.css')
 require('!style-loader!css-loader!less-loader!./assets/css/iconfont/iconfont.css')
 require('!style-loader!css-loader!less-loader!./assets/css/index.css')
@@ -11,10 +11,9 @@ require('!style-loader!css-loader!less-loader!./assets/css/index.css')
 
 import  { ConfirmPlugin,ToastPlugin } from 'vux'
 Vue.use(ConfirmPlugin)
-Vue.use(ToastPlugin, {position: 'bottom'})
+Vue.use(ToastPlugin, {position: 'bottom', type:'text', width:'50vw'})
 
 Vue.config.productionTip = false
-var store = store1.store;
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

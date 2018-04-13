@@ -59,13 +59,17 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-  .vux-tab{
+  .vux-tab-warp{
+    padding-top:0px;
     height:6.5vh;
     position:absolute;
     top:7.5vh;
     width:100%;
     z-index: 1000;
     background-color: #fff;
+  }
+  .vux-tab-container{
+    position:static;
   }
   .vux-tab .vux-tab-item.vux-tab-selected{
     color:#e4393c;

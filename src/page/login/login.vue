@@ -33,7 +33,7 @@
 <script>
     import { XInput, Group, XButton } from 'vux'
     import headerBox from '../../components/headerBox/headerBox.vue'
-    import { mapGetters,mapMutations } from 'vuex'
+    import { mapGetters,mapMutations,mapActions } from 'vuex'
     import axios from 'axios'
     export default {
       name:'login',
@@ -55,7 +55,10 @@
       },
       methods:{
         ...mapMutations([
-            'setIsLogin'
+            'SET_IS_LOGIN'
+        ]),
+        ...mapActions([
+          'setUserInfo'
         ]),
         loginFun:function(){
           if(this.canLogin){
@@ -64,8 +67,6 @@
             let password = this.password;
             if(!userName){
                 this.$vux.toast.show({
-                  type:'text',
-                  width:'50vw',
                   text: '请填写用户名！'
                 })
                 this.canLogin = true;
@@ -73,8 +74,6 @@
             }
             if(!password){
               this.$vux.toast.show({
-                type:'text',
-                width:'50vw',
                 text: '请填写密码！'
               })
               this.canLogin = true;
@@ -85,15 +84,14 @@
               .then(res=>{
                 if(res.data[0].password == password){
                   this.canLogin = true;
-                  this.setIsLogin(true);
-                  this.$router.push({path:this.getUnLoginPage});
+                  this.SET_IS_LOGIN(true);
+                  this.setUserInfo();
+                  //this.$router.push({path:this.getUnLoginPage});
                 }
               })
               .catch(error=>{
                 console.log(error)
                 this.$vux.toast.show({
-                  type:'text',
-                  width:'50vw',
                   text: '账号密码错误！'
                 });
                 this.canLogin = true;
