@@ -10,7 +10,7 @@
               <h5>{{getUserInfor? getUserInfor.userName:0}}</h5>
               <p>{{getUserInfor? getUserInfor.userNickName:0}}</p>
             </div>
-            <div class="VIPIcon" v-show="getUserInfor? getUserInfor.isVip:false">特权标记<span>&gt;</span></div>
+            <div class="VIPIcon" v-show="getUserInfor? getUserInfor.isVip:false">特权标记<span></span></div>
           </div>
           <div class="myorder_title">
             <router-link to="myOrder">
@@ -177,7 +177,13 @@
           border-bottom-left-radius:13px;
           color:#fff;
           span{
-            font-family: '宋体';
+            display:inline-block;
+            border-top:1px solid #eee;
+            border-right:1px solid #eee;
+            transform: rotate(45deg);
+            /*font-family: '宋体';*/
+            height:10px;
+            width:10px;
             padding-left:10px;
           }
         }
