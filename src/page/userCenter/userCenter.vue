@@ -4,13 +4,13 @@
         <div class="userCenterMain">
           <div class="touxiang">
             <div class="img_box">
-              <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517915940692&di=8b602e43f6efcccb10a681e5868867df&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2015-01-15%2F152128372.jpg" alt="">
+              <img :src="getUserInfor? getUserInfor.headImgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517915940692&di=8b602e43f6efcccb10a681e5868867df&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2015-01-15%2F152128372.jpg'" alt="">
             </div>
             <div class="userInfo">
-              <h5>15364650653</h5>
-              <p>形影不离314</p>
+              <h5>{{getUserInfor? getUserInfor.userName:0}}</h5>
+              <p>{{getUserInfor? getUserInfor.userNickName:0}}</p>
             </div>
-            <div class="VIPIcon">特权标记<span>&gt;</span></div>
+            <div class="VIPIcon" v-show="getUserInfor? getUserInfor.isVip:false">特权标记<span>&gt;</span></div>
           </div>
           <div class="myorder_title">
             <router-link to="myOrder">
@@ -54,13 +54,13 @@
               <li>
                 <router-link to="userCenter">
                   <i class="icon iconfont icon-favorites"></i>
-                  <p>商品收藏(<span>0</span>)</p>
+                  <p>商品收藏(<span>{{getUserInfor? getUserInfor.collectionList.length:0}}</span>)</p>
                 </router-link>
               </li>
               <li>
                 <router-link to="userCenter">
                   <i class="icon iconfont icon-browse"></i>
-                  <p>浏览记录(<span>0</span>)</p>
+                  <p>浏览记录(<span>{{getUserInfor? getUserInfor.browseList.length:0}}</span>)</p>
                 </router-link>
               </li>
             </ul>
@@ -69,9 +69,9 @@
             <h3>收货地址</h3>
             <div class="address_main">
               <router-link to="userCenter">
-                <p>某市某区某街X号，某市某区某街X号</p>
-                <p>李二狗</p>
-                <p>17310161773</p>
+                <p>{{getUserInfor? getUserInfor.deliveryAddress:0}}</p>
+                <p>{{getUserInfor? getUserInfor.deliveryName:0}}</p>
+                <p>{{getUserInfor? getUserInfor.deliveryPhone:0}}</p>
                 <div class="right">
                   <i class="icon iconfont icon-more"></i>
                 </div>
@@ -85,9 +85,10 @@
 <script>
     import tabBar from  '../../components/tabBar/tabBar.vue'
     import headerBox from  '../../components/headerBox/headerBox.vue'
+    import { mapGetters } from 'vuex'
     export default {
       name:'userCenter',
-      components:{tabBar,headerBox},
+      components:{ tabBar,headerBox },
       mounted:function(){
 
       },
@@ -98,8 +99,13 @@
         return{
           rightButtons:[
             'messageBtn','setBtn'
-          ]
+          ],
         }
+      },
+      computed:{
+        ...mapGetters([
+          'getUserInfor'
+        ])
       }
     }
 </script>
@@ -136,7 +142,6 @@
           margin:20px 10px;
           img{
             width:100%;
-            border:1px solid #fff;
             -webkit-border-radius:50%;
             -moz-border-radius:50%;
             border-radius:50%;

@@ -11,10 +11,9 @@ import {
 
 export default {
   async setUserInfo({
-      commit,
-      state
-    }) {
-    let res = await getUserInfo();
-    commit(SET_USERINFO, res)
+      commit
+    },userName) {
+    let res = await getUserInfo(userName);
+    commit(SET_USERINFO, res[0])
   },
 }

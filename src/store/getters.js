@@ -13,8 +13,5 @@ export default {
   },
   isLogin:function(state){
     return state.isLogin
-  },
-  getUserINfor:function(state){
-    return state.userInfor
   }
 }

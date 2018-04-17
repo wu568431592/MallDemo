@@ -16,7 +16,7 @@ export default {
   },
   [SET_USERINFO](state,info){
     if(state.userInfor && (state.userInfor.userId == info.userId)){
-      return 
+      return
     }
     if(state.isLogin){
       state.userInfor = {...info}

@@ -80,14 +80,18 @@
               return
             }
             //这里因为没有后台服务器，所以用前端验证账号密码，这个方式正常开发是错误的
-            //这里因为没有后台服务器，所以用前端验证账号密码，这个方式正常开发是错误的
             axios.get(`http://${this.getServerIp}/userList?userName=${userName}`)
               .then(res=>{
                 if(res.data[0].password == password){
                   this.canLogin = true;
                   this.SET_IS_LOGIN(true);
-                  this.setUserInfo();
+                  this.setUserInfo(res.data[0].userName);
                   this.$router.push({path:this.getUnLoginPage});
+                }else{
+                  this.$vux.toast.show({
+                    text: '账号密码错误！'
+                  });
+                  this.canLogin = true;
                 }
               })
               .catch(error=>{
